@@ -10,6 +10,6 @@ public class AmbienteConsultoresTarget : TargetRules
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 
-		ExtraModuleNames.AddRange( new string[] { "AmbienteConsultores" } );
+		ExtraModuleNames.AddRange( new string[] { "AmbienteConsultores"} );
 	}
 }
