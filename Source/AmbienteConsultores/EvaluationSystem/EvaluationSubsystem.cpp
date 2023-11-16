@@ -20,16 +20,12 @@ void UEvaluationSubsystem::AddSuccessfulAttempt()
 	SuccessfulAttempts++;
 }
 
-void UEvaluationSubsystem::ResetEvaluation()
+void UEvaluationSubsystem::StartEvaluation(const int32 userID)
 {
+	UserID = userID;
 	SuccessfulAttempts = 0;
 	FailedAttempts = 0;
 	EvaluationScore =0;
-}
-
-void UEvaluationSubsystem::SetUserID(const int32 userID)
-{
-	UserID = userID;
 }
 
 void UEvaluationSubsystem::AddEvaluationDataAssets(UEvaluationDataAsset* EvaluationDataAsset)

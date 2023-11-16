@@ -27,13 +27,10 @@ public:
 	void AddSuccessfulAttempt();
 
 	UFUNCTION(BlueprintCallable)
-	void ResetEvaluation();
+	void StartEvaluation(const int32 UserID);
 
 	UFUNCTION(BlueprintCallable)
-	void AddEvaluationDataAssets(UEvaluationDataAsset* EvaluationDataAsset);
-
-	UFUNCTION(BlueprintCallable)
-	void SetUserID(const int32 UserID);
+	void AddEvaluationDataAssets(UEvaluationDataAsset* EvaluationDataAsset);	
 
 	UPROPERTY(BlueprintReadOnly)	
 	TArray<UEvaluationDataAsset*> EvaluationDataAssets;
