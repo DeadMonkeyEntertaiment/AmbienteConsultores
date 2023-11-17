@@ -4,6 +4,7 @@
 #include "EvaluationSubsystem.h"
 
 #include "EvaluationDataAsset.h"
+#include "Kismet/GameplayStatics.h"
 
 void UEvaluationSubsystem::StoreEvaluationScore(const int32 evaluationScore)
 {
