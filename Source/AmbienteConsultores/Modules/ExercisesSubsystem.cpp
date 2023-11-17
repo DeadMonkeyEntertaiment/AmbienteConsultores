@@ -5,7 +5,7 @@
 
 #include "Kismet/GameplayStatics.h"
 
-void UExercisesSubsystem::AddExercisesToTraining(UWorld* Level)
+void UExercisesSubsystem::AddExercisesToTraining(TSoftObjectPtr<UWorld> Level)
 {
 	SelectedExercises.AddUnique(Level);
 }

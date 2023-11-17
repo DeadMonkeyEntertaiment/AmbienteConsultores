@@ -6,25 +6,9 @@
 #include "UObject/Object.h"
 #include "EvaluationSubsystem.generated.h"
 
-UENUM(BlueprintType)
-enum class EModule : uint8 
-{
-	Modulo1 UMETA(DisplayName="Manos"),
-	Modulo2 UMETA(DisplayName="Eléctrico"),
-	Modulo3 UMETA(DisplayName="Minas"),
-	Modulo4 UMETA(DisplayName="Carros"),
-	Modulo5 UMETA(DisplayName="Aviones"),
-	Modulo6 UMETA(DisplayName="Industria"),
-	Modulo7 UMETA(DisplayName="Metalurgia"),
-};
-
-UENUM(BlueprintType)
-enum class EExercise : uint8 
-{
-	Exercise1,
-	Exercise2,
-	Exercise3
-};
+struct FQuestion;
+enum class EExercise : uint8;
+enum class EModule : uint8;
 
 UCLASS()
 class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsystem 
@@ -43,13 +27,13 @@ public:
 	void AddSuccessfulAttempt();
 
 	UFUNCTION(BlueprintCallable)
-	void StartEvaluation(const int32 UserID);
+	void ResetEvaluation();
 
 	UFUNCTION(BlueprintCallable)
-	void AddEvaluationDataAssets(UEvaluationDataAsset* EvaluationDataAsset);	
+	void AddQuestions(TArray<FQuestion> questions);	
 	
 	UPROPERTY(BlueprintReadOnly)	
-	TArray<UEvaluationDataAsset*> EvaluationDataAssets;		
+	TArray<FQuestion> Questions;		
 
 	UFUNCTION(BlueprintCallable)
 	void SetSelectedModule(const EModule Module);

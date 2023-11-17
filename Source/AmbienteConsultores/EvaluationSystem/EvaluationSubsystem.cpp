@@ -2,8 +2,7 @@
 
 
 #include "EvaluationSubsystem.h"
-
-#include "EvaluationDataAsset.h"
+#include "AmbienteConsultores/Modules/DataAssets/ExerciseDataAsset.h"
 #include "Kismet/GameplayStatics.h"
 
 void UEvaluationSubsystem::StoreEvaluationScore(const int32 evaluationScore)
@@ -21,17 +20,17 @@ void UEvaluationSubsystem::AddSuccessfulAttempt()
 	SuccessfulAttempts++;
 }
 
-void UEvaluationSubsystem::StartEvaluation(const int32 userID)
-{
-	UserID = userID;
+void UEvaluationSubsystem::ResetEvaluation()
+{	
 	SuccessfulAttempts = 0;
 	FailedAttempts = 0;
 	EvaluationScore =0;
+	Questions.Empty();
 }
 
-void UEvaluationSubsystem::AddEvaluationDataAssets(UEvaluationDataAsset* EvaluationDataAsset)
+void UEvaluationSubsystem::AddQuestions(TArray<FQuestion> questions)
 {
-	EvaluationDataAssets.AddUnique(EvaluationDataAsset);
+	Questions.Append(questions);
 }
 
 void UEvaluationSubsystem::SetSelectedModule(const EModule Module)

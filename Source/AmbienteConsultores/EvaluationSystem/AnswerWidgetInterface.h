@@ -6,7 +6,7 @@
 #include "UObject/Interface.h"
 #include "AnswerWidgetInterface.generated.h"
 
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnPressed, int32, AnswerNumber);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnAnswerReleasd, int32, AnswerNumber);
 
 UINTERFACE()
 class UAnswerWidgetInterface : public UInterface
@@ -20,7 +20,7 @@ class AMBIENTECONSULTORES_API IAnswerWidgetInterface
 
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void IBindOnAnswerReleased(const FOnPressed& Event);
+	void IBindToOnAnswerReleased(const FOnAnswerReleasd& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void ISetupWidget(const FQuestion& Question);

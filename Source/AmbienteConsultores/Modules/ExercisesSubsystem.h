@@ -15,7 +15,7 @@ class AMBIENTECONSULTORES_API UExercisesSubsystem : public UGameInstanceSubsyste
 
 public:	
 	UFUNCTION(BlueprintCallable)
-	void AddExercisesToTraining(UWorld* Level);
+	void AddExercisesToTraining(TSoftObjectPtr<UWorld> Level);
 
 	UFUNCTION(BlueprintCallable)
 	void StartTraining();	
@@ -25,7 +25,7 @@ public:
 
 private:	
 	UPROPERTY()
-	TArray<UWorld*> SelectedExercises;
+	TArray<TSoftObjectPtr<UWorld>> SelectedExercises;
 
 	UPROPERTY()
 	int32 CurrentExercise;
