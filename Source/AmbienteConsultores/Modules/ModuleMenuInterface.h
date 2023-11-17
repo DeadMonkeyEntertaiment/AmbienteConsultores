@@ -12,8 +12,10 @@ enum class EModule : uint8;
 
 DECLARE_DYNAMIC_DELEGATE(FOnButtonClicked);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnModuleSelected, EModule, SelectedModule);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnExperienceStart, const TArray<EExercise>&,  SelectedExercises);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnExercisesSelected, const TArray<EExercise>&,  SelectedExercises);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnHoveredChange, bool, IsHovered);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnCodeEntered, int32, code);
+
 
 
 UINTERFACE()
@@ -36,10 +38,14 @@ public:
 	void IBindToOnModuleSelected(const FOnModuleSelected& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void IBindToOnExperienceStart(const FOnExperienceStart& Event);	
+	void IBindToOnExercisesSelected(const FOnExercisesSelected& Event);	
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IBindToOnUserCodeEntered(const FOnCodeEntered& Event);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void ISetupModules(const TArray<UModuleDataAsset*>& ModuleExercises);
+
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void ISetupExercises(const EModule Module, const TArray<UExerciseDataAsset*>& ModuleExercises);

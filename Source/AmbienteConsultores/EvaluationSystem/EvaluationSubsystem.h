@@ -10,6 +10,24 @@ struct FQuestion;
 enum class EExercise : uint8;
 enum class EModule : uint8;
 
+
+USTRUCT(BlueprintType)
+struct FExerciseEvaluation
+{
+	GENERATED_BODY()
+	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	EExercise Exercise;	
+	
+	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	float Time;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int32 repeats;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool win;	
+};
+
 UCLASS()
 class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsystem 
 {
