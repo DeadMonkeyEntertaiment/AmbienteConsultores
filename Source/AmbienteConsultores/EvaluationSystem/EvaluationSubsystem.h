@@ -26,14 +26,6 @@ enum class EExercise : uint8
 	Exercise3
 };
 
-UENUM(BlueprintType)
-enum EMichiStates
-{
-	X,
-	O,
-	CLEAR
-};
-
 UCLASS()
 class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsystem 
 {
@@ -58,6 +50,9 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly)	
 	TArray<UEvaluationDataAsset*> EvaluationDataAssets;		
+
+	UFUNCTION(BlueprintCallable)
+	void SetSelectedModule(const EModule Module);
 	
 private:
 	UPROPERTY()
@@ -73,9 +68,9 @@ private:
 	int32 UserID;
 
 	UPROPERTY()
-	EModule Module;
+	EModule SelectedModule;
 	
 	UPROPERTY()
-	TArray<EExercise> Exercises;
+	TArray<EExercise> SelectedExercises;
 	
 };

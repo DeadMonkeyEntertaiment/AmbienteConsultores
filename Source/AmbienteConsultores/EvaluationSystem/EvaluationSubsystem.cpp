@@ -34,4 +34,9 @@ void UEvaluationSubsystem::AddEvaluationDataAssets(UEvaluationDataAsset* Evaluat
 	EvaluationDataAssets.AddUnique(EvaluationDataAsset);
 }
 
+void UEvaluationSubsystem::SetSelectedModule(const EModule Module)
+{
+	SelectedModule = Module;
+}
+
 
