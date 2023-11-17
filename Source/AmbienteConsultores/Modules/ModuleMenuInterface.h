@@ -45,12 +45,14 @@ public:
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void ISetupModules(const TArray<UModuleDataAsset*>& ModuleExercises);
-
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void ISetupExercises(const EModule Module, const TArray<UExerciseDataAsset*>& ModuleExercises);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IShowErrorMessage(const FString& ErrorMessage);
+
+		UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")
 	void IBindOnHoveredChange(const FOnHoveredChange& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")

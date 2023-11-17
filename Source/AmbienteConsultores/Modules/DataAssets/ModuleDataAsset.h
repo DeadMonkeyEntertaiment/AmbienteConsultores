@@ -28,6 +28,9 @@ struct FModuleData
 	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
 	EModule Module;
 
+	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	FString ModuleID;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture2D* Image;
 	
