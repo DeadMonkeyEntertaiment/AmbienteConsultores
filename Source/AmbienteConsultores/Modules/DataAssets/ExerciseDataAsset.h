@@ -20,13 +20,32 @@ enum class EExercise : uint8
 };
 
 USTRUCT(BlueprintType)
+struct FInstructorDialog
+{
+	GENERATED_BODY()	
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	USoundBase* Audio;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UAnimationAsset* Animation;
+
+	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	TArray<FText> Texts;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<float> AudioToTextSegmentationTimes;	
+};
+
+USTRUCT(BlueprintType)
 struct FQuestion
 {
 	GENERATED_BODY()
+	
 	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
 	FText Question;	
 	
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FText> Answers;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -47,5 +66,8 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FQuestion> Questions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FInstructorDialog> InstructorDialogs;
 
 };
