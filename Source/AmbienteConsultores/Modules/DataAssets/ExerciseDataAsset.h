@@ -6,6 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "ExerciseDataAsset.generated.h"
 
+class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
 class UImage;
 enum class EModule : uint8;
@@ -14,9 +15,9 @@ enum class EExercise : uint8;
 UENUM(BlueprintType)
 enum class EExercise : uint8 
 {
-	Exercise1,
-	Exercise2,
-	Exercise3
+	Exercise1 UMETA(DisplayName="Cuidado de manos"),
+	Exercise2 UMETA(DisplayName="Control de oleadas"),
+	Exercise3 UMETA(DisplayName="Diveos"),	
 };
 
 USTRUCT(BlueprintType)
@@ -58,16 +59,19 @@ class AMBIENTECONSULTORES_API UExerciseDataAsset : public UDataAsset
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EExercise Exercise;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSoftObjectPtr<UWorld> ExerciseLevel;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FQuestion> Questions;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FInstructorDialog> InstructorDialogs;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<TSubclassOf<ABaseHoldableGrabbable>> ProtectionGear;
 
 };

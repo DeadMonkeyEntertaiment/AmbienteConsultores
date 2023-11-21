@@ -45,6 +45,6 @@ class AMBIENTECONSULTORES_API UModuleDataAsset : public UDataAsset
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FModuleData Module;	
 };
