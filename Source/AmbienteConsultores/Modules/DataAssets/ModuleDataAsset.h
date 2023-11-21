@@ -25,10 +25,10 @@ USTRUCT(BlueprintType)
 struct FModuleData
 {
 	GENERATED_BODY()
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EModule Module;
 
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString ModuleID;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

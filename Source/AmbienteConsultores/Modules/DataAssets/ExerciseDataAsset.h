@@ -62,7 +62,7 @@ public:
 	EExercise Exercise;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSoftObjectPtr<UWorld> ExperienceLevel;
+	TSoftObjectPtr<UWorld> ExerciseLevel;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FQuestion> Questions;

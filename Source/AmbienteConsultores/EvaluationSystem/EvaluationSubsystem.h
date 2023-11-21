@@ -15,17 +15,20 @@ USTRUCT(BlueprintType)
 struct FExerciseEvaluation
 {
 	GENERATED_BODY()
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
-	EExercise Exercise;	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	EExercise Exercise;
 	
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
-	float Time;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	double Time;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 repeats;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool win;	
+	bool win;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int32 Step;	
 };
 
 UCLASS()
@@ -35,8 +38,11 @@ class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsyst
 	
 public:	
 
+	UPROPERTY(BlueprintReadOnly)	
+	TArray<FQuestion> Questions;		
+	
 	UFUNCTION(BlueprintCallable)
-	void StoreEvaluationScore(const int32 EvaluationScore);
+	void StoreQuestionnaireScore(const int32 EvaluationScore);
 	
 	UFUNCTION(BlueprintCallable)
 	void AddFailedAttempt();
@@ -45,26 +51,27 @@ public:
 	void AddSuccessfulAttempt();
 
 	UFUNCTION(BlueprintCallable)
-	void ResetEvaluation();
+	void ResetQuestionnaire();
 
 	UFUNCTION(BlueprintCallable)
-	void AddQuestions(TArray<FQuestion> questions);	
-	
-	UPROPERTY(BlueprintReadOnly)	
-	TArray<FQuestion> Questions;		
+	void AddQuestions(TArray<FQuestion> NewQuestions);		
 
 	UFUNCTION(BlueprintCallable)
 	void SetSelectedModule(const EModule Module);
 	
-private:
-	UPROPERTY()
-	int32 FailedAttempts;
+	UFUNCTION(BlueprintCallable)
+	void StartExerciseEvaluation(const EExercise Exercise);
+
+	UFUNCTION(BlueprintCallable)
+	void FinishExerciseEvaluation();
+
+	//This should be privatre, i put here only for easy testing 
+	UPROPERTY(BlueprintReadWrite)
+	FExerciseEvaluation CurrentExerciseEvaluation;
 	
+private:	
 	UPROPERTY()	
-	int32 SuccessfulAttempts;
-	
-	UPROPERTY()	
-	int32 EvaluationScore;
+	int32 QuestionnaireScore;
 	
 	UPROPERTY()
 	int32 UserID;
@@ -74,5 +81,9 @@ private:
 	
 	UPROPERTY()
 	TArray<EExercise> SelectedExercises;
+
+	UPROPERTY()
+	TArray<FExerciseEvaluation> ActivityExercises;
+
 	
 };
