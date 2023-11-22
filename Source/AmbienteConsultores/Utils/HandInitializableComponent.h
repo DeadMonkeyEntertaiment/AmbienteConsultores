@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "InitializableInterface.h"
 #include "Components/ActorComponent.h"
+#include "InputAction.h"
 #include "HandInitializableComponent.generated.h"
 
 

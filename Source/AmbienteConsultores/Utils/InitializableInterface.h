@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "VREditorInteractor.h"
 #include "UObject/Interface.h"
+#include "InputAction.h"
 #include "InitializableInterface.generated.h"
 
 
