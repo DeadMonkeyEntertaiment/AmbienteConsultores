@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InteractionStrategy.h"
 #include "Components/ActorComponent.h"
 #include "InteractableComponent.generated.h"
 
@@ -24,11 +25,16 @@ protected:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void EndInteraction(AActor *Interactor);
 	
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void OnInteractionGoalAchieved();
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MustImplement = InteractionStrategy) )
 	TSubclassOf<UInteractionStrategyBlueprintable> InteractionStrategyClass;
 
 	UPROPERTY(BlueprintReadOnly)
 	UInteractionStrategyBlueprintable *InteractionStrategyObject;
+
+	
 private:
 	
 	
