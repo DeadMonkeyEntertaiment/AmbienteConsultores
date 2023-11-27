@@ -16,7 +16,7 @@ struct FExerciseEvaluation
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EExercise Exercise;
+	EExercise Exercise; //description
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	double Time;
@@ -29,6 +29,17 @@ struct FExerciseEvaluation
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 Step;	
+};
+
+USTRUCT(BlueprintType)
+struct FSessionResults
+{
+	GENERATED_BODY()
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	EModule SelectedModule;; //CourseId
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FExerciseEvaluation> ActivityExercises; //ActivitySteps
 };
 
 UCLASS()
@@ -68,6 +79,9 @@ public:
 	//This should be privatre, i put here only for easy testing 
 	UPROPERTY(BlueprintReadWrite)
 	FExerciseEvaluation CurrentExerciseEvaluation;
+
+	UPROPERTY(BlueprintReadOnly)
+	FSessionResults SessionResults;
 	
 private:	
 	UPROPERTY()	
@@ -75,15 +89,10 @@ private:
 	
 	UPROPERTY()
 	int32 UserID;
-
-	UPROPERTY()
-	EModule SelectedModule;
 	
-	UPROPERTY()
-	TArray<EExercise> SelectedExercises;
+	//UPROPERTY()
+	//TArray<EExercise> SelectedExercises;
 
-	UPROPERTY()
-	TArray<FExerciseEvaluation> ActivityExercises;
-
-	
+	//UPROPERTY()
+	//TArray<FExerciseEvaluation> ActivityExercises;	
 };

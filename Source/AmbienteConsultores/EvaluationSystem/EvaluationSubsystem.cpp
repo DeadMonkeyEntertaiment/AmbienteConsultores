@@ -37,7 +37,7 @@ void UEvaluationSubsystem::AddQuestions(TArray<FQuestion> NewQuestions)
 
 void UEvaluationSubsystem::SetSelectedModule(const EModule Module)
 {
-	SelectedModule = Module;
+	SessionResults.SelectedModule = Module;
 }
 
 void UEvaluationSubsystem::StartExerciseEvaluation(const EExercise Exercise)
@@ -52,8 +52,8 @@ void UEvaluationSubsystem::StartExerciseEvaluation(const EExercise Exercise)
 void UEvaluationSubsystem::FinishExerciseEvaluation()
 {
 	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld()) - CurrentExerciseEvaluation.Time;
-	CurrentExerciseEvaluation.Step = ActivityExercises.Num();
-	ActivityExercises.Add(CurrentExerciseEvaluation);	
+	CurrentExerciseEvaluation.Step = SessionResults.ActivityExercises.Num();
+	SessionResults.ActivityExercises.Add(CurrentExerciseEvaluation);
 }
 
 
