@@ -66,9 +66,6 @@ public:
 	void ResetQuestionnaire();
 
 	UFUNCTION(BlueprintCallable)
-	void AddQuestions(TArray<FQuestion> NewQuestions);		
-
-	UFUNCTION(BlueprintCallable)
 	void SetSelectedModule(const EModule Module);
 	
 	UFUNCTION(BlueprintCallable)
