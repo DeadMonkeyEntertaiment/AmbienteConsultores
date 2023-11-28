@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTags.h"
-#include "InteractionStrategy.h"
 #include "Components/ActorComponent.h"
 #include "InteractableComponent.generated.h"
 

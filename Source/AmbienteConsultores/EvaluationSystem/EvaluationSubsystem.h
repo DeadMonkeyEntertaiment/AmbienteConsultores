@@ -42,13 +42,14 @@ struct FSessionResults
 	TArray<FExerciseEvaluation> ActivityExercises; //ActivitySteps
 };
 
-UCLASS()
-class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsystem 
+UCLASS(Blueprintable)
+class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 	
 public:	
 
+	//Questionnaire
 	UPROPERTY(BlueprintReadOnly)	
 	TArray<FQuestion> Questions;		
 	
@@ -82,13 +83,33 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	FSessionResults SessionResults;
+
+	UFUNCTION(BlueprintCallable)
+	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);
+
+	UFUNCTION(BlueprintCallable)
+	void StartActivity();	
 	
-private:	
-	UPROPERTY()	
-	int32 QuestionnaireScore;
+	UFUNCTION(BlueprintCallable)
+	bool NextExercise();
+	
+	UFUNCTION(BlueprintCallable)
+	UExerciseDataAsset* GetCurrentExercise();
+	
+private:
 	
 	UPROPERTY()
 	int32 UserID;
+	
+	UPROPERTY()	
+	int32 QuestionnaireScore;
+	
+
+	UPROPERTY()
+	TArray<UExerciseDataAsset*> SelectedExercises;
+
+	UPROPERTY()
+	int32 CurrentExercise;
 	
 	//UPROPERTY()
 	//TArray<EExercise> SelectedExercises;
