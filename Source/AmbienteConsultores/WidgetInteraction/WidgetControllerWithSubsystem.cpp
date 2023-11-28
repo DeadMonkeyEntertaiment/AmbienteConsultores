@@ -10,11 +10,6 @@ UEvaluationSubsystem* UWidgetControllerWithSubsystem::GetEvaluationSubsystem()
 	return GetWorld()->GetGameInstance()->GetSubsystem<UEvaluationSubsystem>();
 }
 
-UActivitySubsystem* UWidgetControllerWithSubsystem::GetActivitySubsystem()
-{
-	return GetWorld()->GetGameInstance()->GetSubsystem<UActivitySubsystem>();
-}
-
 APlayerController* UWidgetControllerWithSubsystem::GetPlayerController()
 {
 	APlayerController* Controller =  UGameplayStatics::GetPlayerController(GetWorld(), 0);

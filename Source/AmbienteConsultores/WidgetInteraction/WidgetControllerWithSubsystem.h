@@ -18,8 +18,5 @@ class AMBIENTECONSULTORES_API UWidgetControllerWithSubsystem : public UWidgetCon
 	UEvaluationSubsystem* GetEvaluationSubsystem();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UActivitySubsystem* GetActivitySubsystem();
-
-	UFUNCTION(BlueprintCallable, BlueprintPure)
 	APlayerController* GetPlayerController();
 };

@@ -47,70 +47,73 @@ class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsyst
 {
 	GENERATED_BODY()
 	
-public:	
-
+public:
+	
 	//Questionnaire
-	UPROPERTY(BlueprintReadOnly)	
-	TArray<FQuestion> Questions;		
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<FQuestion> GetQuestions();
 	
 	UFUNCTION(BlueprintCallable)
 	void StoreQuestionnaireScore(const int32 EvaluationScore);
-	
+
+	UFUNCTION(BlueprintCallable)
+	void ResetQuestionnaire();
+
+	//Exercise
 	UFUNCTION(BlueprintCallable)
 	void AddFailedAttempt();
 	
 	UFUNCTION(BlueprintCallable)
 	void AddSuccessfulAttempt();
-
-	UFUNCTION(BlueprintCallable)
-	void ResetQuestionnaire();
-
-	UFUNCTION(BlueprintCallable)
-	void SetSelectedModule(const EModule Module);
 	
 	UFUNCTION(BlueprintCallable)
-	void StartExerciseEvaluation(const EExercise Exercise);
+	UExerciseDataAsset* GetCurrentExercise();
+
+	//Evaluation
+	UFUNCTION(BlueprintCallable)
+	void SetSelectedModule(const EModule Module);
 
 	UFUNCTION(BlueprintCallable)
-	void FinishExerciseEvaluation();
+	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);
+	
+	UFUNCTION(BlueprintCallable)
+	void StartActivity();
+	
+	UFUNCTION(BlueprintCallable)
+	void StartExerciseEvaluation();	
+	
+	UFUNCTION(BlueprintCallable)
+	void FinishExerciseEvaluation(bool &ActivityFinished);
+
+	UFUNCTION(BlueprintCallable)
+	void NextExercise(bool &ActivityFinished);	
+
+	UFUNCTION(BlueprintCallable)
+	void FinishActivity();
 
 	//This should be privatre, i put here only for easy testing 
 	UPROPERTY(BlueprintReadWrite)
 	FExerciseEvaluation CurrentExerciseEvaluation;
-
+	//This should be privatre, i put here only for easy testing 
 	UPROPERTY(BlueprintReadOnly)
 	FSessionResults SessionResults;
-
-	UFUNCTION(BlueprintCallable)
-	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);
-
-	UFUNCTION(BlueprintCallable)
-	void StartActivity();	
 	
-	UFUNCTION(BlueprintCallable)
-	bool NextExercise();
-	
-	UFUNCTION(BlueprintCallable)
-	UExerciseDataAsset* GetCurrentExercise();
-	
-private:
-	
+private:	
 	UPROPERTY()
 	int32 UserID;
-	
-	UPROPERTY()	
-	int32 QuestionnaireScore;
-	
 
 	UPROPERTY()
 	TArray<UExerciseDataAsset*> SelectedExercises;
 
 	UPROPERTY()
 	int32 CurrentExercise;
-	
-	//UPROPERTY()
-	//TArray<EExercise> SelectedExercises;
 
-	//UPROPERTY()
-	//TArray<FExerciseEvaluation> ActivityExercises;	
+	UPROPERTY()	
+	TArray<FQuestion> Questions;	
+	
+	UPROPERTY()	
+	int32 QuestionnaireScore;
+
+	UPROPERTY()
+	FName EntryLevelName = "/Game/Maps/MAP_EntryLevel";	
 };
