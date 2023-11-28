@@ -19,10 +19,10 @@ class AMBIENTECONSULTORES_API IInteractionStrategy
 public:
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void IStartInteraction(AActor *Interactor, AActor *Interactable);
+	void IStartInteraction(AActor *Interactor);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void IEndInteraction(AActor *Interactor, AActor *Interactable);
+	void IEndInteraction(AActor *Interactor);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void IBindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);

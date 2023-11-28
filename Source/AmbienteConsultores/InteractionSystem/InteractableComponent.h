@@ -17,9 +17,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FGameplayTag InteractableTag;
+
+	UPROPERTY(BlueprintReadOnly)
+	UInteractionStrategyBlueprintable *InteractionStrategyObject;
 	
 protected:
-
 	virtual void BeginPlay() override;
 	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
@@ -34,8 +36,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MustImplement = InteractionStrategy) )
 	TSubclassOf<UInteractionStrategyBlueprintable> InteractionStrategyClass;
 
-	UPROPERTY(BlueprintReadOnly)
-	UInteractionStrategyBlueprintable *InteractionStrategyObject;
+	
 
 
 	

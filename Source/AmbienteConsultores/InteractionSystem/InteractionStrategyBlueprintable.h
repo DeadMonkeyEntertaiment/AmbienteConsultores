@@ -13,16 +13,17 @@ class AMBIENTECONSULTORES_API UInteractionStrategyBlueprintable : public UObject
 	GENERATED_BODY()
 	
 public:
-	virtual void IStartInteraction_Implementation(AActor* interactor, AActor* interactable) override;
-
+	virtual void IStartInteraction_Implementation(AActor* interactor) override;
+	
+	UFUNCTION(BlueprintNativeEvent)
+	void InitializeObject(AActor* owner);
 	
 protected:
 	UPROPERTY(BlueprintReadWrite)
 	AActor *Interactor;
 
 	UPROPERTY(BlueprintReadWrite)
-	AActor *Interactable;
-
+	AActor *Owner;	
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void ObjectTick(float DeltaTime);

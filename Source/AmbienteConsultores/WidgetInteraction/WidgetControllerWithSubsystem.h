@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "WidgetController.h"
 #include "AmbienteConsultores/EvaluationSystem/EvaluationSubsystem.h"
-#include "AmbienteConsultores/Modules/ActivitySubsystem.h"
 #include "WidgetControllerWithSubsystem.generated.h"
 
 
