@@ -1,7 +1,7 @@
 
 # AmbienteConsultores
 
-Welcome to AmbienteConsultores, an immersive and interactive virtual training system developed for AmbienteConsultores. This project is developed in Unreal Engine 5.2 for Oculus Quest 2.
+Welcome to AmbienteConsultores, an immersive and interactive virtual training system developed for AmbienteConsultores. This project is developed in Unreal Engine 5.3 for Oculus Quest 2.
 
 ## Table of Contents
 - [Plugins](#plugins)
