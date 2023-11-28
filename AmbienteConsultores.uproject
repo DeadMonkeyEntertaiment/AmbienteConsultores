@@ -35,32 +35,6 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/e47be161e7a24e928560290abd5dcc4f"
 		},
 		{
-			"Name": "OpenXRHandTracking",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Linux",
-				"Android"
-			]
-		},
-		{
-			"Name": "OpenXR",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Linux",
-				"Android"
-			]
-		},
-		{
-			"Name": "OpenXRMsftHandInteraction",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Android"
-			]
-		},
-		{
 			"Name": "XRVisualization",
 			"Enabled": true
 		},
