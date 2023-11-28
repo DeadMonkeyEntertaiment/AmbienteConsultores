@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTags.h"
 #include "InteractionStrategy.h"
 #include "Components/ActorComponent.h"
 #include "InteractableComponent.generated.h"
@@ -15,6 +16,9 @@ class AMBIENTECONSULTORES_API UInteractableComponent : public UActorComponent
 public:	
 	UInteractableComponent();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FGameplayTag InteractableTag;
+	
 protected:
 
 	virtual void BeginPlay() override;
