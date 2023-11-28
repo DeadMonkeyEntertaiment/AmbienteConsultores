@@ -21,6 +21,7 @@ void UInteractableComponent::BeginPlay()
 	FOnInteractionGoalAchieved ActivationReqHandler;
 	ActivationReqHandler.BindDynamic(this, &UInteractableComponent::OnInteractionGoalAchieved);
 	IInteractionStrategy::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategyObject, ActivationReqHandler);
+	
 }
 
 void UInteractableComponent::EndInteraction_Implementation(AActor *Interactor)

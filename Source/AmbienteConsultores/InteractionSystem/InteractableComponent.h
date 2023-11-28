@@ -37,10 +37,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	UInteractionStrategyBlueprintable *InteractionStrategyObject;
 
-	
-private:
-	
-	
 
 	
 };
