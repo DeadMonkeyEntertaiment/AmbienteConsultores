@@ -35,7 +35,7 @@ void UEvaluationSubsystem::ResetQuestionnaire()
 	Questions.Empty();
 }
 
-void UEvaluationSubsystem::SetSelectedModule(const EModule Module)
+void UEvaluationSubsystem::SetSelectedModule(const FGameplayTag Module)
 {
 	SessionResults.SelectedModule = Module;
 }

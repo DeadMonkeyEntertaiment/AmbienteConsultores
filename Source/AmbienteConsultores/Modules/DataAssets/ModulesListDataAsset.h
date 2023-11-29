@@ -7,8 +7,6 @@
 #include "ModulesListDataAsset.generated.h"
 
 class UModuleDataAsset;
-enum class EModule : uint8;
-enum class EExercise : uint8;
 
 UCLASS(BlueprintType)
 class AMBIENTECONSULTORES_API UModulesDataAsset : public UDataAsset

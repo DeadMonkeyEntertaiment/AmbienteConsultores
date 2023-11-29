@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "UObject/Object.h"
 #include "EvaluationSubsystem.generated.h"
 
@@ -16,7 +17,7 @@ struct FExerciseEvaluation
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EExercise Exercise; //description
+	FGameplayTag Exercise; //description
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	double Time;
@@ -36,7 +37,7 @@ struct FSessionResults
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EModule SelectedModule;; //CourseId
+	FGameplayTag SelectedModule;; //CourseId
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FExerciseEvaluation> ActivityExercises; //ActivitySteps
@@ -71,7 +72,7 @@ public:
 
 	//Evaluation
 	UFUNCTION(BlueprintCallable)
-	void SetSelectedModule(const EModule Module);
+	void SetSelectedModule(const FGameplayTag Module);
 
 	UFUNCTION(BlueprintCallable)
 	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);

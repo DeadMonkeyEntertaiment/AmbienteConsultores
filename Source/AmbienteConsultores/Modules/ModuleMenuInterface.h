@@ -3,16 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "UObject/Interface.h"
 #include "ModuleMenuInterface.generated.h"
 
 class UModuleDataAsset;
-enum class EExercise : uint8;
-enum class EModule : uint8;
 
 DECLARE_DYNAMIC_DELEGATE(FOnButtonClicked);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnModuleSelected, EModule, SelectedModule);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnExercisesSelected, const TArray<EExercise>&,  SelectedExercises);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnModuleSelected, FGameplayTag, SelectedModule);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnExercisesSelected, FGameplayTagContainer,  SelectedExercises);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnHoveredChange, bool, IsHovered);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnCodeEntered, int32, code);
 
@@ -47,12 +46,12 @@ public:
 	void ISetupModules(const TArray<UModuleDataAsset*>& ModuleExercises);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void ISetupExercises(const EModule Module, const TArray<UExerciseDataAsset*>& ModuleExercises);
+	void ISetupExercises(const FGameplayTag Module, const TArray<UExerciseDataAsset*>& ModuleExercises);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void IShowErrorMessage(const FString& ErrorMessage);
 
-		UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")
 	void IBindOnHoveredChange(const FOnHoveredChange& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")

@@ -3,22 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
 #include "ExerciseDataAsset.generated.h"
 
 class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
 class UImage;
-enum class EModule : uint8;
-enum class EExercise : uint8;
-
-UENUM(BlueprintType)
-enum class EExercise : uint8 
-{
-	Exercise1 UMETA(DisplayName="Cuidado de manos"),
-	Exercise2 UMETA(DisplayName="Control de oleadas"),
-	Exercise3 UMETA(DisplayName="Diveos"),	
-};
 
 USTRUCT(BlueprintType)
 struct FInstructorDialog
@@ -60,7 +51,7 @@ class AMBIENTECONSULTORES_API UExerciseDataAsset : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EExercise Exercise;
+	FGameplayTag Exercise;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSoftObjectPtr<UWorld> ExerciseLevel;
