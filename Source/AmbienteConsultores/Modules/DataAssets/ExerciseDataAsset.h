@@ -7,6 +7,7 @@
 #include "Engine/DataAsset.h"
 #include "ExerciseDataAsset.generated.h"
 
+class ABaseInteractable;
 class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
 class UImage;
@@ -63,6 +64,6 @@ public:
 	TArray<FInstructorDialog> InstructorDialogs;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TSubclassOf<ABaseHoldableGrabbable>> ProtectionGear;
+	TArray<TSubclassOf<ABaseInteractable>> ProtectionGear;
 
 };
