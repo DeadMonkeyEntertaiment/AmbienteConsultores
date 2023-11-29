@@ -46,7 +46,23 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ResetQuestionnaire();
 
-	//Exercise
+	//Activity
+	UFUNCTION(BlueprintCallable)
+	void StartActivity();
+	
+	UFUNCTION(BlueprintCallable)
+	void NextExercise();
+	
+	UFUNCTION(BlueprintCallable)
+	void FinishActivity();
+
+	//Exercise	
+	UFUNCTION(BlueprintCallable)
+	void StartExerciseEvaluation();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<UExerciseEvaluationStrategy> GetCurrentExerciseEvaluation();	
+	
 	UFUNCTION(BlueprintCallable)
 	void AddFailedAttempt();
 	
@@ -54,30 +70,11 @@ public:
 	void AddSuccessfulAttempt();
 	
 	UFUNCTION(BlueprintCallable)
-	UExerciseDataAsset* GetCurrentExercise();
-
-	//Evaluation
-	UFUNCTION(BlueprintCallable)
-	void SetSelectedModule(UModuleDataAsset* Module);
-
-	UFUNCTION(BlueprintCallable)
-	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);
-	
-	UFUNCTION(BlueprintCallable)
-	void StartActivity();
-	
-	UFUNCTION(BlueprintCallable)
-	void StartExerciseEvaluation();	
+	void RetryExercise();
 	
 	UFUNCTION(BlueprintCallable)
 	void FinishExerciseEvaluation(bool &ActivityFinished);		
-	
-	UFUNCTION(BlueprintCallable)
-	void NextExercise(bool &ActivityFinished);
-
-	UFUNCTION(BlueprintCallable)
-	void FinishActivity();
-	
+		
 	//Load-unload StreamLevels
 	UPROPERTY()
 	int LoadLevelIndex;
@@ -92,23 +89,32 @@ public:
 	void ManageSubLevelsLoad();
 
 	UFUNCTION(BlueprintCallable)
+	void UnloadNextStreamLevel();
+	
+	UFUNCTION(BlueprintCallable)
+	void UnloadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld);
+	
+	UFUNCTION(BlueprintCallable)
 	void LoadNextStreamLevel();
 	
 	UFUNCTION(BlueprintCallable)
 	void LoadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld);
 
-	UFUNCTION(BlueprintCallable)
-	void UnloadNextStreamLevel();
-	
-	UFUNCTION(BlueprintCallable)
-	void UnloadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld);	
-
-	//GetData
+	//Data
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	FString GetSelectedModuleId();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TArray<FExerciseEvaluation> GetExercisesEvaluations();
+		
+	UFUNCTION(BlueprintCallable)
+	UExerciseDataAsset* GetCurrentExercise();
+
+	UFUNCTION(BlueprintCallable)
+	void SetSelectedModule(UModuleDataAsset* Module);
+
+	UFUNCTION(BlueprintCallable)
+	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);
 	
 private:	
 	UPROPERTY()
@@ -133,7 +139,10 @@ private:
 	FExerciseEvaluation CurrentExerciseEvaluation;
 
 	UPROPERTY()
-	TArray<FExerciseEvaluation> ExercisesEvaluations; 
+	TArray<FExerciseEvaluation> ExercisesEvaluations;
+
+	UPROPERTY()
+	FVector3d SpawnLocation;
 };
 
 

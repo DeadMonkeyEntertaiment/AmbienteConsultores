@@ -5,11 +5,12 @@
 #include "InteractableInterface.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractedInternal, AActor*, Instigator);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnInteracted, AActor*, Instigator);
+class ABaseInteractable;
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractedInternal, AActor*, Interactable);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnInteracted, AActor*, Interactable);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteractionGoalAchievedInternal);
-DECLARE_DYNAMIC_DELEGATE(FOnInteractionGoalAchieved);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractionGoalAchievedInternal, AActor*, Interactable);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnInteractionGoalAchieved, AActor*, Interactable);
 
 UINTERFACE()
 class UInteractableInterface : public UInterface
@@ -29,8 +30,8 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IEndInteraction(AActor *Interactor);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
-	void IOnInteractionGoalAchieved();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")//??
+	void IOnInteractionGoalAchieved(AActor* Interactable);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IBindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);

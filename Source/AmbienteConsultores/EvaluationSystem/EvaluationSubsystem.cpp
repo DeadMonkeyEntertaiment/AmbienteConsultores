@@ -6,9 +6,51 @@
 #include "AmbienteConsultores/Modules/DataAssets/ModuleDataAsset.h"
 #include "Kismet/GameplayStatics.h"
 
+//Questionnaire
 TArray<FQuestion> UEvaluationSubsystem::GetQuestions()
 {
 	return Questions;
+}
+
+void UEvaluationSubsystem::ResetQuestionnaire()
+{	
+	Questions.Empty();
+}
+
+//Activity
+void UEvaluationSubsystem::StartActivity()
+{
+	CurrentExerciseNumber = 0;
+	UGameplayStatics::OpenLevelBySoftObjectPtr(this, SelectedModule->ModuleLevel);
+}
+
+void UEvaluationSubsystem::NextExercise()
+{		
+	CurrentExerciseNumber++;		
+	if (!SelectedExercises.IsValidIndex(CurrentExerciseNumber)) return;
+	ManageSubLevelsLoad();
+}
+
+void UEvaluationSubsystem::FinishActivity()
+{	
+	UGameplayStatics::OpenLevel(GWorld, EntryLevelName, false);
+}
+
+//Exercise
+void UEvaluationSubsystem::StartExerciseEvaluation()
+{
+	if (!IsValid(GetCurrentExercise())) return;
+	CurrentExerciseEvaluation.Exercise = GetCurrentExercise()->ExerciseTag;
+	CurrentExerciseEvaluation.Step = ExercisesEvaluations.Num();
+	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld());
+	CurrentExerciseEvaluation.repeats = 0; 
+	CurrentExerciseEvaluation.win = true;
+	ManageSubLevelsLoad();
+}
+
+TSubclassOf<UExerciseEvaluationStrategy> UEvaluationSubsystem::GetCurrentExerciseEvaluation()
+{
+	return GetCurrentExercise()->ExerciseEvaluation;
 }
 
 void UEvaluationSubsystem::AddFailedAttempt()
@@ -25,55 +67,23 @@ void UEvaluationSubsystem::AddSuccessfulAttempt()
 	
 }
 
-void UEvaluationSubsystem::ResetQuestionnaire()
-{	
-	Questions.Empty();
+void UEvaluationSubsystem::RetryExercise()
+{
+	UnloadWorlds = SelectedExercises[CurrentExerciseNumber]->ExerciseSublevels;		
+	LoadWorlds = SelectedExercises[CurrentExerciseNumber]->ExerciseSublevels;
+	UnloadNextStreamLevel();	
 }
 
-void UEvaluationSubsystem::SetSelectedModule(UModuleDataAsset* Module)
+void UEvaluationSubsystem::FinishExerciseEvaluation(bool &ActivityFinished)
 {
-	SelectedModule = Module;
-}
-
-void UEvaluationSubsystem::StartExerciseEvaluation()
-{
-	if (!IsValid(GetCurrentExercise())) return;
-	CurrentExerciseEvaluation.Exercise = GetCurrentExercise()->ExerciseTag;
-	CurrentExerciseEvaluation.Step = 0;
-	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld());
-	CurrentExerciseEvaluation.repeats = 0; 
-	CurrentExerciseEvaluation.win = true;
-	ManageSubLevelsLoad();
-}
-
-void UEvaluationSubsystem::FinishExerciseEvaluation(bool &ExerciesesFinished)
-{
-	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld()) - CurrentExerciseEvaluation.Time;
-	CurrentExerciseEvaluation.Step = ExercisesEvaluations.Num();
+	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld()) - CurrentExerciseEvaluation.Time;	
 	ExercisesEvaluations.Add(CurrentExerciseEvaluation);
-	NextExercise(ExerciesesFinished);
+	ActivityFinished = !SelectedExercises.IsValidIndex(CurrentExerciseNumber+1);
 }
 
-void UEvaluationSubsystem::AddExercisesToActivity(UExerciseDataAsset* ExerciseData)
-{	
-	Questions.Append(ExerciseData->Questions);
-	SelectedExercises.AddUnique(ExerciseData);
-}
 
-void UEvaluationSubsystem::StartActivity()
-{
-	CurrentExerciseNumber = 0;
-	UGameplayStatics::OpenLevelBySoftObjectPtr(this, SelectedModule->ModuleLevel);
-}
 
-void UEvaluationSubsystem::NextExercise(bool &ActivityFinished)
-{		
-	CurrentExerciseNumber++;	
-	ActivityFinished = !SelectedExercises.IsValidIndex(CurrentExerciseNumber);
-	if (ActivityFinished) return;
-	ManageSubLevelsLoad();
-}
-
+//Load-unload StreamLevels
 void UEvaluationSubsystem::ManageSubLevelsLoad()
 {
 	LoadLevelIndex = 0;
@@ -115,7 +125,6 @@ void UEvaluationSubsystem::UnloadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld)
 	
 }
 
-
 void UEvaluationSubsystem::LoadNextStreamLevel()
 {
 	if (!LoadWorlds.IsValidIndex(LoadLevelIndex)) return;
@@ -133,20 +142,7 @@ void UEvaluationSubsystem::LoadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld)
 	UGameplayStatics::LoadStreamLevelBySoftObjectPtr(GetWorld(),LoadWorld, true, true, info);
 }
 
-UExerciseDataAsset* UEvaluationSubsystem::GetCurrentExercise()
-{
-	if (SelectedExercises.IsValidIndex(CurrentExerciseNumber))
-	{
-		return SelectedExercises[CurrentExerciseNumber];	
-	}
-	return nullptr;
-}
-
-void UEvaluationSubsystem::FinishActivity()
-{	
-	UGameplayStatics::OpenLevel(GWorld, EntryLevelName, false);
-}
-
+//Data
 FString UEvaluationSubsystem::GetSelectedModuleId()
 {
 	return SelectedModule->ModuleID;
@@ -157,4 +153,23 @@ TArray<FExerciseEvaluation> UEvaluationSubsystem::GetExercisesEvaluations()
 	return ExercisesEvaluations;
 }
 
+UExerciseDataAsset* UEvaluationSubsystem::GetCurrentExercise()
+{
+	if (SelectedExercises.IsValidIndex(CurrentExerciseNumber))
+	{
+		return SelectedExercises[CurrentExerciseNumber];	
+	}
+	return nullptr;
+}
+
+void UEvaluationSubsystem::SetSelectedModule(UModuleDataAsset* Module)
+{
+	SelectedModule = Module;
+}
+
+void UEvaluationSubsystem::AddExercisesToActivity(UExerciseDataAsset* ExerciseData)
+{	
+	Questions.Append(ExerciseData->Questions);
+	SelectedExercises.AddUnique(ExerciseData);
+}
 
