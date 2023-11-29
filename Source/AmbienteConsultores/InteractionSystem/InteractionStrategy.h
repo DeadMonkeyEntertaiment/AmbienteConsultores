@@ -1,29 +1,56 @@
-
-
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Interface.h"
+#include <UObject/Object.h>
+#include "InteractableInterface.h"
 #include "InteractionStrategy.generated.h"
 
-class IInteractionStrategy;
 
-DECLARE_DYNAMIC_DELEGATE(FOnInteractionGoalAchieved);
-
-UINTERFACE(BlueprintType) class UInteractionStrategy : public UInterface { GENERATED_BODY() };
-
-class AMBIENTECONSULTORES_API IInteractionStrategy
+UCLASS(Blueprintable, BlueprintType, Abstract)
+class AMBIENTECONSULTORES_API UInteractionStrategy : public UObject, public FTickableGameObject, public IInteractableInterface
 {
+private:
 	GENERATED_BODY()
 
 public:
+	virtual void IStartInteraction_Implementation(AActor* interactor) override;
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void IStartInteraction(AActor *Interactor);
+	UFUNCTION(BlueprintNativeEvent)
+	void InitializeObject(AActor* owner);
+	
+protected:
+	UPROPERTY(BlueprintReadWrite)
+	AActor *Interactor;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void IEndInteraction(AActor *Interactor);
+	UPROPERTY(BlueprintReadWrite)
+	AActor *Owner;	
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void IBindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);
+	UFUNCTION(BlueprintImplementableEvent)
+	void ObjectTick(float DeltaTime);
+	
+	//Make object tickable
+	virtual void Tick(float DeltaTime) override;	
+	virtual ETickableTickType GetTickableTickType() const override
+	{
+		return ETickableTickType::Conditional;
+	}
+	virtual TStatId GetStatId() const override
+	{
+		RETURN_QUICK_DECLARE_CYCLE_STAT(FMyTickableThing, STATGROUP_Tickables);
+	}
+	virtual bool IsTickableWhenPaused() const override
+	{
+		return true;
+	}
+	virtual bool IsTickableInEditor() const override
+	{
+		return false;
+	}
+
+	
+
+private:
+	uint32 LastFrameNumberWeTicked = INDEX_NONE;
 };
+
+

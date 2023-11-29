@@ -2,14 +2,21 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTags.h"
+#include "InteractableInterface.h"
 #include "Components/ActorComponent.h"
 #include "InteractableComponent.generated.h"
 
 
-class UInteractionStrategyBlueprintable;
+class UInteractionStrategy;
+
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
-class AMBIENTECONSULTORES_API UInteractableComponent : public UActorComponent
+class AMBIENTECONSULTORES_API UInteractableComponent : public UActorComponent, public IInteractableInterface
 {
+public:
+	virtual void IEndInteraction_Implementation(AActor* Interactor) override;
+	virtual void IStartInteraction_Implementation(AActor* Instigator) override;
+
+private:
 	GENERATED_BODY()
 
 public:	
@@ -19,25 +26,11 @@ public:
 	FGameplayTag InteractableTag;
 
 	UPROPERTY(BlueprintReadOnly)
-	UInteractionStrategyBlueprintable *InteractionStrategyObject;
+	UInteractionStrategy* InteractionStrategyObject;
 	
 protected:
-	virtual void BeginPlay() override;
-	
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void StartInteraction(AActor *Interactor);
-
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void EndInteraction(AActor *Interactor);
-	
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-	void OnInteractionGoalAchieved();
+	virtual void BeginPlay() override;	
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MustImplement = InteractionStrategy) )
-	TSubclassOf<UInteractionStrategyBlueprintable> InteractionStrategyClass;
-
-	
-
-
-	
+	TSubclassOf<UInteractionStrategy> InteractionStrategyClass;
 };

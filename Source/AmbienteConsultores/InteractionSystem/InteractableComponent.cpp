@@ -3,7 +3,7 @@
 
 #include "InteractableComponent.h"
 
-#include "InteractionStrategyBlueprintable.h"
+#include "InteractionStrategy.h"
 
 
 UInteractableComponent::UInteractableComponent()
@@ -16,23 +16,23 @@ void UInteractableComponent::BeginPlay()
 	Super::BeginPlay();
 	AActor * Owner = GetOwner();
 	if (!IsValid(InteractionStrategyClass)) return;
-	InteractionStrategyObject = NewObject<UInteractionStrategyBlueprintable>(Owner, InteractionStrategyClass);
+	InteractionStrategyObject = NewObject<UInteractionStrategy>(Owner, InteractionStrategyClass);
 	InteractionStrategyObject->InitializeObject(GetOwner());
 	FOnInteractionGoalAchieved ActivationReqHandler;
-	ActivationReqHandler.BindDynamic(this, &UInteractableComponent::OnInteractionGoalAchieved);
-	IInteractionStrategy::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategyObject, ActivationReqHandler);	
+	ActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);
+	UInteractionStrategy::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategyObject, ActivationReqHandler);	
 }
 
-void UInteractableComponent::EndInteraction_Implementation(AActor *Interactor)
+void UInteractableComponent::IEndInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
-	IInteractionStrategy::Execute_IEndInteraction(InteractionStrategyObject, Interactor);
+	UInteractionStrategy::Execute_IEndInteraction(InteractionStrategyObject, Interactor);
 }
 
-void UInteractableComponent::StartInteraction_Implementation(AActor *Interactor)
+void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
-	IInteractionStrategy::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
+	UInteractionStrategy::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
 }
 
 
