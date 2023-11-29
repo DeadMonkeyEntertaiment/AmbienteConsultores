@@ -11,7 +11,7 @@ class UModuleDataAsset;
 
 DECLARE_DYNAMIC_DELEGATE(FOnButtonClicked);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnModuleSelected, FGameplayTag, SelectedModule);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnExercisesSelected, FGameplayTagContainer,  SelectedExercises);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FOnExercisesSelected, const TArray<FGameplayTag>&,  SelectedExercises);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnHoveredChange, bool, IsHovered);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnCodeEntered, int32, code);
 

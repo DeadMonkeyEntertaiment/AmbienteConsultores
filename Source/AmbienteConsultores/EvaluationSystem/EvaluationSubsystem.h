@@ -7,6 +7,7 @@
 #include "UObject/Object.h"
 #include "EvaluationSubsystem.generated.h"
 
+class UModuleDataAsset;
 struct FQuestion;
 enum class EExercise : uint8;
 enum class EModule : uint8;
@@ -32,30 +33,15 @@ struct FExerciseEvaluation
 	int32 Step;	
 };
 
-USTRUCT(BlueprintType)
-struct FSessionResults
-{
-	GENERATED_BODY()
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FGameplayTag SelectedModule;; //CourseId
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FExerciseEvaluation> ActivityExercises; //ActivitySteps
-};
-
 UCLASS(Blueprintable)
 class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 	
-public:
-	
+public:	
 	//Questionnaire
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TArray<FQuestion> GetQuestions();
-	
-	UFUNCTION(BlueprintCallable)
-	void StoreQuestionnaireScore(const int32 EvaluationScore);
 
 	UFUNCTION(BlueprintCallable)
 	void ResetQuestionnaire();
@@ -72,7 +58,7 @@ public:
 
 	//Evaluation
 	UFUNCTION(BlueprintCallable)
-	void SetSelectedModule(const FGameplayTag Module);
+	void SetSelectedModule(UModuleDataAsset* Module);
 
 	UFUNCTION(BlueprintCallable)
 	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);
@@ -84,20 +70,45 @@ public:
 	void StartExerciseEvaluation();	
 	
 	UFUNCTION(BlueprintCallable)
-	void FinishExerciseEvaluation(bool &ActivityFinished);
-
+	void FinishExerciseEvaluation(bool &ActivityFinished);		
+	
 	UFUNCTION(BlueprintCallable)
-	void NextExercise(bool &ActivityFinished);	
+	void NextExercise(bool &ActivityFinished);
 
 	UFUNCTION(BlueprintCallable)
 	void FinishActivity();
+	
+	//Load-unload StreamLevels
+	UPROPERTY()
+	int LoadLevelIndex;
 
-	//This should be privatre, i put here only for easy testing 
-	UPROPERTY(BlueprintReadWrite)
-	FExerciseEvaluation CurrentExerciseEvaluation;
-	//This should be privatre, i put here only for easy testing 
-	UPROPERTY(BlueprintReadOnly)
-	FSessionResults SessionResults;
+	UPROPERTY()
+	TArray<TSoftObjectPtr<UWorld>> LoadWorlds;
+
+	UPROPERTY()
+	TArray<TSoftObjectPtr<UWorld>> UnloadWorlds;
+
+	UFUNCTION(BlueprintCallable)
+	void ManageSubLevelsLoad();
+
+	UFUNCTION(BlueprintCallable)
+	void LoadNextStreamLevel();
+	
+	UFUNCTION(BlueprintCallable)
+	void LoadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld);
+
+	UFUNCTION(BlueprintCallable)
+	void UnloadNextStreamLevel();
+	
+	UFUNCTION(BlueprintCallable)
+	void UnloadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld);	
+
+	//GetData
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	FString GetSelectedModuleId();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<FExerciseEvaluation> GetExercisesEvaluations();
 	
 private:	
 	UPROPERTY()
@@ -107,17 +118,22 @@ private:
 	TArray<UExerciseDataAsset*> SelectedExercises;
 
 	UPROPERTY()
-	FGameplayTag SelectedModule;
+	UModuleDataAsset* SelectedModule;
 
 	UPROPERTY()
-	int32 CurrentExercise;
+	int32 CurrentExerciseNumber;
 
 	UPROPERTY()	
 	TArray<FQuestion> Questions;	
-	
-	UPROPERTY()	
-	int32 QuestionnaireScore;
 
 	UPROPERTY()
-	FName EntryLevelName = "/Game/Maps/MAP_EntryLevel";	
+	FName EntryLevelName = "/Game/Maps/MAP_EntryLevel";
+
+	UPROPERTY()
+	FExerciseEvaluation CurrentExerciseEvaluation;
+
+	UPROPERTY()
+	TArray<FExerciseEvaluation> ExercisesEvaluations; 
 };
+
+

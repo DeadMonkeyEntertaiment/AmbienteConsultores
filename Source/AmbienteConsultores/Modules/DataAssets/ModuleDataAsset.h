@@ -14,15 +14,15 @@ class AMBIENTECONSULTORES_API UModuleDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
 
-public:
+public:	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSoftObjectPtr<UWorld> ModuleLevel;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FGameplayTag Module;
+	FGameplayTag ModuleTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString ModuleID;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<UWorld> ModuleLevel;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture2D* Image;

@@ -51,7 +51,7 @@ class AMBIENTECONSULTORES_API UExerciseDataAsset : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FGameplayTag Exercise;
+	FGameplayTag ExerciseTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSoftObjectPtr<UWorld>> ExerciseSublevels;
