@@ -9,14 +9,20 @@
 UCLASS(Blueprintable, BlueprintType, Abstract)
 class AMBIENTECONSULTORES_API UInteractionStrategy : public UObject, public FTickableGameObject, public IInteractableInterface
 {
+
+
 private:
 	GENERATED_BODY()
 
 public:
 	virtual void IStartInteraction_Implementation(AActor* interactor) override;
-	
+	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
+
 	UFUNCTION(BlueprintNativeEvent)
 	void InitializeObject(AActor* owner);
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")
+	FOnInteractionGoalAchievedInternal OnInteractionGoalAchieved;
 	
 protected:
 	UPROPERTY(BlueprintReadWrite)
@@ -25,6 +31,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	AActor *Owner;	
 
+	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
+	FOnInteractionGoalAchievedInternal OnInteractionGoalAchievedInternal;
+	
 	UFUNCTION(BlueprintImplementableEvent)
 	void ObjectTick(float DeltaTime);
 	

@@ -29,9 +29,25 @@ void UInteractableComponent::IEndInteraction_Implementation(AActor *Interactor)
 	IInteractableInterface::Execute_IEndInteraction(InteractionStrategyObject, Interactor);
 }
 
+void UInteractableComponent::IOnInteractionGoalAchieved_Implementation()
+{
+	OnInteractionGoalAchieved.Broadcast();
+}
+
+void UInteractableComponent::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
+{
+	OnInteractionGoalAchieved.Add(Event);
+}
+
+void UInteractableComponent::IBindToOnInteracted_Implementation(const FOnInteracted& Event)
+{
+	OnInteracted.Add(Event);
+}
+
 void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
+	OnInteracted.Broadcast(Interactor);
 	IInteractableInterface::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
 }
 

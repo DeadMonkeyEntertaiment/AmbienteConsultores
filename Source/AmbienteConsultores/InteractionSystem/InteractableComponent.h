@@ -9,14 +9,11 @@
 
 class UInteractionStrategy;
 
+
+
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
 class AMBIENTECONSULTORES_API UInteractableComponent : public UActorComponent, public IInteractableInterface
-{
-public:
-	virtual void IEndInteraction_Implementation(AActor* Interactor) override;
-	virtual void IStartInteraction_Implementation(AActor* Instigator) override;
-
-private:
+{	
 	GENERATED_BODY()
 
 public:	
@@ -27,10 +24,24 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	UInteractionStrategy* InteractionStrategyObject;
+
+	virtual void IStartInteraction_Implementation(AActor* Instigator) override;
+	virtual void IEndInteraction_Implementation(AActor* Interactor) override;
+	virtual void IOnInteractionGoalAchieved_Implementation() override;
+	virtual void IBindToOnInteracted_Implementation(const FOnInteracted& Event) override;
+	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
+	
+	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
+	FOnInteractedInternal OnInteracted;
+	
+	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
+	FOnInteractionGoalAchievedInternal OnInteractionGoalAchieved;
 	
 protected:
 	virtual void BeginPlay() override;	
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MustImplement = InteractionStrategy) )
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MustImplement = InteractableInterface) )
 	TSubclassOf<UInteractionStrategy> InteractionStrategyClass;
+
+
 };

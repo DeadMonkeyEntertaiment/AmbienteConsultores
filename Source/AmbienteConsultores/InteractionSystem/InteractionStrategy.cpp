@@ -4,7 +4,11 @@
 void UInteractionStrategy::IStartInteraction_Implementation(AActor* interactor)
 {
 	Interactor = interactor;
+}
 
+void UInteractionStrategy::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
+{
+	OnInteractionGoalAchieved.Add(Event);
 }
 
 void UInteractionStrategy::InitializeObject_Implementation(AActor* owner)

@@ -7,6 +7,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractedInternal, AActor*, Instigator);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnInteracted, AActor*, Instigator);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteractionGoalAchievedInternal);
 DECLARE_DYNAMIC_DELEGATE(FOnInteractionGoalAchieved);
 
 UINTERFACE()
@@ -29,8 +31,8 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IOnInteractionGoalAchieved();
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IBindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
