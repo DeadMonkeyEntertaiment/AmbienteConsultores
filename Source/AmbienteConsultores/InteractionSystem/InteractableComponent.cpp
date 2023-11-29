@@ -20,19 +20,19 @@ void UInteractableComponent::BeginPlay()
 	InteractionStrategyObject->InitializeObject(GetOwner());
 	FOnInteractionGoalAchieved ActivationReqHandler;
 	ActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);
-	UInteractionStrategy::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategyObject, ActivationReqHandler);	
+	IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategyObject, ActivationReqHandler);	
 }
 
 void UInteractableComponent::IEndInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
-	UInteractionStrategy::Execute_IEndInteraction(InteractionStrategyObject, Interactor);
+	IInteractableInterface::Execute_IEndInteraction(InteractionStrategyObject, Interactor);
 }
 
 void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
-	UInteractionStrategy::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
+	IInteractableInterface::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
 }
 
 
