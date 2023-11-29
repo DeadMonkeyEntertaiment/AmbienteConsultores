@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "UObject/Interface.h"
 #include "GestureInterface.generated.h"
 
@@ -18,8 +19,8 @@ class AMBIENTECONSULTORES_API IGestureInterface
 
 public:
    UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-   void IOnGestureDetected(EGesture Gesture);
+   void IOnGestureDetected(FGameplayTag Gesture);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-    void IOnGestureChanged(EGesture Gesture);
+    void IOnGestureChanged(FGameplayTag Gesture);
 };

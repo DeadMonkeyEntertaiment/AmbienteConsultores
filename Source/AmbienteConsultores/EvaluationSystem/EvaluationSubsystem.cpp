@@ -13,6 +13,7 @@ TArray<FQuestion> UEvaluationSubsystem::GetQuestions()
 void UEvaluationSubsystem::StoreQuestionnaireScore(const int32 evaluationScore)
 {
 	QuestionnaireScore = evaluationScore;
+	//
 }
 
 void UEvaluationSubsystem::AddFailedAttempt()
@@ -67,7 +68,7 @@ void UEvaluationSubsystem::AddExercisesToActivity(UExerciseDataAsset* ExerciseDa
 void UEvaluationSubsystem::StartActivity()
 {
 	CurrentExercise = 0;
-	UGameplayStatics::OpenLevelBySoftObjectPtr(this, SelectedExercises[CurrentExercise]->ExerciseLevel);	
+	//UGameplayStatics::OpenLevelBySoftObjectPtr(this, SelectedExercises[CurrentExercise]->ExerciseLevel);	
 
 }
 
@@ -76,7 +77,7 @@ void UEvaluationSubsystem::NextExercise(bool &ActivityFinished)
 	CurrentExercise++;
 	ActivityFinished = !SelectedExercises.IsValidIndex(CurrentExercise);
 	if (ActivityFinished) return;			
-	UGameplayStatics::OpenLevelBySoftObjectPtr(this, SelectedExercises[CurrentExercise]->ExerciseLevel);	
+	//UGameplayStatics::OpenLevelBySoftObjectPtr(this, SelectedExercises[CurrentExercise]->ExerciseLevel);	
 }
 
 UExerciseDataAsset* UEvaluationSubsystem::GetCurrentExercise()
@@ -90,6 +91,7 @@ UExerciseDataAsset* UEvaluationSubsystem::GetCurrentExercise()
 
 void UEvaluationSubsystem::FinishActivity()
 {
+	SessionResults.SelectedModule = SelectedModule;
 	UGameplayStatics::OpenLevel(GWorld, EntryLevelName, false);
 }
 

@@ -3,20 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
 #include "GesturesDataAsset.generated.h"
-
-UENUM(BlueprintType)
-enum class EGesture : uint8 
-{
-	Gesture0 UMETA(DisplayName="None"),
-	Gesture1 UMETA(DisplayName="MovementTrace"),
-	Gesture2 UMETA(DisplayName="MovementTeleport"),
-	Gesture3 UMETA(DisplayName="Pointer"),
-	Gesture4 UMETA(DisplayName="OK"),	
-	Gesture5 UMETA(DisplayName="STOP"),	
-};
-
 
 USTRUCT(BlueprintType)
 struct FHandInclinationRange
@@ -55,7 +44,7 @@ struct FGestureData
 	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EGesture Gesture;	
+	FGameplayTag Gesture;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FFingersPositions> FingersPositions

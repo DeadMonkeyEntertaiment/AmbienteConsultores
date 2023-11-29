@@ -107,6 +107,9 @@ private:
 	TArray<UExerciseDataAsset*> SelectedExercises;
 
 	UPROPERTY()
+	FGameplayTag SelectedModule;
+
+	UPROPERTY()
 	int32 CurrentExercise;
 
 	UPROPERTY()	

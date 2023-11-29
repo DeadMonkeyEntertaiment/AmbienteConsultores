@@ -54,7 +54,7 @@ public:
 	FGameplayTag Exercise;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSoftObjectPtr<UWorld> ExerciseLevel;
+	TArray<TSoftObjectPtr<UWorld>> ExerciseSublevels;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FQuestion> Questions;

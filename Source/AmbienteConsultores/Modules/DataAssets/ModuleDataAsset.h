@@ -9,10 +9,15 @@
 
 class UExerciseDataAsset;
 
-USTRUCT(BlueprintType)
-struct FModuleData
+UCLASS(BlueprintType)
+class AMBIENTECONSULTORES_API UModuleDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<UWorld> ModuleLevel;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FGameplayTag Module;
 
@@ -24,15 +29,4 @@ struct FModuleData
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<UExerciseDataAsset*> Exercises;	
-};
-
-
-UCLASS(BlueprintType)
-class AMBIENTECONSULTORES_API UModuleDataAsset : public UDataAsset
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FModuleData Module;	
 };
