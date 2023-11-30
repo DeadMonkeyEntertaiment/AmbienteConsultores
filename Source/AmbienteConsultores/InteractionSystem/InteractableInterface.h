@@ -12,9 +12,11 @@ DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnInteractionStart, AActor*, Interactor, AAc
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInteractionFinishedInternal, AActor*, Interactor, AActor*, Interactable);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnInteractionFinished, AActor*, Interactor, AActor*, Interactable);
 
+//This is to let know the exercise manager that the interaction goal was achieved
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInteractionGoalAchievedInternal, AActor*, Interactor, AActor*, Interactable);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnInteractionGoalAchieved, AActor*, Interactor, AActor*, Interactable);
 
+//This is to let know the interactor that the interaction was force finished
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnForceFinishInteractionInternal, AActor*, Interactor, AActor*, Interactable);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnForceFinishInteraction, AActor*, Interactor, AActor*, Interactable);
 
@@ -39,6 +41,9 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IFinishInteraction(AActor *Interactor);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	void IForceFinishInteraction(AActor *Interactor);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IOnInteractionGoalAchieved(AActor* Interactor, AActor* Interactable);

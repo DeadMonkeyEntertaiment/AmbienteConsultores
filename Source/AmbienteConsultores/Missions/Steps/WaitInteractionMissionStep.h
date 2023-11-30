@@ -43,5 +43,5 @@ private:
 	TScriptInterface<IInteractableInterface> Interactable;
 	
 	UFUNCTION()
-	void OnInteracted(AActor* Instigator);
+	void OnInteracted(AActor* Instigator, AActor* Fill);
 };

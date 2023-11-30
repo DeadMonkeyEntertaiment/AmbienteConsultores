@@ -21,6 +21,10 @@ void UInteractableComponent::BeginPlay()
 	
 	InteractionStrategyObject = NewObject<UInteractionStrategy>(Owner, InteractionStrategyClass);
 	InteractionStrategyObject->InitializeObject(GetOwner());
+
+	FOnInteractionStart start;	
+	start.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);
+	IInteractableInterface::Execute_IBindToOnInteractionStarted(InteractionStrategyObject, start);
 	
 	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;	
 	InteractionGoalActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);

@@ -27,16 +27,28 @@ public:
 protected:
 	
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn="true"))
-	TArray<ABaseInteractable*> InteractActors;
+	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn="true"))
-	TArray<ABaseInteractable*> InteractionGoalActors;
+	TArray<TSoftObjectPtr<ABaseInteractable>> InteractionGoalActors;
 
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn="true"))
-	TArray<AExerciseBoxCollision*> BoxColliders;
+	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
 	UPROPERTY(BlueprintReadWrite)
 	FGameplayTagContainer StepsTagsContainer;
 
+	
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void OnInteractionStarted(AActor* Interactor, AActor* Interactable);
+	
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void OnInteractionGoalAchieved(AActor* Interactor, AActor* Interactable);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void OnInteractionFinished(AActor* Interactor, AActor* Interactable);
+	
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	
 };
