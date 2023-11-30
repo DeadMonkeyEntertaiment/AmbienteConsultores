@@ -3,7 +3,7 @@
 #include "ExerciseBoxCollision.h"
 #include "AmbienteConsultores/InteractionSystem/BaseInteractable.h"
 #include "Components/BoxComponent.h"
-
+/*
 void UExerciseEvaluationStrategy::SetupEvaluationBindings_Implementation()
 {
 
@@ -30,4 +30,4 @@ void UExerciseEvaluationStrategy::SetupEvaluationBindings_Implementation()
 		UBoxComponent* BoxComponent = BoxCollider.Get()->FindComponentByClass<UBoxComponent>();
 		BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &UExerciseEvaluationStrategy::OnBoxBeginOverlap);
 	}
-}
+}*/

@@ -20,11 +20,19 @@ class AMBIENTECONSULTORES_API UExerciseEvaluationStrategy : public UObject
 public:
 	UPROPERTY(BlueprintCallable, BlueprintAssignable);
 	FOnAttemptFinished OnAttemptFinished;
+
+protected:
+	//UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn="true"))
+	//TSubclassOf<Exer> InteractActors;
 	
+	/*
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void SetupEvaluationBindings();
 	
 protected:
+
+	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn="true"))
+	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 	
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn="true"))
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
@@ -50,5 +58,5 @@ protected:
 	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-	
+	*/
 };

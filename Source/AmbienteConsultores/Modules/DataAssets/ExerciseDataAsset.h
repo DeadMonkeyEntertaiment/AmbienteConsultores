@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
+#include "AmbienteConsultores/Exercise/ExerciseEvaluationDataAsset.h"
 #include "ExerciseDataAsset.generated.h"
 
-class UExerciseEvaluationStrategy;
 class ABaseInteractable;
 class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
@@ -57,9 +57,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSoftObjectPtr<UWorld>> ExerciseSublevels;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<UExerciseEvaluationStrategy> ExerciseEvaluation;
+	UExerciseEvaluationDataAsset* ExerciseEvaluationDataAsset;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FQuestion> Questions;

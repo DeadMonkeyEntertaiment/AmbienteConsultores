@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
-#include "UObject/Object.h"
 #include "EvaluationSubsystem.generated.h"
 
 class UModuleDataAsset;
@@ -38,7 +37,11 @@ class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsyst
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+	//Esto deberia ser pribado, lo pongo publico para testear mas facil
+	UPROPERTY(BlueprintReadWrite)
+	TArray<UExerciseDataAsset*> SelectedExercises;
+	
 	//Questionnaire
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TArray<FQuestion> GetQuestions();
@@ -61,7 +64,7 @@ public:
 	void StartExerciseEvaluation();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TSubclassOf<UExerciseEvaluationStrategy> GetCurrentExerciseEvaluation();	
+	UExerciseEvaluationDataAsset* GetCurrentExerciseEvaluation();	
 	
 	UFUNCTION(BlueprintCallable)
 	void AddFailedAttempt();
@@ -120,8 +123,7 @@ private:
 	UPROPERTY()
 	int32 UserID;
 
-	UPROPERTY()
-	TArray<UExerciseDataAsset*> SelectedExercises;
+	
 
 	UPROPERTY()
 	UModuleDataAsset* SelectedModule;

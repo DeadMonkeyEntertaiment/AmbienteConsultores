@@ -48,9 +48,9 @@ void UEvaluationSubsystem::StartExerciseEvaluation()
 	ManageSubLevelsLoad();
 }
 
-TSubclassOf<UExerciseEvaluationStrategy> UEvaluationSubsystem::GetCurrentExerciseEvaluation()
+UExerciseEvaluationDataAsset*  UEvaluationSubsystem::GetCurrentExerciseEvaluation()
 {
-	return GetCurrentExercise()->ExerciseEvaluation;
+	return GetCurrentExercise()->ExerciseEvaluationDataAsset;
 }
 
 void UEvaluationSubsystem::AddFailedAttempt()
@@ -70,7 +70,7 @@ void UEvaluationSubsystem::AddSuccessfulAttempt()
 void UEvaluationSubsystem::RetryExercise()
 {
 	if (!SelectedExercises.IsValidIndex(CurrentExerciseNumber)) return;
-	
+	LoadLevelIndex=0;
 	UnloadWorlds = SelectedExercises[CurrentExerciseNumber]->ExerciseSublevels;		
 	LoadWorlds = SelectedExercises[CurrentExerciseNumber]->ExerciseSublevels;
 	UnloadNextStreamLevel();	
