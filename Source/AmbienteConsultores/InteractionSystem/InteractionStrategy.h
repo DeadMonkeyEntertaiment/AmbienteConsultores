@@ -17,12 +17,16 @@ private:
 public:
 	virtual void IStartInteraction_Implementation(AActor* interactor) override;
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
-
+	virtual void IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event) override;
+	
 	UFUNCTION(BlueprintNativeEvent)
 	void InitializeObject(AActor* owner);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")
 	FOnInteractionGoalAchievedInternal OnInteractionGoalAchieved;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")
+	FOnForceFinishInteractionInternal OnForceFinishInteraction;
 	
 protected:
 	UPROPERTY(BlueprintReadWrite)

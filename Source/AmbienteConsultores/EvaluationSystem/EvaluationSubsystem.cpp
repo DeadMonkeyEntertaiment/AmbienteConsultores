@@ -69,6 +69,8 @@ void UEvaluationSubsystem::AddSuccessfulAttempt()
 
 void UEvaluationSubsystem::RetryExercise()
 {
+	if (!SelectedExercises.IsValidIndex(CurrentExerciseNumber)) return;
+	
 	UnloadWorlds = SelectedExercises[CurrentExerciseNumber]->ExerciseSublevels;		
 	LoadWorlds = SelectedExercises[CurrentExerciseNumber]->ExerciseSublevels;
 	UnloadNextStreamLevel();	

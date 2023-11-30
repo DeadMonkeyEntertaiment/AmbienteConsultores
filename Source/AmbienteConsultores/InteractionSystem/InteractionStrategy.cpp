@@ -11,6 +11,11 @@ void UInteractionStrategy::IBindToOnInteractionGoalAchieved_Implementation(const
 	OnInteractionGoalAchieved.Add(Event);
 }
 
+void UInteractionStrategy::IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event)
+{
+	OnForceFinishInteraction.Add(Event);
+}
+
 void UInteractionStrategy::InitializeObject_Implementation(AActor* owner)
 {
 	Owner = owner;

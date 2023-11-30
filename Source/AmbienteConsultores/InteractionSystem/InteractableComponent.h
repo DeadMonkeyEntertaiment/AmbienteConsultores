@@ -13,29 +13,41 @@ class UInteractionStrategy;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
 class AMBIENTECONSULTORES_API UInteractableComponent : public UActorComponent, public IInteractableInterface
-{	
+{
 	GENERATED_BODY()
 
 public:	
 	UInteractableComponent();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FGameplayTag InteractableTag;
+	FGameplayTagContainer InteractableTags;
 
 	UPROPERTY(BlueprintReadOnly)
 	UInteractionStrategy* InteractionStrategyObject;
 
+	virtual void IBindToOnInteractionStarted_Implementation(const FOnInteractionStart& Event) override;
 	virtual void IStartInteraction_Implementation(AActor* Interactor) override;
-	virtual void IEndInteraction_Implementation(AActor* Interactor) override;
-	virtual void IOnInteractionGoalAchieved_Implementation(AActor* BaseInteractable) override;
-	virtual void IBindToOnInteracted_Implementation(const FOnInteracted& Event) override;
+
+	virtual void IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event) override;
+	virtual void IFinishInteraction_Implementation(AActor* Interactor) override;
+	
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
+	virtual void IOnInteractionGoalAchieved_Implementation(AActor* Interactor, AActor* Interactable) override;
+	
+	virtual void IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event) override;
+	virtual void IOnForceFinishInteraction_Implementation(AActor* Interactor, AActor* Interactable) override;
 	
 	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
-	FOnInteractedInternal OnInteracted;
+	FOnInteractionStartInternal OnInteractionStart;
+
+	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
+	FOnInteractionFinishedInternal OnInteractionFinished;
 	
 	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
 	FOnInteractionGoalAchievedInternal OnInteractionGoalAchieved;
+
+	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
+	FOnForceFinishInteractionInternal OnForceFinishInteraction;
 	
 protected:
 	virtual void BeginPlay() override;	
@@ -45,3 +57,5 @@ protected:
 
 
 };
+
+
