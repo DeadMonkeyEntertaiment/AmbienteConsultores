@@ -20,7 +20,7 @@ public:
 	UInteractableComponent();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FGameplayTagContainer InteractableTag;
+	FGameplayTag InteractableTag;
 
 	UPROPERTY(BlueprintReadOnly)
 	UInteractionStrategy* InteractionStrategyObject;
