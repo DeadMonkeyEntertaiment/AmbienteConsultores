@@ -18,10 +18,10 @@ class AMBIENTECONSULTORES_API UExerciseEvaluationDataAsset : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced)
-	TArray<TObjectPtr<UExerciseStepStrategy>> SuccessExerciseSteps;
+	TArray<UExerciseStepStrategy*> SuccessExerciseSteps;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced)
-	TArray<TObjectPtr<UExerciseStepStrategy>> FailExerciseSteps;
+	TArray<UExerciseStepStrategy*> FailExerciseSteps;
 	
 
 	

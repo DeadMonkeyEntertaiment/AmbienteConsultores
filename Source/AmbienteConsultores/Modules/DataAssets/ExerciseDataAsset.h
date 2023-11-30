@@ -65,7 +65,7 @@ public:
 	TArray<FQuestion> Questions;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FInstructorDialog> InstructorDialogs;
+	FInstructorDialog InitialDialog;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSubclassOf<ABaseInteractable>> ProtectionGear;

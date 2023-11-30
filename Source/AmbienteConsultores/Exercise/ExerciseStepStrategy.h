@@ -11,8 +11,8 @@
 
 class UStepFeedback;
 class UFailStrategy;
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepStarted, FGameplayTag, StepTag);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnStepFinished, FGameplayTag, StepTag, FGameplayTagContainer, StepsToDisable, bool, Success);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnStepStarted, FGameplayTag, StepTag, UStepFeedback*, SuccessFeedback, UStepFeedback*, FailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnStepFinished, FGameplayTag, StepTag, FGameplayTagContainer, StepsToDisable, bool, Success, UStepFeedback*, Feedback);
 
 
 

@@ -39,12 +39,12 @@ void UExerciseStepStrategy::SetupStepBindings_Implementation()
 
 void UExerciseStepStrategy::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag);
+	OnStepStart.Broadcast(StepTag, SuccessFeedback, FailFeedback);
 }
 
 void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 {
-	OnStepFinish.Broadcast(StepTag, StepsToDisable, Success);
+	OnStepFinish.Broadcast(StepTag, StepsToDisable, Success, Success? SuccessFeedback : FailFeedback);
 }
 
 void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
