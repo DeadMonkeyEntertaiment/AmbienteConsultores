@@ -45,7 +45,8 @@ void UInteractableComponent::ISetEnabled_Implementation(bool NewState)
 void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
-	if (!IIsEnabled_Implementation()) return;	
+	if (!IIsEnabled_Implementation()) return;
+	if (!IsValid(InteractionStrategyObject)) return;
 	OnInteractionStartedInternal.Broadcast(Interactor, GetOwner());
 	IInteractableInterface::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
 }

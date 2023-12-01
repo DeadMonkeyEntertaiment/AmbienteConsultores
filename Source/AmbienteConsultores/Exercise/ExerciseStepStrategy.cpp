@@ -15,12 +15,12 @@ void UExerciseStepStrategy::SetupStepBindings_Implementation()
 
 void UExerciseStepStrategy::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag, SuccessFeedback, InstantFailFeedback);
+	OnStepStart.Broadcast(StepTag, SuccessFeedback, InstantFailFeedback, DelayedFailFeedback);
 }
 
 void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 {
-	OnStepFinish.Broadcast(StepTag, StepsToDisable, Success, Success? SuccessFeedback : InstantFailFeedback);
+	OnStepFinish.Broadcast(StepTag, StepsToDisable, Success, Success? SuccessFeedback : InstantFailFeedback, DelayedFailFeedback);
 }
 
 void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
