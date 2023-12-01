@@ -20,11 +20,7 @@ void UInteractableComponent::BeginPlay()
 	if (!IsValid(InteractionStrategyClass)) return;
 	
 	InteractionStrategyObject = NewObject<UInteractionStrategy>(Owner, InteractionStrategyClass);
-	InteractionStrategyObject->InitializeObject(GetOwner());
-
-	FOnInteractionStart start;	
-	start.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);
-	IInteractableInterface::Execute_IBindToOnInteractionStarted(InteractionStrategyObject, start);
+	InteractionStrategyObject->InitializeObject(GetOwner());	
 	
 	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;	
 	InteractionGoalActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);
@@ -35,23 +31,24 @@ void UInteractableComponent::BeginPlay()
 	IInteractableInterface::Execute_IBindToOnForceFinishInteraction(InteractionStrategyObject, ForceFinishInteractionActivationReqHandler);
 }
 
-void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FOnInteractionStart& Event)
-{
-	OnInteractionStart.Add(Event);
-}
 
 void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
-	OnInteractionStart.Broadcast(Interactor, GetOwner());
+	OnInteractionStarted.Broadcast(Interactor, GetOwner());
 	IInteractableInterface::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
 }
 
-
-void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
+void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
 {
-	OnInteractionFinished.Add(Event);
+	OnInteractionStarted.Add(Event);
 }
+
+void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
+{
+	OnInteractionStarted.Remove(Event);
+}
+
 
 void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interactor)
 {
@@ -60,14 +57,36 @@ void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interacto
 	IInteractableInterface::Execute_IFinishInteraction(InteractionStrategyObject, Interactor);
 }
 
+void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
+{
+	OnInteractionFinished.Add(Event);
+}
+
+void UInteractableComponent::IUnbindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
+{
+	OnInteractionFinished.Remove(Event);
+}
+
+
+void UInteractableComponent::IOnInteractionGoalAchieved_Implementation(AActor* Interactor, AActor* Interactable)
+{
+	OnInteractionGoalAchieved.Broadcast(Interactor, GetOwner());
+}
+
 void UInteractableComponent::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
 	OnInteractionGoalAchieved.Add(Event);
 }
 
-void UInteractableComponent::IOnInteractionGoalAchieved_Implementation(AActor* Interactor, AActor* Interactable)
+void UInteractableComponent::IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
-	OnInteractionGoalAchieved.Broadcast(Interactor, GetOwner());
+	OnInteractionGoalAchieved.Remove(Event);
+}
+
+
+void UInteractableComponent::IOnForceFinishInteraction_Implementation(AActor* Interactor, AActor* Interactable)
+{
+	OnForceFinishInteraction.Broadcast(Interactor, GetOwner());
 }
 
 void UInteractableComponent::IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event)
@@ -75,7 +94,3 @@ void UInteractableComponent::IBindToOnForceFinishInteraction_Implementation(cons
 	OnForceFinishInteraction.Add(Event);
 }
 
-void UInteractableComponent::IOnForceFinishInteraction_Implementation(AActor* Interactor, AActor* Interactable)
-{
-	OnForceFinishInteraction.Broadcast(Interactor, GetOwner());
-}

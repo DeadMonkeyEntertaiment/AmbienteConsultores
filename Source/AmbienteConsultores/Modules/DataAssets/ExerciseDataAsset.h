@@ -6,6 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
 #include "AmbienteConsultores/Exercise/ExerciseEvaluationDataAsset.h"
+#include "AmbienteConsultores/InteractionSystem/InteractableInterface.h"
 #include "ExerciseDataAsset.generated.h"
 
 class ABaseInteractable;
@@ -51,7 +52,7 @@ class AMBIENTECONSULTORES_API UExerciseDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
 
-public:
+public:	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FGameplayTag ExerciseTag;
 
@@ -68,6 +69,8 @@ public:
 	FInstructorDialog InitialDialog;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TSubclassOf<ABaseInteractable>> ProtectionGear;
+	FInstructorDialog FinalDialog;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<TSubclassOf<ABaseInteractable>> ProtectionGear;
 };

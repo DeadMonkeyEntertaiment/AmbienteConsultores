@@ -34,7 +34,7 @@ void UWaitInteractionMissionStep::Execute(AActor* InPlayerActor)
 		return;
 	}
 	Interactable = TargetPtr->FindComponentByClass<UInteractableComponent>();
-	FOnInteractionStart Delegate;
+	FOnInteractionStarted Delegate;
 	Delegate.BindDynamic(this, &ThisClass::OnInteracted);
 	IInteractableInterface::Execute_IBindToOnInteractionStarted(Interactable.GetObject(), Delegate);
 }
@@ -43,7 +43,7 @@ void UWaitInteractionMissionStep::Cancel()
 {
 	if(IsValid(Interactable.GetObject()))
 	{
-		FOnInteractionStart Delegate;
+		FOnInteractionStarted Delegate;
 		Delegate.BindDynamic(this, &ThisClass::OnInteracted);
 		IInteractableInterface::Execute_IBindToOnInteractionStarted(Interactable.GetObject(), Delegate);
 	}

@@ -22,6 +22,11 @@ class AMBIENTECONSULTORES_API UExerciseStepStrategy : public UObject
 	GENERATED_BODY()
 
 public:
+
+	FOnInteractionStarted InteractionStartedActivationReqHandler;
+	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;
+	FOnInteractionFinished ForceFinishInteractionActivationReqHandler;
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void SetupStepBindings();
 
@@ -50,7 +55,7 @@ public:
 	UStepFeedback* FailFeedback;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void SetStepEnable(bool Enable);
+	void SetStepEnable(bool Enable);	
 	
 protected:	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)

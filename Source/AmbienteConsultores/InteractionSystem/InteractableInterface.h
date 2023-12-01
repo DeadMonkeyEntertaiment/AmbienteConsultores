@@ -6,8 +6,8 @@
 
 
 class ABaseInteractable;
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInteractionStartInternal, AActor*, Interactor, AActor*, Interactable);
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnInteractionStart, AActor*, Interactor, AActor*, Interactable);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInteractionStartedInternal, AActor*, Interactor, AActor*, Interactable);
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnInteractionStarted, AActor*, Interactor, AActor*, Interactable);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInteractionFinishedInternal, AActor*, Interactor, AActor*, Interactable);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnInteractionFinished, AActor*, Interactor, AActor*, Interactable);
@@ -32,19 +32,39 @@ class AMBIENTECONSULTORES_API IInteractableInterface
 	GENERATED_BODY()	
 	
 public:
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
-	void IBindToOnInteractionStarted(const FOnInteractionStart& Event);
+	//Start Interaction
+	
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IStartInteraction(AActor* Interactor);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	void IBindToOnInteractionStarted(const FOnInteractionStarted& Event);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	void IUnbindToOnInteractionStarted(const FOnInteractionStarted& Event);
+	
+	//Finish Interaction
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IFinishInteraction(AActor *Interactor);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	void IBindToOnInteractionFinished(const FOnInteractionFinished& Event);	
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
-	void IForceFinishInteraction(AActor *Interactor);
+	void IUnbindToOnInteractionFinished(const FOnInteractionFinished& Event);	
+	
+	//Force Finish
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	void IOnForceFinishInteraction(AActor* Interactor, AActor* Interactable);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	void IBindToOnForceFinishInteraction(const FOnForceFinishInteraction& Event);
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	void IOnBindToOnForceFinishInteraction(const FOnForceFinishInteraction& Event);
+	
+	//Interaction Goal
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IOnInteractionGoalAchieved(AActor* Interactor, AActor* Interactable);
 	
@@ -52,22 +72,11 @@ public:
 	void IBindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
-	void IOnForceFinishInteraction(AActor* Interactor, AActor* Interactable);
-	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
-	void IBindToOnForceFinishInteraction(const FOnForceFinishInteraction& Event);
+	void IUnbindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
 	void ISetEnabled(bool NewState);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
-	bool IsEnabled();
-
-	
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
-	void IBindToOnInteractionFinished(const FOnInteractionFinished& Event);
-	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
-	void IUnbindFromOnInteracted(const FOnInteractionStart& Event);
+	bool IsEnabled();	
 };

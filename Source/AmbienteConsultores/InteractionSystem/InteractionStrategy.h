@@ -16,6 +16,8 @@ private:
 
 public:
 	virtual void IStartInteraction_Implementation(AActor* interactor) override;
+	//The other bindings are in the component, this two are here because the interaction strategy is the only who know
+	//that the interaction goal was achieved or the interaction was forced to finish 
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
 	virtual void IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event) override;
 	
