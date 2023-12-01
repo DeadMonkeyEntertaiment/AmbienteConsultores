@@ -11,9 +11,22 @@
 
 class UStepFeedback;
 class UFailStrategy;
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnStepStarted, FGameplayTag, StepTag, UStepFeedback*, SuccessFeedback, UStepFeedback*, FailFeedback,  UStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FGameplayTagContainer, StepsToDisable, bool, Success, UStepFeedback*, Feedback, UStepFeedback*, DelayedFailFeedback);
 
+USTRUCT(BlueprintType)
+struct FStepsToDisable
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FGameplayTagContainer StepsToDisable;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool PropagateToInteractables;
+	
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UStepFeedback*, SuccessFeedback, UStepFeedback*, FailFeedback,  UStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UStepFeedback*, Feedback, UStepFeedback*, DelayedFailFeedback);
 
 
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Abstract)
@@ -35,7 +48,10 @@ public:
 	FGameplayTag StepTag;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	FGameplayTagContainer StepsToDisable;
+	FStepsToDisable StepsToDisableOnStart;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FStepsToDisable StepsToDisableOnFinish;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
@@ -53,7 +69,7 @@ public:
 	UStepFeedback* DelayedFailFeedback;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void SetStepEnable(bool Enable);	
+	void SetStepEnable(bool Enable, bool PropagateToInteracts);	
 	
 protected:
 	UPROPERTY(BlueprintReadOnly)
@@ -68,7 +84,7 @@ protected:
 	UPROPERTY()
 	FOnInteractionFinished ForceFinishInteractionActivationReqHandler;
 	
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Interaction")
 	void OnInteractableInteractionStarted(AActor* Interactor, AActor* Interactable);
 	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")

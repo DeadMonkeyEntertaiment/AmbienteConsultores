@@ -50,6 +50,7 @@ void UEvaluationSubsystem::StartExerciseEvaluation()
 
 UExerciseEvaluationDataAsset*  UEvaluationSubsystem::GetCurrentExerciseEvaluation()
 {
+	if (!GetCurrentExercise()) return nullptr;
 	return GetCurrentExercise()->ExerciseEvaluationDataAsset;
 }
 

@@ -10,20 +10,20 @@ class UInteractableComponent;
 
 void UExerciseStepStrategy::SetupStepBindings_Implementation()
 {
-	SetStepEnable(true);
+	SetStepEnable(true, true);
 }
 
 void UExerciseStepStrategy::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag, SuccessFeedback, InstantFailFeedback, DelayedFailFeedback);
+	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, SuccessFeedback, InstantFailFeedback, DelayedFailFeedback);
 }
 
 void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 {
-	OnStepFinish.Broadcast(StepTag, StepsToDisable, Success, Success? SuccessFeedback : InstantFailFeedback, DelayedFailFeedback);
+	OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, Success, Success? SuccessFeedback : InstantFailFeedback, DelayedFailFeedback);
 }
 
-void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
+void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool PropagateToInteracts)
 {
 	bStepEnable = Enable;
 	UBoxComponent* BoxComponent;
@@ -39,7 +39,9 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
 		{
 			if (!IsValid(InteractActor.Get())) return;
 			
-			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();			
+			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
+
+			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, true);
 			
 			IInteractableInterface::Execute_IBindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
 			IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
@@ -58,7 +60,11 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
 		for (TSoftObjectPtr<ABaseInteractable> InteractActor: InteractActors)
 		{
 			if (!IsValid(InteractActor.Get())) return;
-			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();		
+			
+			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
+			
+			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, false);
+
 			IInteractableInterface::Execute_IUnbindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
 			IInteractableInterface::Execute_IUnbindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
 			IInteractableInterface::Execute_IUnbindToOnInteractionFinished(InteractableComponent, ForceFinishInteractionActivationReqHandler);
@@ -72,4 +78,9 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
 		
 	}
 	
+}
+
+void UExerciseStepStrategy::OnInteractableInteractionStarted_Implementation(AActor* Interactor, AActor* Interactable)
+{
+	CallOnStepStart();
 }
