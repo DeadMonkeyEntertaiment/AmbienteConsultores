@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AmbienteConsultores/Engine/DataDriven/DataContainer.h"
 #include "Engine/DataAsset.h"
 #include "ExerciseEvaluationDataAsset.generated.h"
 
@@ -22,7 +21,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced)
 	TArray<UExerciseStepStrategy*> FailExerciseSteps;
-	
-
-	
 };

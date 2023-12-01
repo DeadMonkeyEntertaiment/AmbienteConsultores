@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "BaseInteractable.h"
-#include "GameFramework/Actor.h"
 #include "BaseGrababble.generated.h"
 
 UCLASS()

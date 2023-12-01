@@ -23,11 +23,16 @@ class AMBIENTECONSULTORES_API UExerciseStepStrategy : public UObject
 
 public:
 
+	UPROPERTY()
 	FOnInteractionStarted InteractionStartedActivationReqHandler;
+	
+	UPROPERTY()	
 	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;
+	
+	UPROPERTY()
 	FOnInteractionFinished ForceFinishInteractionActivationReqHandler;
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Setup")
 	void SetupStepBindings();
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
@@ -36,47 +41,47 @@ public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepFinished OnStepFinish;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FGameplayTag StepTag;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FGameplayTagContainer StepsToDisable;
 	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStepFeedback* SuccessFeedback;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStepFeedback* FailFeedback;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void SetStepEnable(bool Enable);	
 	
 protected:	
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
-	void OnInteractionStarted(AActor* Interactor, AActor* Interactable);
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")
+	void OnInteractableInteractionStarted(AActor* Interactor, AActor* Interactable);
 	
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
-	void OnInteractionGoalAchieved(AActor* Interactor, AActor* Interactable);
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")
+	void OnInteractableInteractionGoalAchieved(AActor* Interactor, AActor* Interactable);
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
-	void OnInteractionFinished(AActor* Interactor, AActor* Interactable);
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")
+	void OnInteractableInteractionFinished(AActor* Interactor, AActor* Interactable);
 	
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")
 	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepStart();
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepFinished(bool Success);
 
 	UPROPERTY(BlueprintReadOnly)
-	bool IsStepEnable = true;
+		bool bStepEnable = true;
 
 };

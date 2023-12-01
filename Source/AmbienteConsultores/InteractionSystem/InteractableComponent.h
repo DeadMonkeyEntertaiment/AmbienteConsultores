@@ -25,6 +25,8 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	UInteractionStrategy* InteractionStrategyObject;
 
+	virtual bool IIsEnabled_Implementation() override;
+	virtual void ISetEnabled_Implementation(bool NewState) override;
 	
 	virtual void IStartInteraction_Implementation(AActor* Interactor) override;
 	virtual void IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event) override;
@@ -43,22 +45,25 @@ public:
 	virtual void IOnForceFinishInteraction_Implementation(AActor* Interactor, AActor* Interactable) override;
 	
 	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
-	FOnInteractionStartedInternal OnInteractionStarted;
+	FOnInteractionStartedInternal OnInteractionStartedInternal;
 
 	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
-	FOnInteractionFinishedInternal OnInteractionFinished;
+	FOnInteractionFinishedInternal OnInteractionFinishedInternal;
 	
 	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
-	FOnInteractionGoalAchievedInternal OnInteractionGoalAchieved;
+	FOnInteractionGoalAchievedInternal OnInteractionGoalAchievedInternal;
 
 	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
-	FOnForceFinishInteractionInternal OnForceFinishInteraction;
+	FOnForceFinishInteractionInternal OnForceFinishInteractionInternal;
 	
 protected:
 	virtual void BeginPlay() override;	
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MustImplement = InteractableInterface) )
 	TSubclassOf<UInteractionStrategy> InteractionStrategyClass;
+
+	UPROPERTY()
+	bool bEnable = true;
 
 
 };

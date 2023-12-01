@@ -25,10 +25,10 @@ public:
 	void InitializeObject(AActor* owner);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")
-	FOnInteractionGoalAchievedInternal OnInteractionGoalAchieved;
+	FOnInteractionGoalAchievedInternal OnInteractionGoalAchievedInternal;
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")
-	FOnForceFinishInteractionInternal OnForceFinishInteraction;
+	FOnForceFinishInteractionInternal OnForceFinishInteractionInternal;
 	
 protected:
 	UPROPERTY(BlueprintReadWrite)
@@ -36,9 +36,6 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	AActor *Owner;	
-
-	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
-	FOnInteractionGoalAchievedInternal OnInteractionGoalAchievedInternal;
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void ObjectTick(float DeltaTime);

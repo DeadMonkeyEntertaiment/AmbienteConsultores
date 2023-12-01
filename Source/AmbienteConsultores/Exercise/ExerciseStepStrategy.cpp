@@ -25,22 +25,23 @@ void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 
 void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
 {
+	bStepEnable = Enable;
 	UBoxComponent* BoxComponent;
+	UInteractableComponent* InteractableComponent;
 	if (Enable)
 	{
+		InteractionStartedActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractableInteractionStarted);
+		InteractionGoalActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractableInteractionGoalAchieved);
+		ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractableInteractionFinished);
 
 		for (TSoftObjectPtr<ABaseInteractable> InteractActor: InteractActors)
 		{
 			if (!IsValid(InteractActor.Get())) return;
-			UInteractableComponent* InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
 			
-			InteractionStartedActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractionStarted);
+			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();			
+			
 			IInteractableInterface::Execute_IBindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
-
-			InteractionGoalActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractionGoalAchieved);
 			IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
-		
-			ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractionFinished);
 			IInteractableInterface::Execute_IBindToOnInteractionFinished(InteractableComponent, ForceFinishInteractionActivationReqHandler);
 		}
 	
@@ -56,18 +57,9 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
 		for (TSoftObjectPtr<ABaseInteractable> InteractActor: InteractActors)
 		{
 			if (!IsValid(InteractActor.Get())) return;
-			UInteractableComponent* InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
-
-			InteractionStartedActivationReqHandler.Unbind();
-			InteractionStartedActivationReqHandler.Clear();
+			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();		
 			IInteractableInterface::Execute_IUnbindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
-
-			InteractionGoalActivationReqHandler.Unbind();
-			InteractionGoalActivationReqHandler.Clear();
 			IInteractableInterface::Execute_IUnbindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
-		
-			ForceFinishInteractionActivationReqHandler.Unbind();
-			ForceFinishInteractionActivationReqHandler.Clear();
 			IInteractableInterface::Execute_IUnbindToOnInteractionFinished(InteractableComponent, ForceFinishInteractionActivationReqHandler);
 		}	
 	

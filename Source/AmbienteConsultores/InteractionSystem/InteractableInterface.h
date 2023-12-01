@@ -32,51 +32,49 @@ class AMBIENTECONSULTORES_API IInteractableInterface
 	GENERATED_BODY()	
 	
 public:
-	//Start Interaction
-	
-	
+	//Start Interaction	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IStartInteraction(AActor* Interactor);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IBindToOnInteractionStarted(const FOnInteractionStarted& Event);
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IUnbindToOnInteractionStarted(const FOnInteractionStarted& Event);
 	
 	//Finish Interaction
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IFinishInteraction(AActor *Interactor);
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IBindToOnInteractionFinished(const FOnInteractionFinished& Event);	
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IUnbindToOnInteractionFinished(const FOnInteractionFinished& Event);	
 	
 	//Force Finish
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IOnForceFinishInteraction(AActor* Interactor, AActor* Interactable);
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IBindToOnForceFinishInteraction(const FOnForceFinishInteraction& Event);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IOnBindToOnForceFinishInteraction(const FOnForceFinishInteraction& Event);
 	
 	//Interaction Goal
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
 	void IOnInteractionGoalAchieved(AActor* Interactor, AActor* Interactable);
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IBindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IUnbindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
 	void ISetEnabled(bool NewState);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
-	bool IsEnabled();	
+	bool IIsEnabled();	
 };

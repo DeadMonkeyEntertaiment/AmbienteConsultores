@@ -8,12 +8,12 @@ void UInteractionStrategy::IStartInteraction_Implementation(AActor* interactor)
 
 void UInteractionStrategy::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
-	OnInteractionGoalAchieved.Add(Event);
+	OnInteractionGoalAchievedInternal.Add(Event);
 }
 
 void UInteractionStrategy::IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event)
 {
-	OnForceFinishInteraction.Add(Event);
+	OnForceFinishInteractionInternal.Add(Event);
 }
 
 void UInteractionStrategy::InitializeObject_Implementation(AActor* owner)
