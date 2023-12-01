@@ -6,6 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "ExerciseEvaluationDataAsset.generated.h"
 
+class APlayerStart;
 class UExerciseStepStrategy;
 class UExerciseStepDataAsset;
 class UExerciseDataAsset;
@@ -21,4 +22,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced)
 	TArray<UExerciseStepStrategy*> FailExerciseSteps;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<APlayerStart> PlayerStart;
 };

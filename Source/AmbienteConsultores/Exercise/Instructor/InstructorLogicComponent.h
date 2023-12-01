@@ -12,6 +12,11 @@ class AMBIENTECONSULTORES_API UInstructorLogicComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
+
+	virtual void IBindToOnInstructorFeedbackDone_Implementation(const FOnInstructorFeedbackDone& Event) override;
+
 	UInstructorLogicComponent();
 
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FOnInstructorFeedbackDoneInternal OnInstructorFeedbackDoneInternal;	
 };

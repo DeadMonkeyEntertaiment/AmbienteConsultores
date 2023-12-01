@@ -15,7 +15,7 @@ class UEvaluationDataAsset;
 class UImage;
 
 USTRUCT(BlueprintType)
-struct FInstructorDialog
+struct FInstructorFeedback
 {
 	GENERATED_BODY()	
 
@@ -66,10 +66,10 @@ public:
 	TArray<FQuestion> Questions;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FInstructorDialog InitialDialog;
+	FInstructorFeedback InitialDialog;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FInstructorDialog FinalDialog;
+	FInstructorFeedback FinalDialog;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSubclassOf<ABaseInteractable>> ProtectionGear;

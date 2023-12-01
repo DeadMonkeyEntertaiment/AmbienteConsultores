@@ -21,17 +21,7 @@ class AMBIENTECONSULTORES_API UExerciseStepStrategy : public UObject
 {
 	GENERATED_BODY()
 
-public:
-
-	UPROPERTY()
-	FOnInteractionStarted InteractionStartedActivationReqHandler;
-	
-	UPROPERTY()	
-	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;
-	
-	UPROPERTY()
-	FOnInteractionFinished ForceFinishInteractionActivationReqHandler;
-	
+public:	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Setup")
 	void SetupStepBindings();
 
@@ -57,12 +47,27 @@ public:
 	UStepFeedback* SuccessFeedback;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UStepFeedback* FailFeedback;
+	UStepFeedback* InstantFailFeedback;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UStepFeedback* DelayedFailFeedback;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void SetStepEnable(bool Enable);	
 	
-protected:	
+protected:
+	UPROPERTY(BlueprintReadOnly)
+	bool bStepEnable = true;
+
+	UPROPERTY()
+	FOnInteractionStarted InteractionStartedActivationReqHandler;
+	
+	UPROPERTY()	
+	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;
+	
+	UPROPERTY()
+	FOnInteractionFinished ForceFinishInteractionActivationReqHandler;
+	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")
 	void OnInteractableInteractionStarted(AActor* Interactor, AActor* Interactable);
 	
@@ -80,8 +85,4 @@ protected:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepFinished(bool Success);
-
-	UPROPERTY(BlueprintReadOnly)
-		bool bStepEnable = true;
-
 };

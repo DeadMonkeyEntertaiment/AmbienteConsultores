@@ -15,12 +15,12 @@ void UExerciseStepStrategy::SetupStepBindings_Implementation()
 
 void UExerciseStepStrategy::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag, SuccessFeedback, FailFeedback);
+	OnStepStart.Broadcast(StepTag, SuccessFeedback, InstantFailFeedback);
 }
 
 void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 {
-	OnStepFinish.Broadcast(StepTag, StepsToDisable, Success, Success? SuccessFeedback : FailFeedback);
+	OnStepFinish.Broadcast(StepTag, StepsToDisable, Success, Success? SuccessFeedback : InstantFailFeedback);
 }
 
 void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
@@ -28,6 +28,7 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable)
 	bStepEnable = Enable;
 	UBoxComponent* BoxComponent;
 	UInteractableComponent* InteractableComponent;
+	
 	if (Enable)
 	{
 		InteractionStartedActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractableInteractionStarted);

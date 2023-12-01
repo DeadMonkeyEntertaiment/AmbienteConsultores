@@ -2,12 +2,21 @@
 
 
 #include "StepFeedback.h"
-
 #include "Instructor/InstructorInterface.h"
-#include "Instructor/InstructorLogicComponent.h"
 
 void UStepFeedback::DoFeedback_Implementation(AActor* Instructor, AActor* Player)
 {
 	if (!IsValid(Instructor))return;
-	IInstructorInterface::Execute_InstructorFeedback(Instructor->FindComponentByClass<UInstructorLogicComponent>(), InstructorDialog);
+	UActorComponent* InstructorComponent = Instructor->FindComponentByInterface(UInstructorInterface::StaticClass());
+
+	FOnInstructorFeedbackDone FeedbackDoneActivationReqHandler;
+	FeedbackDoneActivationReqHandler.BindDynamic(this, &UStepFeedback::OnFeedbackDone);
+	IInstructorInterface::Execute_IBindToOnInstructorFeedbackDone(InstructorComponent, FeedbackDoneActivationReqHandler);
+	
+	IInstructorInterface::Execute_IDoInstructorFeedback(InstructorComponent, InstructorFeedback);
+}
+
+void UStepFeedback::OnFeedbackDone_Implementation()
+{
+	OnStepFeedbackDone.Broadcast();
 }

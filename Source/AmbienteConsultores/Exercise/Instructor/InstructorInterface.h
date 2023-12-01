@@ -3,24 +3,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AmbienteConsultores/Modules/DataAssets/ExerciseDataAsset.h"
 #include "UObject/Interface.h"
 #include "InstructorInterface.generated.h"
 
-// This class does not need to be modified.
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInstructorFeedbackDoneInternal);
+DECLARE_DYNAMIC_DELEGATE(FOnInstructorFeedbackDone);
+
 UINTERFACE()
 class UInstructorInterface : public UInterface
 {
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class AMBIENTECONSULTORES_API IInstructorInterface
 {
 	GENERATED_BODY()	
 public:
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
-	void InstructorFeedback(FInstructorDialog InstructorDialog);
-	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IDoInstructorFeedback(FInstructorFeedback InstructorFeedback);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IBindToOnInstructorFeedbackDone(const FOnInstructorFeedbackDone &Event);
 };
