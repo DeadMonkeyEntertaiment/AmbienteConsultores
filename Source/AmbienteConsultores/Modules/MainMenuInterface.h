@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "UObject/Interface.h"
-#include "ModuleMenuInterface.generated.h"
+#include "MainMenuInterface.generated.h"
 
 class UModuleDataAsset;
 
@@ -18,12 +18,12 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FOnCodeEntered, int32, code);
 
 
 UINTERFACE()
-class UModuleMenuInterface : public UInterface
+class UMainMenuInterface : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class AMBIENTECONSULTORES_API IModuleMenuInterface
+class AMBIENTECONSULTORES_API IMainMenuInterface
 {
 	GENERATED_BODY()
 
@@ -52,10 +52,10 @@ public:
 	void IShowErrorMessage(const FString& ErrorMessage);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")
-	void IBindOnHoveredChange(const FOnHoveredChange& Event);
+	void IBindToOnHoveredChange(const FOnHoveredChange& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="VFX")
-	void IBindOnListItemClicked(const FOnButtonClicked& Event);
+	void IBindToOnListItemClicked(const FOnButtonClicked& Event);
 
 
 };
