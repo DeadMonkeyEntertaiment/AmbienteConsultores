@@ -42,11 +42,18 @@ void UInteractableComponent::ISetEnabled_Implementation(bool NewState)
 	bEnable = NewState;
 }
 
+bool UInteractableComponent::IIsInteracted_Implementation()
+{
+	return bInteracted;
+}
+
 void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
 	if (!IIsEnabled_Implementation()) return;
 	if (!IsValid(InteractionStrategyObject)) return;
+	bInteracted =true;
+	NewInteractor = Interactor;
 	OnInteractionStartedInternal.Broadcast(Interactor, GetOwner());
 	IInteractableInterface::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
 }
@@ -65,7 +72,8 @@ void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const 
 void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interactor)
 {
 	if (!IsValid(InteractionStrategyClass)) return;
-	if (!IIsEnabled_Implementation()) return;	
+	if (!IIsEnabled_Implementation()) return;
+	bInteracted = false;
 	OnInteractionFinishedInternal.Broadcast(Interactor, GetOwner());
 	IInteractableInterface::Execute_IFinishInteraction(InteractionStrategyObject, Interactor);
 }

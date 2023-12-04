@@ -71,10 +71,14 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interact Binding")
 	void IUnbindToOnInteractionGoalAchieved(const FOnInteractionGoalAchieved& Event);
-	
+
+	//Enable
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
 	void ISetEnabled(bool NewState);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
-	bool IIsEnabled();	
+	bool IIsEnabled();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Set Enabled")
+	bool IIsInteracted();	
 };

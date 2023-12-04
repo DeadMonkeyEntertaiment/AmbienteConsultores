@@ -24,9 +24,13 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	UInteractionStrategy* InteractionStrategyObject;
-
+	
+	UPROPERTY(BlueprintReadOnly)
+	AActor* NewInteractor;
+	
 	virtual bool IIsEnabled_Implementation() override;
 	virtual void ISetEnabled_Implementation(bool NewState) override;
+	virtual bool IIsInteracted_Implementation() override;
 	
 	virtual void IStartInteraction_Implementation(AActor* Interactor) override;
 	virtual void IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event) override;
@@ -39,7 +43,6 @@ public:
 	virtual void IOnInteractionGoalAchieved_Implementation(AActor* Interactor, AActor* Interactable) override;
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
 	virtual void IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
-
 	
 	virtual void IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event) override;
 	virtual void IOnForceFinishInteraction_Implementation(AActor* Interactor, AActor* Interactable) override;
@@ -64,6 +67,11 @@ protected:
 
 	UPROPERTY()
 	bool bEnable = true;
+
+	UPROPERTY()
+	bool bInteracted = true;
+
+	
 
 
 };
