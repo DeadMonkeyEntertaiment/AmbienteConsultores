@@ -12,12 +12,7 @@ public class AmbienteConsultores : ModuleRules
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "EnhancedInput", "GameplayTags", "MovieScene" });
 		
-		PrivateDependencyModuleNames.AddRange(new string[] {"GenericGraphRuntime", "LevelSequence"});
-		
-		PublicDependencyModuleNames.AddRange(new string[] { "SMSystem"});
-
-
-		// Uncomment if you are using Slate UI
+	    // Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 		
 		// Uncomment if you are using online features
