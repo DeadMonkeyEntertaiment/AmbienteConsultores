@@ -4,6 +4,17 @@
 void UInteractionStrategy::IStartInteraction_Implementation(AActor* interactor)
 {
 	Interactor = interactor;
+	bInteracted = true;
+}
+
+void UInteractionStrategy::IFinishInteraction_Implementation(AActor* interactor)
+{
+	bInteracted = false;
+}
+
+bool UInteractionStrategy::IIsInteracted_Implementation()
+{
+	return bInteracted;
 }
 
 void UInteractionStrategy::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)

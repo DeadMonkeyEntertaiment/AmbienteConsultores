@@ -27,6 +27,7 @@ struct FStepsToDisable
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UStepFeedback*, SuccessFeedback, UStepFeedback*, FailFeedback,  UStepFeedback*, DelayedFailFeedback);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UStepFeedback*, Feedback, UStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepFeedback, UStepFeedback*, Feedback);
 
 
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Abstract)

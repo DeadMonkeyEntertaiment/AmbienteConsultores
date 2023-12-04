@@ -9,13 +9,12 @@
 UCLASS(Blueprintable, BlueprintType, Abstract)
 class AMBIENTECONSULTORES_API UInteractionStrategy : public UObject, public FTickableGameObject, public IInteractableInterface
 {
-
-
-private:
 	GENERATED_BODY()
 
 public:
 	virtual void IStartInteraction_Implementation(AActor* interactor) override;
+	virtual void IFinishInteraction_Implementation(AActor* interactor) override;
+	virtual bool IIsInteracted_Implementation() override;
 	//The other bindings are in the component, this two are here because the interaction strategy is the only who know
 	//that the interaction goal was achieved or the interaction was forced to finish 
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
@@ -36,10 +35,13 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	AActor *Owner;	
+		
+	UPROPERTY(BlueprintReadWrite)
+	bool bInteracted;
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void ObjectTick(float DeltaTime);
-	
+		
 	//Make object tickable
 	virtual void Tick(float DeltaTime) override;	
 	virtual ETickableTickType GetTickableTickType() const override
