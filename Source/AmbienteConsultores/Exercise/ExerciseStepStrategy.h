@@ -27,7 +27,7 @@ struct FStepsToDisable
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UStepFeedback*, SuccessFeedback, UStepFeedback*, FailFeedback,  UStepFeedback*, DelayedFailFeedback);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UStepFeedback*, Feedback, UStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepFeedback, UStepFeedback*, Feedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepInternalFeedback, UStepFeedback*, Feedback);
 
 
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Abstract)
@@ -61,6 +61,9 @@ public:
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TArray<UStepFeedback*> StepInternalFeedbacks;
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStepFeedback* SuccessFeedback;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -84,6 +87,9 @@ protected:
 	
 	UPROPERTY()
 	FOnInteractionFinished ForceFinishInteractionActivationReqHandler;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnStepInternalFeedback OnStepInternalFeedback;
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Interaction")
 	void OnInteractableInteractionStarted(AActor* Interactor, AActor* Interactable);
