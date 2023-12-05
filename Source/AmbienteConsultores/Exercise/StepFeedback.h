@@ -5,8 +5,8 @@
 #include "UObject/Object.h"
 #include "StepFeedback.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStepFeedbackDone);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStepFeedbackDone);
 
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew)
 class AMBIENTECONSULTORES_API UStepFeedback : public UObject
