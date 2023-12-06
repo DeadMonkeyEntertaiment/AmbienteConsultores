@@ -9,7 +9,7 @@
 
 class UInteractionStrategy;
 
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStrategyInitialized, UInteractionStrategy*, InteractionStrategy);
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
 class AMBIENTECONSULTORES_API UInteractableComponent : public UActorComponent, public IInteractableInterface
@@ -22,7 +22,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FGameplayTagContainer InteractableTags;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	UInteractionStrategy* InteractionStrategyObject;
 	
 	UPROPERTY(BlueprintReadOnly)
@@ -58,6 +58,10 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
 	FOnForceFinishInteractionInternal OnForceFinishInteractionInternal;
+	
+	UPROPERTY(BlueprintAssignable, Category= "EventDispachers")
+	FOnStrategyInitialized OnStrategyInitialized;
+	
 	
 protected:
 	virtual void BeginPlay() override;	

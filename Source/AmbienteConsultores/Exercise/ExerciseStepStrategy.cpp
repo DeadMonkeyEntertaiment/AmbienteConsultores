@@ -21,6 +21,10 @@ void UExerciseStepStrategy::CallOnStepStart_Implementation()
 void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 {
 	OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, Success, Success? SuccessFeedback : InstantFailFeedback, DelayedFailFeedback);
+	if (AutoDisableAfterFinished)
+	{
+		SetStepEnable_Implementation(false, AutoDisableInteractablesAfterFinished);
+	}
 }
 
 void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool PropagateToInteracts)
@@ -74,13 +78,6 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool Propa
 		{
 			BoxComponent = BoxCollider.Get()->FindComponentByClass<UBoxComponent>();
 			BoxComponent->OnComponentBeginOverlap.RemoveDynamic(this, &UExerciseStepStrategy::OnBoxBeginOverlap);
-		}
-		
-	}
-	
-}
-
-void UExerciseStepStrategy::OnInteractableInteractionStarted_Implementation(AActor* Interactor, AActor* Interactable)
-{
-	CallOnStepStart();
+		}		
+	}	
 }
