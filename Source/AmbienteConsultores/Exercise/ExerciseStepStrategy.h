@@ -45,31 +45,31 @@ public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepFinished OnStepFinish;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Step Tag")
 	FGameplayTag StepTag;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Steps To Desable")
 	FStepsToDisable StepsToDisableOnStart;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Steps To Desable")
 	FStepsToDisable StepsToDisableOnFinish;
 	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactors & Colliders")
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Interactors & Colliders")
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Feedback")
 	TArray<UStepFeedback*> StepInternalFeedbacks;
 	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Feedback")
 	UStepFeedback* SuccessFeedback;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Feedback")
 	UStepFeedback* InstantFailFeedback;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Feedback")
 	UStepFeedback* DelayedFailFeedback;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
