@@ -1,6 +1,8 @@
 ﻿
 #include "UtilityBlueprintFunctionLibrary.h"
 
+#include "AmbienteConsultores/Exercise/Feedback/BaseStepFeedback.h"
+
 UActorComponent* UUtilityBlueprintFunctionLibrary::GetValidatedComponentByClass(AActor* Target,
                                                                                 TSubclassOf<UActorComponent> ComponentClass, TEnumAsByte<EValidationPins>& Outcome)
 {
@@ -38,4 +40,19 @@ TArray<UActorComponent*> UUtilityBlueprintFunctionLibrary::GetValidatedComponent
 
 	Outcome = FoundComponents.Num() > 0 ? EValidationPins::Valid : EValidationPins::NotValid;
 	return FoundComponents;
+}
+
+UBaseStepFeedback* UUtilityBlueprintFunctionLibrary::GetValidatedFeedback(TArray<UBaseStepFeedback*> Feedbacks, int index,  TEnumAsByte<EValidationPins>& Outcome)
+{
+	
+	if (!Feedbacks.IsValidIndex(index))
+	{
+		Outcome = EValidationPins::NotValid;
+		return nullptr;
+	}
+	UBaseStepFeedback* Feedback = Feedbacks[index];
+	Outcome = IsValid(Feedback)
+				  ? EValidationPins::Valid
+				  : EValidationPins::NotValid;
+	return Feedback;
 }

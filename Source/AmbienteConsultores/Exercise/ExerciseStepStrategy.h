@@ -9,7 +9,7 @@
 #include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "ExerciseStepStrategy.generated.h"
 
-class UStepFeedback;
+class UBaseStepFeedback;
 class UFailStrategy;
 
 USTRUCT(BlueprintType)
@@ -25,9 +25,9 @@ struct FStepsToDisable
 	
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UStepFeedback*, SuccessFeedback, UStepFeedback*, FailFeedback,  UStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UStepFeedback*, Feedback, UStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepInternalFeedback, UStepFeedback*, Feedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UBaseStepFeedback*, SuccessFeedback, UBaseStepFeedback*, FailFeedback,  UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UBaseStepFeedback*, Feedback, UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepInternalFeedback, UBaseStepFeedback*, Feedback);
 
 
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Abstract)
@@ -55,16 +55,19 @@ public:
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	TArray<UStepFeedback*> InternalStepFeedback;
+	TArray<UBaseStepFeedback*> InternalStepFeedback;
+
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
+	UBaseStepFeedback* StartFeedback;
 	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UStepFeedback* SuccessFeedback;
+	UBaseStepFeedback* InstantSuccessFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UStepFeedback* InstantFailFeedback;
+	UBaseStepFeedback* InstantFailFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UStepFeedback* DelayedFailFeedback;
+	UBaseStepFeedback* DelayedFailFeedback;
 	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Steps To Desable")
 	bool AutoDisableAfterFinished;

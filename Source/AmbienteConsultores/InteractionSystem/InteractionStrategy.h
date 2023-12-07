@@ -39,8 +39,7 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	bool bInteracted;	
 
-private:
-	uint32 LastFrameNumberWeTicked = INDEX_NONE;
+
 };
 
 
