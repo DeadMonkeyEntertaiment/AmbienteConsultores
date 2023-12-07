@@ -30,7 +30,7 @@ public:
 	void IAnswerFeedback(const bool Correct, const int32 AnswerNumber);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void IShowResults(const int32 Score, const int32 TotalQuestions);
+	void IShowResults(const int32 Score, const int32 TotalQuestions, const TArray<FExerciseEvaluation> &ExercisesEvaluations);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void IBindToOnQuestionnaireFinished(const FOnQuestionnaireFinished& Event);
