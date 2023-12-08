@@ -43,7 +43,8 @@ void UEvaluationSubsystem::StartExerciseEvaluation()
 	CurrentExerciseEvaluation.Exercise = GetCurrentExercise()->ExerciseTag;
 	CurrentExerciseEvaluation.Step = ExercisesEvaluations.Num();
 	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld());
-	CurrentExerciseEvaluation.repeats = 0; 
+	CurrentExerciseEvaluation.FailAttemps = 0; 
+	CurrentExerciseEvaluation.SuccessAttemps = 0; 
 	CurrentExerciseEvaluation.win = true;
 	ManageSubLevelsLoad();
 }
@@ -56,8 +57,8 @@ UExerciseEvaluationDataAsset*  UEvaluationSubsystem::GetCurrentExerciseEvaluatio
 
 void UEvaluationSubsystem::AddFailedAttempt()
 {
-	CurrentExerciseEvaluation.repeats++;
-	if (CurrentExerciseEvaluation.repeats > 3)
+	CurrentExerciseEvaluation.FailAttemps++;
+	if (CurrentExerciseEvaluation.FailAttemps > 3)
 	{
 		CurrentExerciseEvaluation.win = false;
 	}
@@ -65,7 +66,7 @@ void UEvaluationSubsystem::AddFailedAttempt()
 
 void UEvaluationSubsystem::AddSuccessfulAttempt()
 {
-	
+	CurrentExerciseEvaluation.SuccessAttemps++;
 }
 
 void UEvaluationSubsystem::RetryExercise()

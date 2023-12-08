@@ -9,6 +9,7 @@
 #include "AmbienteConsultores/InteractionSystem/InteractableInterface.h"
 #include "ExerciseDataAsset.generated.h"
 
+class AInstructorLocation;
 class ABaseInteractable;
 class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
@@ -24,6 +25,9 @@ struct FInstructorFeedback
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UAnimationAsset* Animation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	 TSoftObjectPtr<AInstructorLocation> InstructorLocation;
 
 	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
 	TArray<FText> Texts;

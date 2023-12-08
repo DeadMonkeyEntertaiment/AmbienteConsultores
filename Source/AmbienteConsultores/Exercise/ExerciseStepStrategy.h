@@ -3,13 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
 #include "ExerciseBoxCollision.h"
 #include "AmbienteConsultores/InteractionSystem/BaseInteractable.h"
 #include "AmbienteConsultores/InteractionSystem/InteractableComponent.h"
+#include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "ExerciseStepStrategy.generated.h"
 
-class UStepFeedback;
+class UBaseStepFeedback;
 class UFailStrategy;
 
 USTRUCT(BlueprintType)
@@ -25,13 +25,13 @@ struct FStepsToDisable
 	
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UStepFeedback*, SuccessFeedback, UStepFeedback*, FailFeedback,  UStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UStepFeedback*, Feedback, UStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepInternalFeedback, UStepFeedback*, Feedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UBaseStepFeedback*, SuccessFeedback, UBaseStepFeedback*, FailFeedback,  UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UBaseStepFeedback*, Feedback, UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepInternalFeedback, UBaseStepFeedback*, Feedback);
 
 
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew, Abstract)
-class AMBIENTECONSULTORES_API UExerciseStepStrategy : public UObject
+class AMBIENTECONSULTORES_API UExerciseStepStrategy : public UBaseTickableObject
 {
 	GENERATED_BODY()
 
@@ -45,32 +45,42 @@ public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepFinished OnStepFinish;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Step Tag")
 	FGameplayTag StepTag;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	FStepsToDisable StepsToDisableOnStart;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	FStepsToDisable StepsToDisableOnFinish;
-	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactors & Colliders")
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactors & Colliders")
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TArray<UStepFeedback*> StepInternalFeedbacks;
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
+	TArray<UBaseStepFeedback*> InternalStepFeedback;
+
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
+	UBaseStepFeedback* StartFeedback;
 	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UStepFeedback* SuccessFeedback;
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
+	UBaseStepFeedback* InstantSuccessFeedback;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UStepFeedback* InstantFailFeedback;
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
+	UBaseStepFeedback* InstantFailFeedback;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UStepFeedback* DelayedFailFeedback;
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
+	UBaseStepFeedback* DelayedFailFeedback;
+	
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Steps To Desable")
+	bool AutoDisableAfterFinished;
+	
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Steps To Desable")
+	bool AutoDisableInteractablesAfterFinished;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
+	FStepsToDisable StepsToDisableOnStart;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
+	FStepsToDisable StepsToDisableOnFinish;
+	
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void SetStepEnable(bool Enable, bool PropagateToInteracts);	
@@ -91,7 +101,7 @@ protected:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepInternalFeedback OnStepInternalFeedback;
 	
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Interaction")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")
 	void OnInteractableInteractionStarted(AActor* Interactor, AActor* Interactable);
 	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Interaction")

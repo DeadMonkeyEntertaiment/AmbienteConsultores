@@ -6,6 +6,7 @@
 
 
 class ABaseInteractable;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnInteractionStartedInternal, AActor*, Interactor, AActor*, Interactable);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnInteractionStarted, AActor*, Interactor, AActor*, Interactable);
 

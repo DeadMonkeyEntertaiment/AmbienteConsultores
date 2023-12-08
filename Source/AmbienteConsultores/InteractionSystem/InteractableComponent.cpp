@@ -29,6 +29,7 @@ void UInteractableComponent::BeginPlay()
 	FOnForceFinishInteraction ForceFinishInteractionActivationReqHandler;
 	ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnForceFinishInteraction);
 	IInteractableInterface::Execute_IBindToOnForceFinishInteraction(InteractionStrategyObject, ForceFinishInteractionActivationReqHandler);
+	OnStrategyInitialized.Broadcast(InteractionStrategyObject);
 }
 
 

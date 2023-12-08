@@ -31,11 +31,3 @@ void UInteractionStrategy::InitializeObject_Implementation(AActor* owner)
 {
 	Owner = owner;
 }
-
-void UInteractionStrategy::Tick(float DeltaTime)
-{	
-	ObjectTick(DeltaTime);
-}
-
-
-

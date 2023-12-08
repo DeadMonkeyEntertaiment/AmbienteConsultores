@@ -23,7 +23,10 @@ struct FExerciseEvaluation
 	double Time;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 repeats;
+	int32 FailAttemps;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int32 SuccessAttemps;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool win;
@@ -121,9 +124,7 @@ public:
 	
 private:	
 	UPROPERTY()
-	int32 UserID;
-
-	
+	int32 UserID;	
 
 	UPROPERTY()
 	UModuleDataAsset* SelectedModule;

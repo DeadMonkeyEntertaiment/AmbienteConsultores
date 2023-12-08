@@ -35,10 +35,6 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/e47be161e7a24e928560290abd5dcc4f"
 		},
 		{
-			"Name": "XRVisualization",
-			"Enabled": true
-		},
-		{
 			"Name": "OculusXR",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/8313d8d7e7cf4e03a33e79eb757bccba",
@@ -48,8 +44,8 @@
 			]
 		},
 		{
-			"Name": "GenericGraph",
-			"Enabled": false
+			"Name": "XRVisualization",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [

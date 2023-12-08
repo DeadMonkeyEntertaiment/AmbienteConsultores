@@ -2,14 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "AmbienteConsultores/Modules/DataAssets/ExerciseDataAsset.h"
-#include "UObject/Object.h"
-#include "StepFeedback.generated.h"
+#include "AmbienteConsultores/Utils/BaseTickableObject.h"
+#include "BaseStepFeedback.generated.h"
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStepFeedbackDone);
 
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew)
-class AMBIENTECONSULTORES_API UStepFeedback : public UObject
+class AMBIENTECONSULTORES_API UBaseStepFeedback : public UBaseTickableObject
 {
 	GENERATED_BODY()
 

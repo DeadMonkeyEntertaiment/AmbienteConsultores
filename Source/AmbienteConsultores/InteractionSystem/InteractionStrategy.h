@@ -1,13 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include <UObject/Object.h>
 #include "InteractableInterface.h"
+#include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "InteractionStrategy.generated.h"
 
 
 UCLASS(Blueprintable, BlueprintType, Abstract)
-class AMBIENTECONSULTORES_API UInteractionStrategy : public UObject, public FTickableGameObject, public IInteractableInterface
+class AMBIENTECONSULTORES_API UInteractionStrategy : public UBaseTickableObject, public IInteractableInterface
 {
 	GENERATED_BODY()
 
@@ -37,34 +37,9 @@ protected:
 	AActor *Owner;	
 		
 	UPROPERTY(BlueprintReadWrite)
-	bool bInteracted;
-	
-	UFUNCTION(BlueprintImplementableEvent)
-	void ObjectTick(float DeltaTime);
-		
-	//Make object tickable
-	virtual void Tick(float DeltaTime) override;	
-	virtual ETickableTickType GetTickableTickType() const override
-	{
-		return ETickableTickType::Conditional;
-	}
-	virtual TStatId GetStatId() const override
-	{
-		RETURN_QUICK_DECLARE_CYCLE_STAT(FMyTickableThing, STATGROUP_Tickables);
-	}
-	virtual bool IsTickableWhenPaused() const override
-	{
-		return true;
-	}
-	virtual bool IsTickableInEditor() const override
-	{
-		return false;
-	}
+	bool bInteracted;	
 
-	
 
-private:
-	uint32 LastFrameNumberWeTicked = INDEX_NONE;
 };
 
 
