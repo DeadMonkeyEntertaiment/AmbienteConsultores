@@ -8,6 +8,7 @@
 #include "InputAction.h"
 #include "HandInitializableComponent.generated.h"
 
+DECLARE_DYNAMIC_DELEGATE(FOnInputActionEvent);
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
@@ -17,4 +18,10 @@ class AMBIENTECONSULTORES_API UHandInitializableComponent : public UActorCompone
 
 public:
 	UHandInitializableComponent();
+
+protected:
+
+	UFUNCTION(BlueprintCallable)
+	void BindInputAction(UInputAction* InputAction, FOnInputActionEvent OnInputActionStart,
+												  FOnInputActionEvent OnInputActionEnd);	
 };

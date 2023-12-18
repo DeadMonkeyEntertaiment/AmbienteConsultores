@@ -6,7 +6,8 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "BindInputActionLibrary.generated.h"
 
-DECLARE_DYNAMIC_DELEGATE(FOnInputActionEvent);
+DECLARE_DYNAMIC_DELEGATE(FOnInputActionEventLibrary);
+
 
 
 UCLASS()
@@ -17,5 +18,6 @@ class AMBIENTECONSULTORES_API UBindInputActionLibrary : public UBlueprintFunctio
 public:
 
 	UFUNCTION(BlueprintCallable)
-	static void BindInputAction(UObject* Context, UInputAction* InputAction, FOnInputActionEvent OnInputActionStart, FOnInputActionEvent OnInputActionEnd);
+	static void BindInputActionLibrary(UObject* Context, UInputAction* InputAction, FOnInputActionEventLibrary OnInputActionStart, FOnInputActionEventLibrary OnInputActionEnd);
+	
 };

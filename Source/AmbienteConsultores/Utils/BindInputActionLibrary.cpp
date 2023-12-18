@@ -6,11 +6,10 @@
 #include "Kismet/GameplayStatics.h"
 
 
-void UBindInputActionLibrary::BindInputAction(UObject* Context, UInputAction* InputAction, FOnInputActionEvent OnInputActionStart,
-                                                  FOnInputActionEvent OnInputActionEnd)
+void UBindInputActionLibrary::BindInputActionLibrary(UObject* Context, UInputAction* InputAction, FOnInputActionEventLibrary OnInputActionStart,
+                                                  FOnInputActionEventLibrary OnInputActionEnd)
 {
 	const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(Context, 0);
-
 	UEnhancedInputComponent* EnhancedInputComponent = PlayerController->FindComponentByClass<UEnhancedInputComponent>();
 	
 	EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Started, Context, OnInputActionStart.GetFunctionName());
