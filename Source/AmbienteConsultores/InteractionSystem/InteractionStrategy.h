@@ -6,7 +6,7 @@
 #include "InteractionStrategy.generated.h"
 
 
-UCLASS(Blueprintable, BlueprintType, Abstract)
+UCLASS(Blueprintable, BlueprintType)
 class AMBIENTECONSULTORES_API UInteractionStrategy : public UBaseTickableObject, public IInteractableInterface
 {
 	GENERATED_BODY()
