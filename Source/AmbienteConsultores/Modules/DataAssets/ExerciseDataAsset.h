@@ -9,32 +9,10 @@
 #include "AmbienteConsultores/InteractionSystem/InteractableInterface.h"
 #include "ExerciseDataAsset.generated.h"
 
-class AInstructorLocation;
 class ABaseInteractable;
 class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
 class UImage;
-
-USTRUCT(BlueprintType)
-struct FInstructorFeedback
-{
-	GENERATED_BODY()	
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	USoundBase* Audio;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UAnimationAsset* Animation;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	 TSoftObjectPtr<AInstructorLocation> InstructorLocation;
-
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
-	TArray<FText> Texts;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<float> AudioToTextSegmentationTimes;	
-};
 
 USTRUCT(BlueprintType)
 struct FQuestion
@@ -67,13 +45,7 @@ public:
 	UExerciseEvaluationDataAsset* ExerciseEvaluationDataAsset;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FQuestion> Questions;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FInstructorFeedback InitialDialog;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FInstructorFeedback FinalDialog;
+	TArray<FQuestion> Questions;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSubclassOf<ABaseInteractable>> ProtectionGear;

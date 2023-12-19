@@ -11,3 +11,9 @@ void UInstructorLogicComponent::IBindToOnInstructorFeedbackDone_Implementation(c
 {
 	OnInstructorFeedbackDoneInternal.Add(Event);
 }
+
+void UInstructorLogicComponent::IUnbindFromOnInstructorFeedbackDone_Implementation(
+	const FOnInstructorFeedbackDone& Event)
+{
+	OnInstructorFeedbackDoneInternal.Remove(Event);
+}
