@@ -26,4 +26,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void IBindToOnInstructorFeedbackDone(const FOnInstructorFeedbackDone &Event);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IUnbindFromOnInstructorFeedbackDone(const FOnInstructorFeedbackDone &Event);
 };

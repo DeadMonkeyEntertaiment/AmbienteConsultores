@@ -6,7 +6,7 @@
 #include "InteractionStrategy.generated.h"
 
 
-UCLASS(Blueprintable, BlueprintType, Abstract)
+UCLASS(Blueprintable, BlueprintType)
 class AMBIENTECONSULTORES_API UInteractionStrategy : public UBaseTickableObject, public IInteractableInterface
 {
 	GENERATED_BODY()
@@ -20,7 +20,7 @@ public:
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
 	virtual void IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event) override;
 	
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void InitializeObject(AActor* owner);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")

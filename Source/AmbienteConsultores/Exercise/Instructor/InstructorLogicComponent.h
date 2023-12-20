@@ -15,6 +15,8 @@ public:
 
 	virtual void IBindToOnInstructorFeedbackDone_Implementation(const FOnInstructorFeedbackDone& Event) override;
 
+	virtual void IUnbindFromOnInstructorFeedbackDone_Implementation(const FOnInstructorFeedbackDone& Event) override;
+
 	UInstructorLogicComponent();
 
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)
