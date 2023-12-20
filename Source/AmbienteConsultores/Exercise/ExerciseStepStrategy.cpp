@@ -15,12 +15,12 @@ void UExerciseStepStrategy::SetupStepBindings_Implementation()
 
 void UExerciseStepStrategy::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, StartFeedback, InstantFailFeedback, DelayedFailFeedback);
+	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, StepStartFeedback, StepFinishedFailFeedback, StepFinishedDelayedFailFeedback);
 }
 
 void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 {
-	OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, Success, Success? InstantSuccessFeedback : InstantFailFeedback, DelayedFailFeedback);
+	OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, Success, Success? StepFinishedSuccessFeedback : StepFinishedFailFeedback, StepFinishedDelayedFailFeedback);
 	if (AutoDisableAfterFinished)
 	{
 		SetStepEnable_Implementation(false, AutoDisableInteractablesAfterFinished);

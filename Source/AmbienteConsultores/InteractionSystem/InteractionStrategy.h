@@ -20,7 +20,7 @@ public:
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
 	virtual void IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event) override;
 	
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void InitializeObject(AActor* owner);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")

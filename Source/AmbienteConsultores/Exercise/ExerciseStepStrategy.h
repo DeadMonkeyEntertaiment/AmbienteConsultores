@@ -58,16 +58,16 @@ public:
 	TArray<UBaseStepFeedback*> InternalStepFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UBaseStepFeedback* StartFeedback;
+	UBaseStepFeedback* StepStartFeedback;
 	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UBaseStepFeedback* InstantSuccessFeedback;
+	UBaseStepFeedback* StepFinishedSuccessFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UBaseStepFeedback* InstantFailFeedback;
+	UBaseStepFeedback* StepFinishedFailFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UBaseStepFeedback* DelayedFailFeedback;
+	UBaseStepFeedback* StepFinishedDelayedFailFeedback;
 	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Steps To Desable")
 	bool AutoDisableAfterFinished;

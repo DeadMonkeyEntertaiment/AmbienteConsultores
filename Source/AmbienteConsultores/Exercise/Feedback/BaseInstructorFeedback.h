@@ -3,7 +3,6 @@
 #include "CoreMinimal.h"
 #include "BaseStepFeedback.h"
 #include "AmbienteConsultores/Modules/DataAssets/ExerciseDataAsset.h"
-#include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "BaseInstructorFeedback.generated.h"
 
 

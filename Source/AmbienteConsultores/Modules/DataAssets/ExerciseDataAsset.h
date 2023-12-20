@@ -40,9 +40,18 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSoftObjectPtr<UWorld>> ExerciseSublevels;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<UWorld> ExerciseActorsSublevel;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UExerciseEvaluationDataAsset* ExerciseEvaluationDataAsset;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool HasPointer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool HasMovement;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FQuestion> Questions;	
