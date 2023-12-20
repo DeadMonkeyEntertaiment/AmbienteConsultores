@@ -25,8 +25,8 @@ struct FStepsToDisable
 	
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, const UBaseStepFeedback*, SuccessFeedback, const UBaseStepFeedback*, FailFeedback,  const UBaseStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, const UBaseStepFeedback*, Feedback, const UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, UBaseStepFeedback*, SuccessFeedback, UBaseStepFeedback*, FailFeedback,  UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, UBaseStepFeedback*, Feedback, UBaseStepFeedback*, DelayedFailFeedback);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepInternalFeedback, UBaseStepFeedback*, Feedback);
 
 
@@ -58,16 +58,16 @@ public:
 	TArray<UBaseStepFeedback*> InternalStepFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	const UBaseStepFeedback* StepStartFeedback;
+	UBaseStepFeedback* StepStartFeedback;
 	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	const UBaseStepFeedback* StepFinishedSuccessFeedback;
+	UBaseStepFeedback* StepFinishedSuccessFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	const UBaseStepFeedback* StepFinishedFailFeedback;
+	UBaseStepFeedback* StepFinishedFailFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	const UBaseStepFeedback* StepFinishedDelayedFailFeedback;
+	UBaseStepFeedback* StepFinishedDelayedFailFeedback;
 	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Steps To Desable")
 	bool AutoDisableAfterFinished;

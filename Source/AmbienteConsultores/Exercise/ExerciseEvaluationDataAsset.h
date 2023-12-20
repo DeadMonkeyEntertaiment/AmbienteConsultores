@@ -46,10 +46,10 @@ public:
 	FInstructorFeedback EndDialog;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced)
-	TArray<const UExerciseStepStrategy*> SuccessExerciseSteps;
+	TArray<UExerciseStepStrategy*> SuccessExerciseSteps;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced)
-	TArray<const UExerciseStepStrategy*> FailExerciseSteps;
+	TArray<UExerciseStepStrategy*> FailExerciseSteps;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSoftObjectPtr<APlayerStart> PlayerStart;
