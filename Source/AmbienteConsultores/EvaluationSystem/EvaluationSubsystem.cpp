@@ -45,8 +45,7 @@ void UEvaluationSubsystem::StartExerciseEvaluation()
 	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld());
 	CurrentExerciseEvaluation.FailAttemps = 0; 
 	CurrentExerciseEvaluation.SuccessAttemps = 0; 
-	CurrentExerciseEvaluation.win = true;
-	ManageSubLevelsLoad();
+	CurrentExerciseEvaluation.win = true;	
 }
 
 UExerciseEvaluationDataAsset*  UEvaluationSubsystem::GetCurrentExerciseEvaluation()

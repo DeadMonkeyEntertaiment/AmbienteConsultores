@@ -121,6 +121,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddExercisesToActivity(UExerciseDataAsset* ExerciseData);
+
+	UPROPERTY(BlueprintReadWrite) //should by private
+	FExerciseEvaluation CurrentExerciseEvaluation;
 	
 private:	
 	UPROPERTY()
@@ -138,8 +141,7 @@ private:
 	UPROPERTY()
 	FName EntryLevelName = "/Game/Maps/MAP_EntryLevel";
 
-	UPROPERTY()
-	FExerciseEvaluation CurrentExerciseEvaluation;
+	
 
 	UPROPERTY()
 	TArray<FExerciseEvaluation> ExercisesEvaluations;
