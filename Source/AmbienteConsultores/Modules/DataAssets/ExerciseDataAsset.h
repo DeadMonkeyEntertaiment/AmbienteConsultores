@@ -23,7 +23,10 @@ struct FQuestion
 	FText Question;	
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FText> Answers;
+	TArray<FText> Answers
+	{
+		FText::FromString("Verdadero"), FText::FromString("Falso")
+	};
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 CorrectAnswer;	
