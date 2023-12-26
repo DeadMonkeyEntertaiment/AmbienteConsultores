@@ -55,6 +55,9 @@ struct FGestureData
 		FFingersPositions("RingFingerOPEN", "_ring_finger_tip_marker"),
 		FFingersPositions("PinkyFingerOPEN", "_pinky_finger_tip_marker")		
 	};	
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float CustomThreshold;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EControllerHand Hand;
