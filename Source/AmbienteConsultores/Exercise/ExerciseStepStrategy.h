@@ -48,6 +48,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Step Tag")
 	FGameplayTag StepTag;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Autostart")
+	bool Autostart;
+
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactors & Colliders")
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 
@@ -118,6 +121,9 @@ protected:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepStart();
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Utils")
+	void AutostartStep();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepFinished(bool Success);
