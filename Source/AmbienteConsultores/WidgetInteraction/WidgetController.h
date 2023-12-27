@@ -33,7 +33,7 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	UUserWidget* Widget;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UUserWidget> WidgetClass;
 
 

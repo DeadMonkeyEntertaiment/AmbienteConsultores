@@ -37,7 +37,7 @@ class AMBIENTECONSULTORES_API UExerciseStepStrategy : public UBaseTickableObject
 
 public:	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Setup")
-	void SetupStepBindings();
+	void SetupStep(APawn* playerPawn);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepStarted OnStepStart;
@@ -55,7 +55,7 @@ public:
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	TArray<const UBaseStepFeedback*> InternalStepFeedback;
+	TMap<FString, const UBaseStepFeedback*> InternalStepFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
 	const UBaseStepFeedback* StepStartFeedback;
@@ -88,6 +88,9 @@ public:
 protected:
 	UPROPERTY(BlueprintReadOnly)
 	bool bStepEnable = true;
+
+	UPROPERTY(BlueprintReadOnly)
+	APawn* PlayerPawn;
 
 	UPROPERTY()
 	FOnInteractionStarted InteractionStartedActivationReqHandler;
