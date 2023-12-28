@@ -6,10 +6,9 @@
 #include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
 #include "AmbienteConsultores/Exercise/ExerciseEvaluationDataAsset.h"
-#include "AmbienteConsultores/InteractionSystem/InteractableInterface.h"
 #include "ExerciseDataAsset.generated.h"
 
-class ABaseInteractable;
+class ABaseProtectionGear;
 class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
 class UImage;
@@ -30,6 +29,18 @@ struct FQuestion
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 CorrectAnswer;	
+};
+
+USTRUCT(BlueprintType)
+struct FProtectionGear
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<ABaseProtectionGear> ProtectionGearClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool Necessary = true;
 };
 
 UCLASS(BlueprintType)
@@ -60,5 +71,5 @@ public:
 	TArray<FQuestion> Questions;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TSubclassOf<ABaseInteractable>> ProtectionGear;
+	TArray<FProtectionGear> ProtectionGear;
 };
