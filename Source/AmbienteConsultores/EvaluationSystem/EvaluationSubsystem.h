@@ -64,11 +64,8 @@ public:
 
 	//Exercise	
 	UFUNCTION(BlueprintCallable)
-	void StartExerciseEvaluation();
-	
-	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UExerciseEvaluationDataAsset* GetCurrentExerciseEvaluation();	
-	
+	void StartExerciseEvaluation();	
+
 	UFUNCTION(BlueprintCallable)
 	void AddFailedAttempt();
 	
