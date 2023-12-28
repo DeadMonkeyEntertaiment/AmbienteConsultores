@@ -5,7 +5,7 @@
 #include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "ProtectionStrategy.generated.h"
 
-UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew)
+UCLASS(Blueprintable, BlueprintType)
 class AMBIENTECONSULTORES_API UProtectionStrategy : public UBaseTickableObject
 {
 	GENERATED_BODY()

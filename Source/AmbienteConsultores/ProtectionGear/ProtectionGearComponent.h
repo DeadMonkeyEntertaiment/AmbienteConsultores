@@ -25,7 +25,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ProtectionGear")
+	UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite, Category="ProtectionGear")
 	UProtectionStrategy* ProtectionStrategyClass;
 
 	UPROPERTY()
