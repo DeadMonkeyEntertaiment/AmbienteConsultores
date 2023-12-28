@@ -20,10 +20,7 @@ public:
 	UInteractableComponent();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FGameplayTagContainer InteractableTags;
-
-	UPROPERTY(BlueprintReadWrite)
-	UInteractionStrategy* InteractionStrategyObject;
+	FGameplayTagContainer InteractableTags;	
 	
 	UPROPERTY(BlueprintReadOnly)
 	AActor* NewInteractor;
@@ -66,18 +63,16 @@ public:
 protected:
 	virtual void BeginPlay() override;	
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (MustImplement = InteractableInterface) )
-	TSubclassOf<UInteractionStrategy> InteractionStrategyClass;
+	UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite)
+	UInteractionStrategy* InteractionStrategyObject;
 
 	UPROPERTY()
 	bool bEnable = true;
 
 	UPROPERTY()
 	bool bInteracted = true;
-
 	
-
-
+	
 };
 
 

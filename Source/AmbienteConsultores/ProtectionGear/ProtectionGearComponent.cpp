@@ -5,24 +5,16 @@
 
 UProtectionGearComponent::UProtectionGearComponent()
 {
-
 	PrimaryComponentTick.bCanEverTick = false;
-
-}
-
-void UProtectionGearComponent::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	AActor * Owner = GetOwner();
-	
-	//if (!IsValid(ProtectionStrategyClass)) return;
-	
-	//ProtectionStrategy = NewObject<UProtectionStrategy>(Owner, ProtectionStrategyClass);
 }
 
 void UProtectionGearComponent::PutOn_Implementation()
 {
-	ProtectionStrategy->PutOn(GetOwner());
+	ProtectionStrategyObject->PutOn(GetOwner());
+}
+
+void UProtectionGearComponent::Remove_Implementation()
+{
+	ProtectionStrategyObject->Remove();
 }
 

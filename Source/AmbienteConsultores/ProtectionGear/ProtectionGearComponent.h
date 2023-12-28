@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "ProtectionGearComponent.generated.h"
 
+class UInteractionStrategy;
 class UProtectionStrategy;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
@@ -22,12 +23,10 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void PutOn();
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void Remove();
+
 protected:
-	virtual void BeginPlay() override;
-
 	UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite, Category="ProtectionGear")
-	UProtectionStrategy* ProtectionStrategyClass;
-
-	UPROPERTY()
-	UProtectionStrategy* ProtectionStrategy;
+	UProtectionStrategy* ProtectionStrategyObject;
 };
