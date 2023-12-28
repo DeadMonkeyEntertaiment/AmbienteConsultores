@@ -40,7 +40,7 @@ struct FProtectionGear
 	TSubclassOf<ABaseProtectionGear> ProtectionGearClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool Necessary = true;
+	bool IsNecessary = true;
 };
 
 UCLASS(BlueprintType)

@@ -7,21 +7,21 @@
 #include "ProtectionGearComponent.generated.h"
 
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+class UProtectionStrategy;
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
 class AMBIENTECONSULTORES_API UProtectionGearComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this component's properties
 	UProtectionGearComponent();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+	UPROPERTY(BlueprintReadWrite)
+	UProtectionStrategy* ProtectionStrategy;
 
-public:
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
-	                           FActorComponentTickFunction* ThisTickFunction) override;
+	UPROPERTY(BlueprintReadWrite)
+	bool IsNecessary;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void PutOn();
 };
