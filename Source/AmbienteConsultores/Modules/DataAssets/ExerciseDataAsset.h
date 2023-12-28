@@ -68,6 +68,9 @@ public:
 	bool HasMovement;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool FemaleInstructor = true;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FQuestion> Questions;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
