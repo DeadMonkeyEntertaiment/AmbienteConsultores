@@ -10,8 +10,19 @@ UProtectionGearComponent::UProtectionGearComponent()
 
 }
 
+void UProtectionGearComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	AActor * Owner = GetOwner();
+	
+	//if (!IsValid(ProtectionStrategyClass)) return;
+	
+	//ProtectionStrategy = NewObject<UProtectionStrategy>(Owner, ProtectionStrategyClass);
+}
+
 void UProtectionGearComponent::PutOn_Implementation()
 {
-	ProtectionStrategy->PutOn();
+	ProtectionStrategy->PutOn(GetOwner());
 }
 

@@ -5,12 +5,15 @@
 #include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "ProtectionStrategy.generated.h"
 
-UCLASS(Blueprintable, BlueprintType)
+UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew)
 class AMBIENTECONSULTORES_API UProtectionStrategy : public UBaseTickableObject
 {
 	GENERATED_BODY()
 
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void PutOn();
+	void PutOn(AActor* Player);
+
+	UPROPERTY(EditAnywhere)
+	bool test;
 };

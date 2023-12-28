@@ -8,7 +8,6 @@ ABaseProtectionGear::ABaseProtectionGear()
 {	
 	PrimaryActorTick.bCanEverTick = false;
 	ProtectionGearComponent = CreateDefaultSubobject<UProtectionGearComponent>(TEXT("ProtectionGearComponent"));
-
 }
 
 
