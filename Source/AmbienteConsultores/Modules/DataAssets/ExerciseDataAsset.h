@@ -42,6 +42,9 @@ struct FProtectionGear
 	TSubclassOf<ABaseProtectionGear> ProtectionGearClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int StackNumber;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool IsNecessary = true;
 };
 
