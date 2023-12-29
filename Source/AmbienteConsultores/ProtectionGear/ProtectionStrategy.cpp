@@ -4,7 +4,7 @@
 
 void UProtectionStrategy::PutOn_Implementation(AActor* player)
 {
-	Player = Player;
+	Player = player;
 }
 
 void UProtectionStrategy::Remove_Implementation()

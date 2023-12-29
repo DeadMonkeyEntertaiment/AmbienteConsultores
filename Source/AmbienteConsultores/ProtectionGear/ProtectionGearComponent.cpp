@@ -8,9 +8,9 @@ UProtectionGearComponent::UProtectionGearComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
-void UProtectionGearComponent::PutOn_Implementation()
+void UProtectionGearComponent::PutOn_Implementation(AActor* player)
 {
-	ProtectionStrategyObject->PutOn(GetOwner());
+	ProtectionStrategyObject->PutOn(player);
 }
 
 void UProtectionGearComponent::Remove_Implementation()

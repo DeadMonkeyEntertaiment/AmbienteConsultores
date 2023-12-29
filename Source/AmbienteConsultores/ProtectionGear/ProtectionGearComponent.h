@@ -21,7 +21,7 @@ public:
 	bool IsNecessary;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void PutOn();
+	void PutOn(AActor* player);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void Remove();
