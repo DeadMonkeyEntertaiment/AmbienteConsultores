@@ -106,6 +106,12 @@ public:
 	bool HasMovement;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	bool EnableRightHand = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	bool EnableLeftHand = true;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
 	TSoftObjectPtr<APlayerStart> PlayerStart;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Instructor")
