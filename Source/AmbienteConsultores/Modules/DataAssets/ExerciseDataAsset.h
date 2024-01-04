@@ -106,6 +106,9 @@ public:
 	bool HasMovement;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	bool HasGrab;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
 	bool EnableRightHand = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
