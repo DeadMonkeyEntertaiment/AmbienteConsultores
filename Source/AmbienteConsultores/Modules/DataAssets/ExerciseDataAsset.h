@@ -86,6 +86,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FQuestion> Questions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EPP")
+	bool HasEPP = true;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EPP")
 	TArray<FProtectionGear> ProtectionGear;
