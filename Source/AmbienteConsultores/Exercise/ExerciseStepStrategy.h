@@ -37,7 +37,7 @@ class AMBIENTECONSULTORES_API UExerciseStepStrategy : public UBaseTickableObject
 
 public:	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Setup")
-	void SetupStepBindings();
+	void SetupStep(APawn* playerPawn);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepStarted OnStepStart;
@@ -48,6 +48,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Step Tag")
 	FGameplayTag StepTag;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Autostart")
+	bool Autostart;
+
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactors & Colliders")
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 
@@ -55,7 +58,7 @@ public:
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	TArray<const UBaseStepFeedback*> InternalStepFeedback;
+	TMap<FString, const UBaseStepFeedback*> InternalStepFeedback;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
 	const UBaseStepFeedback* StepStartFeedback;
@@ -89,6 +92,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	bool bStepEnable = true;
 
+	UPROPERTY(BlueprintReadOnly)
+	APawn* PlayerPawn;
+
 	UPROPERTY()
 	FOnInteractionStarted InteractionStartedActivationReqHandler;
 	
@@ -115,6 +121,9 @@ protected:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepStart();
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Utils")
+	void AutostartStep();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepFinished(bool Success);

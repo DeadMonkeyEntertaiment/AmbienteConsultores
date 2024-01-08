@@ -7,7 +7,6 @@
 #include "QuestionnaireWidgetInterface.generated.h"
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnAnswerReleasd, int32, AnswerNumber);
-DECLARE_DYNAMIC_DELEGATE(FOnQuestionnaireFinished);
 
 UINTERFACE()
 class UQuestionnaireWidgetInterface : public UInterface
@@ -19,21 +18,13 @@ class AMBIENTECONSULTORES_API IQuestionnaireWidgetInterface
 {
 	GENERATED_BODY()
 
-public:
+public:	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void ISetupQuestion(const FQuestion& Question);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IDoAnswerFeedback(const bool Correct, const int32 AnswerNumber);
+
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void IBindToOnAnswerReleased(const FOnAnswerReleasd& Event);
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void ISetupWidget(const FQuestion& Question);
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void IAnswerFeedback(const bool Correct, const int32 AnswerNumber);
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void IShowResults(const int32 Score, const int32 TotalQuestions, const TArray<FExerciseEvaluation> &ExercisesEvaluations);
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void IBindToOnQuestionnaireFinished(const FOnQuestionnaireFinished& Event);
-
-
 };

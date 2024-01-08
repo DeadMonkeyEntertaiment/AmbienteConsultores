@@ -17,9 +17,7 @@ void UInteractableComponent::BeginPlay()
 	
 	AActor * Owner = GetOwner();
 	
-	if (!IsValid(InteractionStrategyClass)) return;
-	
-	InteractionStrategyObject = NewObject<UInteractionStrategy>(Owner, InteractionStrategyClass);
+	if (!IsValid(InteractionStrategyObject)) return;	
 	InteractionStrategyObject->InitializeObject(GetOwner());	
 	
 	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;	
@@ -50,7 +48,6 @@ bool UInteractableComponent::IIsInteracted_Implementation()
 
 void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
-	if (!IsValid(InteractionStrategyClass)) return;
 	if (!IIsEnabled_Implementation()) return;
 	if (!IsValid(InteractionStrategyObject)) return;
 	bInteracted =true;
@@ -72,7 +69,7 @@ void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const 
 
 void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interactor)
 {
-	if (!IsValid(InteractionStrategyClass)) return;
+	if (!IsValid(InteractionStrategyObject)) return;
 	if (!IIsEnabled_Implementation()) return;
 	bInteracted = false;
 	OnInteractionFinishedInternal.Broadcast(Interactor, GetOwner());

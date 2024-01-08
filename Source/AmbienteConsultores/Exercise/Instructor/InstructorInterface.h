@@ -25,6 +25,9 @@ public:
 	void IDoInstructorFeedback(FInstructorFeedback InstructorFeedback);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void ISetupInstructorSK(bool Female);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void IBindToOnInstructorFeedbackDone(const FOnInstructorFeedbackDone &Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)

@@ -4,12 +4,14 @@
 #include "ExerciseStepStrategy.h"
 #include "AmbienteConsultores/InteractionSystem/InteractableInterface.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 class UInteractableComponent;
 
-void UExerciseStepStrategy::SetupStepBindings_Implementation()
+void UExerciseStepStrategy::SetupStep_Implementation(APawn* playerPawn)
 {
+	PlayerPawn = playerPawn;
 	SetStepEnable(true, true);
 }
 
@@ -28,7 +30,7 @@ void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
 }
 
 void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool PropagateToInteracts)
-{
+{	
 	bStepEnable = Enable;
 	UBoxComponent* BoxComponent;
 	UInteractableComponent* InteractableComponent;

@@ -48,12 +48,6 @@ void UEvaluationSubsystem::StartExerciseEvaluation()
 	CurrentExerciseEvaluation.win = true;	
 }
 
-UExerciseEvaluationDataAsset*  UEvaluationSubsystem::GetCurrentExerciseEvaluation()
-{
-	if (!GetCurrentExercise()) return nullptr;
-	return GetCurrentExercise()->ExerciseEvaluationDataAsset;
-}
-
 void UEvaluationSubsystem::AddFailedAttempt()
 {
 	CurrentExerciseEvaluation.FailAttemps++;
