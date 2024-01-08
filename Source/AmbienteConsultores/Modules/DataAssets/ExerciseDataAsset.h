@@ -57,7 +57,7 @@ struct FInstructorFeedback
 	USoundBase* Audio;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UAnimationAsset* Animation;
+	UAnimMontage* AnimationMontage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSoftObjectPtr<AInstructorLocation> InstructorLocation;

@@ -75,6 +75,4 @@ DerivedDataCache/*
 enc_temp_folder/*
 
 /Plugins/*
-
-# Auth token
-auth.json
+/Content/TempAssets
