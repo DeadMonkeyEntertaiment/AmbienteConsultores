@@ -15,12 +15,5 @@ public:
 	virtual void DoFeedback_Implementation(AActor* instructor, AActor* player) override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
-	FInstructorFeedback InstructorFeedback;
-
-	UPROPERTY(BlueprintReadOnly)
-	AActor* Instructor;
-
-	UPROPERTY(BlueprintReadOnly)
-	AActor* Player;
-	
+	FInstructorFeedback InstructorFeedback;	
 };

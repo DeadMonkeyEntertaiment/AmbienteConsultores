@@ -16,11 +16,17 @@ class AMBIENTECONSULTORES_API UBaseStepFeedback : public UBaseTickableObject
 public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void DoFeedback(AActor* Instructor, AActor* Player);
+	void DoFeedback(AActor* instructor, AActor* player);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
     void OnFeedbackDone();
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepFeedbackDone OnStepFeedbackDone;
+
+	UPROPERTY(BlueprintReadOnly)
+	AActor* Instructor;
+
+	UPROPERTY(BlueprintReadOnly)
+	AActor* Player;
 };

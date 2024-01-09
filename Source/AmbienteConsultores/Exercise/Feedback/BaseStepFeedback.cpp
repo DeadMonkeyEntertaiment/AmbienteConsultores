@@ -9,6 +9,8 @@ void UBaseStepFeedback::OnFeedbackDone_Implementation()
 	OnStepFeedbackDone.Broadcast(this);
 }
 
-void UBaseStepFeedback::DoFeedback_Implementation(AActor* Instructor, AActor* Player)
+void UBaseStepFeedback::DoFeedback_Implementation(AActor* instructor, AActor* player)
 {
+	Instructor = instructor;
+	Player = player;
 }

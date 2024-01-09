@@ -9,10 +9,7 @@ void UBaseInstructorFeedback::DoFeedback_Implementation(AActor* instructor, AAct
 {
 	Super::DoFeedback_Implementation(instructor, player);
 	if (!IsValid(instructor))return;
-	UActorComponent* InstructorComponent = instructor->FindComponentByInterface(UInstructorInterface::StaticClass());
-
-	Instructor = instructor;
-	Player = player;
+	UActorComponent* InstructorComponent = instructor->FindComponentByInterface(UInstructorInterface::StaticClass());	
 	
 	FOnInstructorFeedbackDone FeedbackDoneActivationReqHandler;
 	FeedbackDoneActivationReqHandler.BindDynamic(this, &UBaseInstructorFeedback::OnFeedbackDone);
