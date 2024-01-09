@@ -19,12 +19,12 @@ bool UInteractionStrategy::IIsInteracted_Implementation()
 
 void UInteractionStrategy::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
-	OnInteractionGoalAchievedInternal.Add(Event);
+	OnInteractionGoalAchievedInternal.AddUnique(Event);
 }
 
 void UInteractionStrategy::IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event)
 {
-	OnForceFinishInteractionInternal.Add(Event);
+	OnForceFinishInteractionInternal.AddUnique(Event);
 }
 
 void UInteractionStrategy::InitializeObject_Implementation(AActor* owner)

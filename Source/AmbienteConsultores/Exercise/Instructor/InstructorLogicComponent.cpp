@@ -8,7 +8,7 @@ UInstructorLogicComponent::UInstructorLogicComponent()
 
 void UInstructorLogicComponent::IBindToOnInstructorFeedbackDone_Implementation(const FOnInstructorFeedbackDone& Event)
 {
-	OnInstructorFeedbackDoneInternal.Add(Event);
+	OnInstructorFeedbackDoneInternal.AddUnique(Event);
 }
 
 void UInstructorLogicComponent::IUnbindFromOnInstructorFeedbackDone_Implementation(

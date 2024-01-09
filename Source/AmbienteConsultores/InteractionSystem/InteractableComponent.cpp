@@ -58,7 +58,7 @@ void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor
 
 void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
 {
-	OnInteractionStartedInternal.Add(Event);
+	OnInteractionStartedInternal.AddUnique(Event);
 }
 
 void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
@@ -78,7 +78,7 @@ void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interacto
 
 void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
 {
-	OnInteractionFinishedInternal.Add(Event);
+	OnInteractionFinishedInternal.AddUnique(Event);
 }
 
 void UInteractableComponent::IUnbindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
@@ -94,7 +94,7 @@ void UInteractableComponent::IOnInteractionGoalAchieved_Implementation(AActor* I
 
 void UInteractableComponent::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
-	OnInteractionGoalAchievedInternal.Add(Event);
+	OnInteractionGoalAchievedInternal.AddUnique(Event);
 }
 
 void UInteractableComponent::IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
@@ -110,6 +110,6 @@ void UInteractableComponent::IOnForceFinishInteraction_Implementation(AActor* In
 
 void UInteractableComponent::IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event)
 {
-	OnForceFinishInteractionInternal.Add(Event);
+	OnForceFinishInteractionInternal.AddUnique(Event);
 }
 
