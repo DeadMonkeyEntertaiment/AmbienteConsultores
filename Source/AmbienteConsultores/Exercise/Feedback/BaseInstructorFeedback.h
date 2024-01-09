@@ -12,9 +12,15 @@ class AMBIENTECONSULTORES_API UBaseInstructorFeedback : public UBaseStepFeedback
 	GENERATED_BODY()
 
 public:
-	virtual void DoFeedback_Implementation(AActor* Instructor, AActor* Player) override;
+	virtual void DoFeedback_Implementation(AActor* instructor, AActor* player) override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (ExposeOnSpawn="true"))
 	FInstructorFeedback InstructorFeedback;
+
+	UPROPERTY(BlueprintReadOnly)
+	AActor* Instructor;
+
+	UPROPERTY(BlueprintReadOnly)
+	AActor* Player;
 	
 };

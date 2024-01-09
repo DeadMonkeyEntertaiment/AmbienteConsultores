@@ -5,12 +5,15 @@
 #include "AmbienteConsultores/Exercise/Instructor/InstructorInterface.h"
 
 
-void UBaseInstructorFeedback::DoFeedback_Implementation(AActor* Instructor, AActor* Player)
+void UBaseInstructorFeedback::DoFeedback_Implementation(AActor* instructor, AActor* player)
 {
-	Super::DoFeedback_Implementation(Instructor, Player);
-	if (!IsValid(Instructor))return;
-	UActorComponent* InstructorComponent = Instructor->FindComponentByInterface(UInstructorInterface::StaticClass());
+	Super::DoFeedback_Implementation(instructor, player);
+	if (!IsValid(instructor))return;
+	UActorComponent* InstructorComponent = instructor->FindComponentByInterface(UInstructorInterface::StaticClass());
 
+	Instructor = instructor;
+	Player = player;
+	
 	FOnInstructorFeedbackDone FeedbackDoneActivationReqHandler;
 	FeedbackDoneActivationReqHandler.BindDynamic(this, &UBaseInstructorFeedback::OnFeedbackDone);
 	IInstructorInterface::Execute_IBindToOnInstructorFeedbackDone(InstructorComponent, FeedbackDoneActivationReqHandler);
