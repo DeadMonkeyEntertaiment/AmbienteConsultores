@@ -84,7 +84,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
 	FStepsToDisable StepsToDisableOnFinish;
 	
-
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void SetStepEnable(bool Enable, bool PropagateToInteracts);	
 	
