@@ -70,9 +70,7 @@ protected:
 	bool bEnable = true;
 
 	UPROPERTY()
-	bool bInteracted = true;
-	
-	
+	bool bInteracted = true;	
 };
 
 

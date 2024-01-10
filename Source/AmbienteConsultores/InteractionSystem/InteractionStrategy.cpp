@@ -30,4 +30,5 @@ void UInteractionStrategy::IBindToOnForceFinishInteraction_Implementation(const 
 void UInteractionStrategy::InitializeObject_Implementation(AActor* owner)
 {
 	Owner = owner;
+	AddToRoot();
 }

@@ -12,12 +12,13 @@ class UInteractableComponent;
 void UExerciseStepStrategy::SetupStep_Implementation(APawn* playerPawn)
 {
 	PlayerPawn = playerPawn;
+	AddToRoot();
 	SetStepEnable(true, true);
 }
 
 void UExerciseStepStrategy::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, StepStartFeedback, StepFinishedFailFeedback, StepFinishedDelayedFailFeedback);
+	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, StepStartFeedback, StepFinishedFailFeedback, StepFinishedDelayedFailFeedback);	
 }
 
 void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
