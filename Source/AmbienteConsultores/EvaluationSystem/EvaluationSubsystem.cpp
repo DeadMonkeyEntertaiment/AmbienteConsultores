@@ -32,7 +32,9 @@ void UEvaluationSubsystem::NextExercise()
 }
 
 void UEvaluationSubsystem::FinishActivity()
-{	
+{
+	SelectedExercises.Empty();
+	ExercisesEvaluations.Empty();
 	UGameplayStatics::OpenLevel(GWorld, EntryLevelName, false);
 }
 

@@ -136,9 +136,7 @@ private:
 	TArray<FQuestion> Questions;	
 
 	UPROPERTY()
-	FName EntryLevelName = "/Game/Maps/MAP_EntryLevel";
-
-	
+	FName EntryLevelName = "/Game/Maps/MAP_EntryLevel";	
 
 	UPROPERTY()
 	TArray<FExerciseEvaluation> ExercisesEvaluations;
