@@ -13,6 +13,7 @@ void UBaseStepFeedback::DoFeedback_Implementation(AActor* instructor, AActor* pl
 {
 	Instructor = instructor;
 	Player = player;
+	Rename(*GetName(), player, REN_SkipGeneratedClasses);
 }
 
 

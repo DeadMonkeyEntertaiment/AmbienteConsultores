@@ -33,7 +33,7 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool Propa
 {	
 	bStepEnable = Enable;
 	UBoxComponent* BoxComponent;
-	UInteractableComponent* InteractableComponent;
+	UInteractableComponent* InteractableComponent;	
 	
 	if (Enable)
 	{
@@ -83,3 +83,4 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool Propa
 		}		
 	}	
 }
+

@@ -29,4 +29,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	AActor* Player;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FInstructorFeedback InstructorFeedback;	
 };
