@@ -11,10 +11,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepFeedbackDone, UBaseStepFeedba
 UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew)
 class AMBIENTECONSULTORES_API UBaseStepFeedback : public UBaseTickableObject
 {
-public:
-	UBaseStepFeedback();
-
-private:
 	GENERATED_BODY()
 
 public:

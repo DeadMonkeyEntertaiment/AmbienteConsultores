@@ -15,6 +15,11 @@ void UProtectionGearComponent::Setup(bool Necessary, int StackNum, FTransform Lo
 	SpawnedLocation = Location;
 }
 
+void UProtectionGearComponent::BindToOnPutOn(const FOnPutOnInternal& event)
+{
+	ProtectionStrategyObject->OnPutOn.AddUnique(event);
+}
+
 void UProtectionGearComponent::PutOn_Implementation(AActor* player)
 {
 	ProtectionStrategyObject->PutOn(player);

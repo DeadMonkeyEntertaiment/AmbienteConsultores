@@ -15,7 +15,4 @@ void UBaseStepFeedback::DoFeedback_Implementation(AActor* instructor, AActor* pl
 	Player = player;
 }
 
-UBaseStepFeedback::UBaseStepFeedback()
-{
-	AddToRoot();
-}
+

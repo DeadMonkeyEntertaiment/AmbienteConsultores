@@ -11,8 +11,7 @@ class UInteractableComponent;
 
 void UExerciseStepStrategy::SetupStep_Implementation(APawn* playerPawn)
 {
-	PlayerPawn = playerPawn;
-	AddToRoot();
+	PlayerPawn = playerPawn;	
 	SetStepEnable(true, true);
 }
 

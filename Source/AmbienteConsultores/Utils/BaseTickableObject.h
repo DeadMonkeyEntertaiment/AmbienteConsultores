@@ -19,7 +19,7 @@ protected:
 	virtual void Tick(float DeltaTime) override;	
 	virtual ETickableTickType GetTickableTickType() const override
 	{
-		return ETickableTickType::Conditional;
+		return ETickableTickType::Always;
 	}
 	virtual TStatId GetStatId() const override
 	{
