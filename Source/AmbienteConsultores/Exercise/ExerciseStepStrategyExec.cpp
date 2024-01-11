@@ -23,7 +23,12 @@ void UExerciseStepStrategyExec::SetupStep_Implementation(APawn* playerPawn, UExe
 	AutoDisableAfterFinished = Def->AutoDisableAfterFinished;	
 	AutoDisableInteractablesAfterFinished = Def->AutoDisableInteractablesAfterFinished;	
 	StepsToDisableOnStart = Def->StepsToDisableOnStart;
-	StepsToDisableOnFinish = Def->StepsToDisableOnFinish;
+	StepsToDisableOnFinish = Def->StepsToDisableOnFinish;	
+	ChangeSublevel = Def->ChangeSublevel;
+	StepSublevel = Def->StepSublevel;
+	SublevelPlayerStart = Def->SublevelPlayerStart;
+	SetStepAsNewReset = Def-> SetStepAsNewReset;
+	
 	SetStepEnable(true, true);
 }
 

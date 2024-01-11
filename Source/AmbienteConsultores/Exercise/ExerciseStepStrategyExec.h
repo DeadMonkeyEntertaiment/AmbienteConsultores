@@ -9,6 +9,7 @@
 #include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "ExerciseStepStrategyExec.generated.h"
 
+class APlayerStart;
 class AExerciseBoxCollision;
 class UFeedbackDataAsset;
 class UFailStrategy;
@@ -63,6 +64,18 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Step Tag")
 	FGameplayTag StepTag;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
+	bool ChangeSublevel;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevel")
+	TSoftObjectPtr<UWorld> StepSublevel;
+	
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevel")
+	TSoftObjectPtr<APlayerStart> SublevelPlayerStart;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
+	bool SetStepAsNewReset;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Autostart")
 	bool Autostart;
 

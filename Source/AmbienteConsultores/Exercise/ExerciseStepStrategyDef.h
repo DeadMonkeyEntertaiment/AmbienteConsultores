@@ -24,8 +24,20 @@ public:
 	FGameplayTag StepTag;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Autostart")
-	bool Autostart;
+	bool Autostart;	
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
+	bool ChangeSublevel;
 
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevel")
+	TSoftObjectPtr<UWorld> StepSublevel;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevel")
+	TSoftObjectPtr<APlayerStart> SublevelPlayerStart;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
+	bool SetStepAsNewReset;
+	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactables & Colliders")
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 
