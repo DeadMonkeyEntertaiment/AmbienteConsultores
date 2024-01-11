@@ -98,3 +98,7 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 }
 
 
+void UExerciseStepStrategyExec::AutostartStep_Implementation()
+{
+	CallOnStepStart();
+}

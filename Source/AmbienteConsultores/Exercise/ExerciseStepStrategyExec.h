@@ -124,7 +124,7 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepStart();
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category="Utils")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void AutostartStep();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")

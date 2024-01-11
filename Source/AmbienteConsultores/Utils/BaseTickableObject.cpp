@@ -8,3 +8,8 @@ void UBaseTickableObject::Tick(float DeltaTime)
 {	
 	ObjectTick(DeltaTime);
 }
+
+bool UBaseTickableObject::IsAllowedToTick() const
+{
+	return TickEnable;
+}
