@@ -37,9 +37,7 @@ protected:
 	AActor *Owner;	
 		
 	UPROPERTY(BlueprintReadWrite)
-	bool bInteracted;	
-
-
+	bool bInteracted;
 };
 
 

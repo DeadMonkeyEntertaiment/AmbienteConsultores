@@ -8,13 +8,10 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepFeedbackDone, UBaseStepFeedback*, Feedback);
 
 
-UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew)
-class AMBIENTECONSULTORES_API UBaseStepFeedback : public UBaseTickableObject
-{
-public:
-	UBaseStepFeedback();
 
-private:
+UCLASS(Blueprintable, BlueprintType, EditInlineNew)
+class AMBIENTECONSULTORES_API UBaseStepFeedback : public UObject
+{
 	GENERATED_BODY()
 
 public:
@@ -25,6 +22,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
     void OnFeedbackDone();
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UBaseStepFeedback* CloneFromDef(UObject* Outer);
+
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepFeedbackDone OnStepFeedbackDone;
 
@@ -33,4 +33,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	AActor* Player;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FInstructorFeedback InstructorFeedback;	
 };

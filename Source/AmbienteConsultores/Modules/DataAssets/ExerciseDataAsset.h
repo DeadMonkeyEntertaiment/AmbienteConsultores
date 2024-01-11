@@ -7,7 +7,7 @@
 #include "Engine/DataAsset.h"
 #include "ExerciseDataAsset.generated.h"
 
-class UExerciseStepStrategy;
+class UExerciseStepStrategyDef;
 class APlayerStart;
 class AInstructorLocation;
 class ABaseProtectionGear;
@@ -75,64 +75,64 @@ class AMBIENTECONSULTORES_API UExerciseDataAsset : public UDataAsset
 	GENERATED_BODY()
 
 public:	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	FGameplayTag ExerciseTag;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Sublevels")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevels")
 	TArray<TSoftObjectPtr<UWorld>> ExerciseSublevels;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Sublevels")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevels")
 	TSoftObjectPtr<UWorld> ExerciseActorsSublevel;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	TArray<FQuestion> Questions;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	bool HasEPP = true;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	TArray<FProtectionGear> ProtectionGear;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	FInstructorFeedback EPPSTartDialog;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	FInstructorFeedback EPPSuccessDialog;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	FInstructorFeedback EPPFailedDialog;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	bool HasPointer;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	bool HasMovement;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	bool HasGrab;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	bool EnableRightHand = true;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	bool EnableLeftHand = true;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Player")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	TSoftObjectPtr<APlayerStart> PlayerStart;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Instructor")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Instructor")
 	bool FemaleInstructor = true;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Instructor")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Instructor")
 	FInstructorFeedback StartDialog;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Instructor")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Instructor")
 	FInstructorFeedback EndDialog;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced, Category="Steps")
-	TArray<UExerciseStepStrategy*> SuccessExerciseSteps;
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Instanced, Category="Steps")
+	TArray<const UExerciseStepStrategyDef*> SuccessExerciseSteps;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Instanced, Category="Steps")
-	TArray<UExerciseStepStrategy*> FailExerciseSteps;
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Instanced, Category="Steps")
+	TArray<const UExerciseStepStrategyDef*> FailExerciseSteps;
 	
 };

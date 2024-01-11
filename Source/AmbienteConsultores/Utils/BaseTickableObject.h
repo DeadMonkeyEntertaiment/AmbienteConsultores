@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "../../../../../Program Files/Epic Games/UE_5.3/Engine/Plugins/Media/AjaMedia/Source/AjaMedia/Private/Shared/AjaMediaAllowPlatformTypes.h"
 #include "UObject/Object.h"
 #include "BaseTickableObject.generated.h"
 
@@ -12,8 +13,14 @@ class AMBIENTECONSULTORES_API UBaseTickableObject : public UObject, public FTick
 
 protected:
 
+	UPROPERTY(BlueprintReadWrite)
+	bool TickEnable = false;
+	
 	UFUNCTION(BlueprintImplementableEvent)
 	void ObjectTick(float DeltaTime);
+
+	UPROPERTY(BlueprintReadWrite)
+	FTimerHandle MemberTimerHandle;
 	
 	//Make object tickable
 	virtual void Tick(float DeltaTime) override;	
@@ -34,5 +41,7 @@ protected:
 		return false;
 	}
 
-	uint32 LastFrameNumberWeTicked = INDEX_NONE;
+	uint32 LastFrameNumberWeTicked = INDEX_NONE;	
+
+	virtual bool IsAllowedToTick() const override;
 };

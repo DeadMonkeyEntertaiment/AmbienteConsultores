@@ -12,10 +12,11 @@ void UBaseStepFeedback::OnFeedbackDone_Implementation()
 void UBaseStepFeedback::DoFeedback_Implementation(AActor* instructor, AActor* player)
 {
 	Instructor = instructor;
-	Player = player;
+	Player = player;	
 }
 
-UBaseStepFeedback::UBaseStepFeedback()
+
+UBaseStepFeedback* UBaseStepFeedback::CloneFromDef_Implementation(UObject* Outer)
 {
-	AddToRoot();
+	return DuplicateObject(this, Outer);	
 }

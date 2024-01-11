@@ -13,7 +13,6 @@ class AMBIENTECONSULTORES_API ABaseProtectionGear : public ABaseGrababble
 	GENERATED_BODY()
 
 public:
-
 	ABaseProtectionGear();
 	
 	UPROPERTY(EditDefaultsOnly)

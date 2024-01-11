@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "ProtectionStrategy.h"
 #include "Components/ActorComponent.h"
 #include "ProtectionGearComponent.generated.h"
 
@@ -43,6 +44,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Setup(bool Necessary, int StackNum, FTransform Location);
+
+	UFUNCTION(BlueprintCallable)
+	void BindToOnPutOn(const FOnPutOnInternal& event);
+
 	
 protected:
 	UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite, Category="ProtectionGear")
