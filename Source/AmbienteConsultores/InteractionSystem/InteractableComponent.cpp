@@ -17,17 +17,17 @@ void UInteractableComponent::BeginPlay()
 	
 	AActor * Owner = GetOwner();
 	
-	if (!IsValid(InteractionStrategyObject)) return;	
-	InteractionStrategyObject->InitializeObject(GetOwner());	
+	if (!IsValid(InteractionStrategy)) return;	
+	InteractionStrategy->InitializeObject(GetOwner());	
 	
 	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;	
 	InteractionGoalActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);
-	IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategyObject, InteractionGoalActivationReqHandler);
+	IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategy, InteractionGoalActivationReqHandler);
 
 	FOnForceFinishInteraction ForceFinishInteractionActivationReqHandler;
 	ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnForceFinishInteraction);
-	IInteractableInterface::Execute_IBindToOnForceFinishInteraction(InteractionStrategyObject, ForceFinishInteractionActivationReqHandler);
-	OnStrategyInitialized.Broadcast(InteractionStrategyObject);
+	IInteractableInterface::Execute_IBindToOnForceFinishInteraction(InteractionStrategy, ForceFinishInteractionActivationReqHandler);
+	OnStrategyInitialized.Broadcast(InteractionStrategy);
 }
 
 
@@ -49,11 +49,11 @@ bool UInteractableComponent::IIsInteracted_Implementation()
 void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor)
 {
 	if (!IIsEnabled_Implementation()) return;
-	if (!IsValid(InteractionStrategyObject)) return;
+	if (!IsValid(InteractionStrategy)) return;
 	bInteracted =true;
 	NewInteractor = Interactor;
 	OnInteractionStartedInternal.Broadcast(Interactor, GetOwner());
-	IInteractableInterface::Execute_IStartInteraction(InteractionStrategyObject, Interactor);
+	IInteractableInterface::Execute_IStartInteraction(InteractionStrategy, Interactor);
 }
 
 void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
@@ -69,11 +69,11 @@ void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const 
 
 void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interactor)
 {
-	if (!IsValid(InteractionStrategyObject)) return;
+	if (!IsValid(InteractionStrategy)) return;
 	if (!IIsEnabled_Implementation()) return;
 	bInteracted = false;
 	OnInteractionFinishedInternal.Broadcast(Interactor, GetOwner());
-	IInteractableInterface::Execute_IFinishInteraction(InteractionStrategyObject, Interactor);
+	IInteractableInterface::Execute_IFinishInteraction(InteractionStrategy, Interactor);
 }
 
 void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
