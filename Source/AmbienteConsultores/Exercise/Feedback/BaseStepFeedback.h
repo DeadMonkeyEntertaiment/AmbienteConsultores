@@ -8,7 +8,8 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepFeedbackDone, UBaseStepFeedback*, Feedback);
 
 
-UCLASS(Blueprintable, BlueprintType, DefaultToInstanced, EditInlineNew)
+
+UCLASS(Blueprintable, BlueprintType, EditInlineNew)
 class AMBIENTECONSULTORES_API UBaseStepFeedback : public UBaseTickableObject
 {
 	GENERATED_BODY()
@@ -20,6 +21,9 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
     void OnFeedbackDone();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UBaseStepFeedback* CloneFromDef(UObject* Outer);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepFeedbackDone OnStepFeedbackDone;

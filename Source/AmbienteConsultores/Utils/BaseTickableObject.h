@@ -15,12 +15,6 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void ObjectTick(float DeltaTime);
 
-	UFUNCTION(BlueprintCallable)
-	void CustomTimer(AActor* Actor, float Time, bool Looping, float StartDelay);
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void TimerFunction();
-
 	UPROPERTY(BlueprintReadWrite)
 	FTimerHandle MemberTimerHandle;
 	

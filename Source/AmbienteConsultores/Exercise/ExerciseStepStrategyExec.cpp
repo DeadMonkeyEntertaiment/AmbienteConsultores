@@ -1,35 +1,48 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ExerciseStepStrategy.h"
+#include "ExerciseStepStrategyExec.h"
+
+#include "ExerciseStepStrategyDef.h"
 #include "AmbienteConsultores/InteractionSystem/InteractableInterface.h"
 #include "Components/BoxComponent.h"
+#include "Feedback/FeedbackDataAsset.h"
 #include "Kismet/GameplayStatics.h"
 
 
 class UInteractableComponent;
 
-void UExerciseStepStrategy::SetupStep_Implementation(APawn* playerPawn)
+void UExerciseStepStrategyExec::SetupStep_Implementation(APawn* playerPawn, UExerciseStepStrategyDef* Def)
 {
 	PlayerPawn = playerPawn;	
+	StepTag = Def->StepTag;
+	Autostart = Def->Autostart;
+	InteractActors = Def->InteractActors;
+	BoxColliders = Def->BoxColliders;
+	FeedbackDA = Def->FeedbackDA;
+	AutoDisableAfterFinished = Def->AutoDisableAfterFinished;	
+	AutoDisableInteractablesAfterFinished = Def->AutoDisableInteractablesAfterFinished;	
+	StepsToDisableOnStart = Def->StepsToDisableOnStart;
+	StepsToDisableOnFinish = Def->StepsToDisableOnFinish;
 	SetStepEnable(true, true);
 }
 
-void UExerciseStepStrategy::CallOnStepStart_Implementation()
+
+void UExerciseStepStrategyExec::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, StepStartFeedback, StepFinishedFailFeedback, StepFinishedDelayedFailFeedback);	
+	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, FeedbackDA->StepStartFeedback, FeedbackDA->StepFinishedFailFeedback, FeedbackDA->StepFinishedDelayedFailFeedback);	
 }
 
-void UExerciseStepStrategy::CallOnStepFinished_Implementation(bool Success)
+void UExerciseStepStrategyExec::CallOnStepFinished_Implementation(bool Success)
 {
-	OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, Success, Success? StepFinishedSuccessFeedback : StepFinishedFailFeedback, StepFinishedDelayedFailFeedback);
+	OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, Success, Success? FeedbackDA->StepFinishedSuccessFeedback : FeedbackDA->StepFinishedFailFeedback, FeedbackDA->StepFinishedDelayedFailFeedback);
 	if (AutoDisableAfterFinished)
 	{
 		SetStepEnable_Implementation(false, AutoDisableInteractablesAfterFinished);
 	}
 }
 
-void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool PropagateToInteracts)
+void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool PropagateToInteracts)
 {	
 	bStepEnable = Enable;
 	UBoxComponent* BoxComponent;
@@ -37,9 +50,9 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool Propa
 	
 	if (Enable)
 	{
-		InteractionStartedActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractableInteractionStarted);
-		InteractionGoalActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractableInteractionGoalAchieved);
-		ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UExerciseStepStrategy::OnInteractableInteractionFinished);
+		InteractionStartedActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionStarted);
+		InteractionGoalActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionGoalAchieved);
+		ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionFinished);
 
 		for (TSoftObjectPtr<ABaseInteractable> InteractActor: InteractActors)
 		{
@@ -57,7 +70,7 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool Propa
 		for (TSoftObjectPtr<AExerciseBoxCollision> BoxCollider : BoxColliders)
 		{
 			BoxComponent = BoxCollider.Get()->FindComponentByClass<UBoxComponent>();
-			BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &UExerciseStepStrategy::OnBoxBeginOverlap);
+			BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &UExerciseStepStrategyExec::OnBoxBeginOverlap);
 		}
 		
 	}
@@ -79,8 +92,9 @@ void UExerciseStepStrategy::SetStepEnable_Implementation(bool Enable, bool Propa
 		for (TSoftObjectPtr<AExerciseBoxCollision> BoxCollider : BoxColliders)
 		{
 			BoxComponent = BoxCollider.Get()->FindComponentByClass<UBoxComponent>();
-			BoxComponent->OnComponentBeginOverlap.RemoveDynamic(this, &UExerciseStepStrategy::OnBoxBeginOverlap);
+			BoxComponent->OnComponentBeginOverlap.RemoveDynamic(this, &UExerciseStepStrategyExec::OnBoxBeginOverlap);
 		}		
 	}	
 }
+
 

@@ -12,8 +12,11 @@ void UBaseStepFeedback::OnFeedbackDone_Implementation()
 void UBaseStepFeedback::DoFeedback_Implementation(AActor* instructor, AActor* player)
 {
 	Instructor = instructor;
-	Player = player;
-	Rename(*GetName(), player, REN_SkipGeneratedClasses);
+	Player = player;	
 }
 
 
+UBaseStepFeedback* UBaseStepFeedback::CloneFromDef_Implementation(UObject* Outer)
+{
+	return DuplicateObject(this, Outer);	
+}
