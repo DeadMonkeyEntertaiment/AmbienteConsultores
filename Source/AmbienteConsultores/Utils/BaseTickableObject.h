@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "../../../../../Program Files/Epic Games/UE_5.3/Engine/Plugins/Media/AjaMedia/Source/AjaMedia/Private/Shared/AjaMediaAllowPlatformTypes.h"
 #include "UObject/Object.h"
 #include "BaseTickableObject.generated.h"
 
