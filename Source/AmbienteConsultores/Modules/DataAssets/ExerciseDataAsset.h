@@ -33,19 +33,19 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	TArray<FQuestion> Questions;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
-	bool HasCustomsEPP = false;
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
+	bool HasEPP = false;
 	
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	TArray<FProtectionGear> ExerciseProtectionGear;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	FInstructorFeedback EPPSTartDialog;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	FInstructorFeedback EPPSuccessDialog;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	FInstructorFeedback EPPFailedDialog;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")

@@ -83,21 +83,6 @@ public:
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	UTexture2D* Image;
-
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	bool HasCustomsEPP = true;
-	
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	TArray<FProtectionGear> ModuleProtectionGear;
-
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	FInstructorFeedback EPPSTartDialog;
-
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	FInstructorFeedback EPPSuccessDialog;
-
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	FInstructorFeedback EPPFailedDialog;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	TArray<UExerciseDataAsset*> Exercises;	
