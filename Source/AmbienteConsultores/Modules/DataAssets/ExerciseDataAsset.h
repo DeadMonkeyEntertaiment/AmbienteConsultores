@@ -34,7 +34,10 @@ public:
 	TArray<FQuestion> Questions;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	bool HasEPP = false;
+	bool HaveEPP = false;
+	
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
+	bool HaveCustomEPP = false;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	TArray<FProtectionGear> ExerciseProtectionGear;
