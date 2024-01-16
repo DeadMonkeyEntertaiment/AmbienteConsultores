@@ -28,6 +28,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category= "EventDispachers")
 	FOnForceFinishInteractionInternal OnForceFinishInteractionInternal;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bSupportTwoGrabs;
 	
 protected:
 	UPROPERTY(BlueprintReadWrite)

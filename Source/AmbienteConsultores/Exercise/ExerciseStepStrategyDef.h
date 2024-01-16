@@ -45,7 +45,7 @@ public:
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactables & Colliders")
-	TMap<FString, TSoftObjectPtr<AExerciseBoxCollision>> AdditionalActors;
+	TMap<FString, TSoftObjectPtr<AActor>> AdditionalActors;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
 	UFeedbackDataAsset* FeedbackDA;

@@ -79,12 +79,15 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Autostart")
 	bool Autostart;
 
-	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactors & Colliders")
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactables & Colliders")
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
-
-	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactors & Colliders")
+	
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactables & Colliders")
 	TArray<TSoftObjectPtr<AExerciseBoxCollision>> BoxColliders;
 
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactables & Colliders")
+	TMap<FString, TSoftObjectPtr<AActor>> AdditionalActors;
+	
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
 	UFeedbackDataAsset* FeedbackDA;
 	

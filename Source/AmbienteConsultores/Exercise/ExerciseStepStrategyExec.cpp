@@ -19,6 +19,7 @@ void UExerciseStepStrategyExec::SetupStep_Implementation(APawn* playerPawn, UExe
 	Autostart = Def->Autostart;
 	InteractActors = Def->InteractActors;
 	BoxColliders = Def->BoxColliders;
+	AdditionalActors = Def->AdditionalActors;
 	FeedbackDA = Def->FeedbackDA;
 	AutoDisableAfterFinished = Def->AutoDisableAfterFinished;	
 	AutoDisableInteractablesAfterFinished = Def->AutoDisableInteractablesAfterFinished;	

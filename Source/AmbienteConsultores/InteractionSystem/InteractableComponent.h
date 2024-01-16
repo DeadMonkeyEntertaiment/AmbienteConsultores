@@ -64,7 +64,7 @@ protected:
 	virtual void BeginPlay() override;	
 	
 	UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite)
-	UInteractionStrategy* InteractionStrategyObject;
+	UInteractionStrategy* InteractionStrategy;
 
 	UPROPERTY()
 	bool bEnable = true;
