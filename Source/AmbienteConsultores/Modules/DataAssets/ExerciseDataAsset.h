@@ -4,70 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "ModuleDataAsset.h"
 #include "Engine/DataAsset.h"
 #include "ExerciseDataAsset.generated.h"
 
 class UExerciseStepStrategyDef;
 class APlayerStart;
-class AInstructorLocation;
-class ABaseProtectionGear;
 class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
 class UImage;
 
-USTRUCT(BlueprintType)
-struct FQuestion
-{
-	GENERATED_BODY()
-	
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
-	FText Question;	
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FText> Answers
-	{
-		FText::FromString("Verdadero"), FText::FromString("Falso")
-	};
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 CorrectAnswer;	
-};
-
-USTRUCT(BlueprintType)
-struct FProtectionGear
-{
-	GENERATED_BODY()
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<ABaseProtectionGear> ProtectionGearClass;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int StackNumber;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool IsNecessary = true;
-};
-
-USTRUCT(BlueprintType)
-struct FInstructorFeedback
-{
-	GENERATED_BODY()	
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	USoundBase* Audio;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UAnimMontage* AnimationMontage;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSoftObjectPtr<AInstructorLocation> InstructorLocation;
-
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
-	TArray<FText> Texts;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<float> AudioToTextSegmentationTimes;	
-};
 
 UCLASS(BlueprintType)
 class AMBIENTECONSULTORES_API UExerciseDataAsset : public UDataAsset
@@ -87,19 +33,19 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	TArray<FQuestion> Questions;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	bool HasEPP = true;
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
+	bool HasCustomsEPP = false;
 	
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	TArray<FProtectionGear> ProtectionGear;
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
+	TArray<FProtectionGear> ExerciseProtectionGear;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
 	FInstructorFeedback EPPSTartDialog;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
 	FInstructorFeedback EPPSuccessDialog;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Customs EPP")
 	FInstructorFeedback EPPFailedDialog;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")

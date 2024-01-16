@@ -147,6 +147,11 @@ FString UEvaluationSubsystem::GetSelectedModuleId()
 	return SelectedModule->ModuleID;
 }
 
+UModuleDataAsset* UEvaluationSubsystem::GetSelectedModule()
+{
+	return SelectedModule;
+}
+
 TArray<FExerciseEvaluation> UEvaluationSubsystem::GetExercisesEvaluations()
 {
 	return ExercisesEvaluations;

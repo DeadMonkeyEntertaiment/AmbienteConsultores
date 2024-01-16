@@ -108,6 +108,9 @@ public:
 	FString GetSelectedModuleId();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UModuleDataAsset* GetSelectedModule();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TArray<FExerciseEvaluation> GetExercisesEvaluations();
 		
 	UFUNCTION(BlueprintCallable)
