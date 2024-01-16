@@ -83,6 +83,9 @@ public:
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	UTexture2D* Image;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
+	UExerciseDataAsset* EPPExercise;	
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	TArray<UExerciseDataAsset*> Exercises;	
