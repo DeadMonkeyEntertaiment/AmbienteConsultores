@@ -20,9 +20,9 @@ void UProtectionGearComponent::BindToOnPutOn(const FOnPutOnInternal& event)
 	ProtectionStrategyObject->OnPutOn.AddUnique(event);
 }
 
-void UProtectionGearComponent::PutOn_Implementation(AActor* player)
+void UProtectionGearComponent::Equip_Implementation(AActor* player)
 {
-	ProtectionStrategyObject->PutOn(player);
+	ProtectionStrategyObject->Equip(player);
 }
 
 void UProtectionGearComponent::Remove_Implementation()

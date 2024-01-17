@@ -37,7 +37,7 @@ public:
 	FTransform SpawnedLocation;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void PutOn(AActor* player);
+	void Equip(AActor* player);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void Remove();
