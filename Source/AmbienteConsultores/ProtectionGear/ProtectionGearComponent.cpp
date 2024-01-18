@@ -8,11 +8,11 @@ UProtectionGearComponent::UProtectionGearComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
-void UProtectionGearComponent::Setup(bool Necessary, int StackNum, FTransform Location)
+void UProtectionGearComponent::Setup(bool Necessary, int StackNum, FTransform Transform)
 {
 	IsNecessary = Necessary;
 	StackNumber = StackNum;
-	SpawnedLocation = Location;
+	SpawnedTransform = Transform;
 }
 
 void UProtectionGearComponent::BindToOnPutOn(const FOnPutOnInternal& event)

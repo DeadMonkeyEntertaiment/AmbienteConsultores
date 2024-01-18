@@ -31,7 +31,7 @@ public:
 	int StackNumber;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FTransform SpawnedLocation;
+	FTransform SpawnedTransform;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float SpawnScale = 1;
@@ -46,7 +46,7 @@ public:
 	void Remove();
 
 	UFUNCTION(BlueprintCallable)
-	void Setup(bool Necessary, int StackNum, FTransform Location);
+	void Setup(bool Necessary, int StackNum, FTransform Transform);
 
 	UFUNCTION(BlueprintCallable)
 	void BindToOnPutOn(const FOnPutOnInternal& event);

@@ -42,6 +42,9 @@ struct FProtectionGear
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool IsNecessary = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FRotator SpawnRotation = {0,0,0};
 };
 
 USTRUCT(BlueprintType)
