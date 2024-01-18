@@ -89,6 +89,7 @@ void UInteractableComponent::IUnbindToOnInteractionFinished_Implementation(const
 
 void UInteractableComponent::IOnInteractionGoalAchieved_Implementation(AActor* Interactor, AActor* Interactable)
 {
+	InteractionGopalAchieved = true;
 	OnInteractionGoalAchievedInternal.Broadcast(Interactor, GetOwner());
 }
 

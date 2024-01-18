@@ -2,7 +2,7 @@
 
 #include "ProtectionStrategy.h"
 
-void UProtectionStrategy::PutOn_Implementation(AActor* player)
+void UProtectionStrategy::Equip_Implementation(AActor* player)
 {
 	Player = player;
 }

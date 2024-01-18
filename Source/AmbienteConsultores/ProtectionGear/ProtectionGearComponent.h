@@ -29,21 +29,24 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int StackNumber;	
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FTransform SpawnedTransform;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float SpawnScale = 1;
+
 	UPROPERTY(BlueprintReadWrite)
 	bool IsNecessary;
 	
-	UPROPERTY(BlueprintReadWrite)
-	FTransform SpawnedLocation;
-
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void PutOn(AActor* player);
+	void Equip(AActor* player);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void Remove();
 
 	UFUNCTION(BlueprintCallable)
-	void Setup(bool Necessary, int StackNum, FTransform Location);
+	void Setup(bool Necessary, int StackNum, FTransform Transform);
 
 	UFUNCTION(BlueprintCallable)
 	void BindToOnPutOn(const FOnPutOnInternal& event);
