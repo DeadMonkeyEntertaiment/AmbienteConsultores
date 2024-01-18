@@ -29,13 +29,16 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int StackNumber;	
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FTransform SpawnedLocation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float SpawnScale = 1;
+
 	UPROPERTY(BlueprintReadWrite)
 	bool IsNecessary;
 	
-	UPROPERTY(BlueprintReadWrite)
-	FTransform SpawnedLocation;
-
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void Equip(AActor* player);
 
