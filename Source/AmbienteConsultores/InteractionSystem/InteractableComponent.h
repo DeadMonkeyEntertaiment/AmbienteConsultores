@@ -24,6 +24,9 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly)
 	AActor* NewInteractor;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool InteractionGopalAchieved;
 	
 	virtual bool IIsEnabled_Implementation() override;
 	virtual void ISetEnabled_Implementation(bool NewState) override;
