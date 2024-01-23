@@ -76,7 +76,7 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 		for (TSoftObjectPtr<AExerciseBoxCollision> BoxCollider : BoxColliders)
 		{
 			BoxComponent = BoxCollider.Get()->FindComponentByClass<UBoxComponent>();
-			BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &UExerciseStepStrategyExec::OnBoxBeginOverlap);
+			BoxComponent->OnComponentBeginOverlap.AddUniqueDynamic(this, &UExerciseStepStrategyExec::OnBoxBeginOverlap);
 		}
 		
 	}
@@ -87,6 +87,10 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 			if (!IsValid(InteractActor.Get())) return;
 			
 			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
+			
+			InteractionStartedActivationReqHandler.Unbind();
+			InteractionGoalActivationReqHandler.Unbind();
+			ForceFinishInteractionActivationReqHandler.Unbind();
 			
 			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, false);
 
