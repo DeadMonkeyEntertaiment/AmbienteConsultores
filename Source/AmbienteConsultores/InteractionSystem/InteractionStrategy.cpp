@@ -28,6 +28,12 @@ void UInteractionStrategy::IBindToOnForceFinishInteraction_Implementation(const 
 }
 
 void UInteractionStrategy::InitializeObject_Implementation(AActor* owner)
-{
+{	
 	Owner = owner;
+	if (!IsValid(Owner)) return;
+
+	SpawnLocation = Owner->GetActorLocation();
+	SpawnRotation = Owner->GetActorRotation();
+	if (!IsValid(Owner->GetComponentByClass<UStaticMeshComponent>())) return;
+	Owner->GetComponentByClass<UStaticMeshComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }

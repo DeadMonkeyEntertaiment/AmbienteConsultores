@@ -41,6 +41,12 @@ protected:
 		
 	UPROPERTY(BlueprintReadWrite)
 	bool bInteracted;
+
+	UPROPERTY(BlueprintReadWrite)
+	FRotator SpawnRotation;
+
+	UPROPERTY(BlueprintReadWrite)
+	FVector SpawnLocation;
 };
 
 
