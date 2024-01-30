@@ -112,3 +112,7 @@ void UExerciseStepStrategyExec::AutostartStep_Implementation()
 {
 	CallOnStepStart();
 }
+
+void UExerciseStepStrategyExec::OnStartFeedbackDone_Implementation()
+{
+}

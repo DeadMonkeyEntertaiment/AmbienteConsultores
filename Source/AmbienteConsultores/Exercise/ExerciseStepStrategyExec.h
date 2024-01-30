@@ -144,5 +144,8 @@ protected:
 	void AutostartStep();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
+	void OnStartFeedbackDone();
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepFinished(bool Success);
 };
