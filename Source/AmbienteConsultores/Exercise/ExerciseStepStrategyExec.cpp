@@ -115,4 +115,5 @@ void UExerciseStepStrategyExec::AutostartStep_Implementation()
 
 void UExerciseStepStrategyExec::OnStartFeedbackDone_Implementation()
 {
+	StartFeedbackDone = true;
 }

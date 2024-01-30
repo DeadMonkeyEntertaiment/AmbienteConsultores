@@ -143,8 +143,11 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void AutostartStep();
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="StartFeedbackDone")
 	void OnStartFeedbackDone();
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="StartFeedbackDone")
+	bool StartFeedbackDone;
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Utils")
 	void CallOnStepFinished(bool Success);
