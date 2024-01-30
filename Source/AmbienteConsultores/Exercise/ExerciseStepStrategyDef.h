@@ -23,9 +23,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Definition")
 	FGameplayTag StepTag;
 
-	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="FlowControl")
-	bool LastStepWaitForOkGesture;
-
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="FlowControl")
 	bool Autostart;	
 	
