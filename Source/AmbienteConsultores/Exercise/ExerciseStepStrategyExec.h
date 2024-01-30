@@ -61,9 +61,15 @@ public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnStepFinished OnStepFinish;
 
-	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Step Tag")
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Definition")
 	FGameplayTag StepTag;
 
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="FlowControl")
+	bool LastStepWaitForOkGesture;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="FlowControl")
+	bool Autostart;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
 	bool ChangeSublevel;
 
@@ -76,9 +82,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
 	bool SetStepAsNewReset;
 	
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Autostart")
-	bool Autostart;
-
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Interactables & Colliders")
 	TArray<TSoftObjectPtr<ABaseInteractable>> InteractActors;
 	
