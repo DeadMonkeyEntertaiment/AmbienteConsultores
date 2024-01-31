@@ -29,6 +29,7 @@ void UExerciseStepStrategyExec::SetupStep_Implementation(APawn* playerPawn, UExe
 	StepSublevel = Def->StepSublevel;
 	SublevelPlayerStart = Def->SublevelPlayerStart;
 	SetStepAsNewReset = Def-> SetStepAsNewReset;
+	UnloadPreviousSublevel = Def->UnloadPreviousSublevel;
 	
 	SetStepEnable(true, true);
 }

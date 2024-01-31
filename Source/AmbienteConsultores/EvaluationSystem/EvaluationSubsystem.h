@@ -6,6 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "EvaluationSubsystem.generated.h"
 
+struct FExerciseSublevel;
 class UModuleDataAsset;
 struct FQuestion;
 enum class EExercise : uint8;
@@ -83,10 +84,10 @@ public:
 	int LoadLevelIndex;
 
 	UPROPERTY()
-	TArray<TSoftObjectPtr<UWorld>> LoadWorlds;
+	TArray<FExerciseSublevel> LoadWorlds;
 
 	UPROPERTY()
-	TArray<TSoftObjectPtr<UWorld>> UnloadWorlds;
+	TArray<FExerciseSublevel> UnloadWorlds;
 
 	UFUNCTION(BlueprintCallable)
 	void ManageSubLevelsLoad();
@@ -95,13 +96,13 @@ public:
 	void UnloadNextStreamLevel();
 	
 	UFUNCTION(BlueprintCallable)
-	void UnloadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld);
+	void UnloadStreamLevel(FExerciseSublevel LoadWorld);
 	
 	UFUNCTION(BlueprintCallable)
 	void LoadNextStreamLevel();
 	
 	UFUNCTION(BlueprintCallable)
-	void LoadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld);
+	void LoadStreamLevel(FExerciseSublevel LoadWorld);
 
 	//Data
 	UFUNCTION(BlueprintCallable, BlueprintPure)
