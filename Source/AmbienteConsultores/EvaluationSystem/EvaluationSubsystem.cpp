@@ -113,14 +113,14 @@ void UEvaluationSubsystem::UnloadNextStreamLevel()
 	}
 }
 
-void UEvaluationSubsystem::UnloadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld)
+void UEvaluationSubsystem::UnloadStreamLevel(FExerciseSublevel LoadWorld)
 {
 	FLatentActionInfo info;
 	info.CallbackTarget = this;
 	info.ExecutionFunction = "UnloadNextStreamLevel";
 	info.UUID = 1;
 	info.Linkage = 0;
-	UGameplayStatics::UnloadStreamLevelBySoftObjectPtr(GetWorld(),LoadWorld, info, true);
+	UGameplayStatics::UnloadStreamLevelBySoftObjectPtr(GetWorld(),LoadWorld.World, info, true);
 	
 }
 
@@ -131,14 +131,14 @@ void UEvaluationSubsystem::LoadNextStreamLevel()
 	LoadLevelIndex++;
 }
 
-void UEvaluationSubsystem::LoadStreamLevel(TSoftObjectPtr<UWorld> LoadWorld)
+void UEvaluationSubsystem::LoadStreamLevel(FExerciseSublevel LoadWorld)
 {
 	FLatentActionInfo info;
 	info.CallbackTarget = this;
 	info.ExecutionFunction = "LoadNextStreamLevel";
 	info.UUID = 1;
 	info.Linkage = 0;
-	UGameplayStatics::LoadStreamLevelBySoftObjectPtr(GetWorld(),LoadWorld, true, true, info);
+	UGameplayStatics::LoadStreamLevelBySoftObjectPtr(GetWorld(),LoadWorld.World, LoadWorld.MakeVisibleAfterLoad, true, info);
 }
 
 //Data

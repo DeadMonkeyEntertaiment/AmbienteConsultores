@@ -70,6 +70,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
 	bool ChangeSublevel;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
+	bool UnloadPreviousSublevel = true;
+
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevel")
 	TSoftObjectPtr<UWorld> StepSublevel;
 	

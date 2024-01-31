@@ -14,6 +14,16 @@ class ABaseHoldableGrabbable;
 class UEvaluationDataAsset;
 class UImage;
 
+USTRUCT(BlueprintType)
+struct FExerciseSublevel
+{
+	GENERATED_BODY()
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<UWorld> World;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool MakeVisibleAfterLoad = true;
+};
 
 UCLASS(BlueprintType)
 class AMBIENTECONSULTORES_API UExerciseDataAsset : public UDataAsset
@@ -25,7 +35,7 @@ public:
 	FGameplayTag ExerciseTag;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevels")
-	TArray<TSoftObjectPtr<UWorld>> ExerciseSublevels;
+	TArray<FExerciseSublevel> ExerciseSublevels;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Sublevels")
 	TSoftObjectPtr<UWorld> ExerciseActorsSublevel;
