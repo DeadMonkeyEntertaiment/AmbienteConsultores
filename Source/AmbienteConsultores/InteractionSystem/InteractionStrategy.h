@@ -31,6 +31,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bSupportTwoGrabs;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float GrabTreshold = 0.6;
 	
 protected:
 	UPROPERTY(BlueprintReadWrite)
