@@ -23,7 +23,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Definition")
 	FGameplayTag StepTag;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Autostart")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="FlowControl")
 	bool Autostart;	
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")

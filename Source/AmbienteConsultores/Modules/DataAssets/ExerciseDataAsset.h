@@ -38,15 +38,6 @@ public:
 		
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	TArray<FProtectionGear> ExerciseProtectionGear;
-
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	FInstructorFeedback EPPSTartDialog;
-
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	FInstructorFeedback EPPSuccessDialog;
-
-	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	FInstructorFeedback EPPFailedDialog;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	bool HasPointer;

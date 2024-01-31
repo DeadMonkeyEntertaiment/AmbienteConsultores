@@ -29,6 +29,9 @@ public:
 	void IBindToOnLoadInPosition(const FOnPalletizerInteralAction& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Binding")
+	void IBindToOnLeverInRisePosition(const FOnPalletizerInteralAction& Event);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Binding")
 	void IBindToOnRose(const FOnPalletizerInteralAction& Event);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Binding")
