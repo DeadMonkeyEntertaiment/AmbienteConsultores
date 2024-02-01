@@ -55,17 +55,11 @@ struct FInstructorFeedback
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	USoundBase* Audio;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UAnimMontage* AnimationMontage;
+	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
+	FText Text;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSoftObjectPtr<AInstructorLocation> InstructorLocation;
-
-	UPROPERTY(meta=(MultiLine), EditAnywhere, BlueprintReadOnly)
-	TArray<FText> Texts;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<float> AudioToTextSegmentationTimes;	
 };
 
 
