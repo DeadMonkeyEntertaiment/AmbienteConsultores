@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "ExerciseBoxCollision.h"
+#include "AmbienteConsultores/EvaluationSystem/EvaluationSubsystem.h"
 #include "AmbienteConsultores/InteractionSystem/BaseInteractable.h"
 #include "AmbienteConsultores/InteractionSystem/InteractableComponent.h"
 #include "AmbienteConsultores/Utils/BaseTickableObject.h"
 #include "ExerciseStepStrategyExec.generated.h"
+
 
 class APlayerStart;
 class AExerciseBoxCollision;
@@ -149,6 +151,9 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="StartFeedbackDone")
 	void OnStartFeedbackDone();
 
+	UFUNCTION(BlueprintCallable,BlueprintPure)
+	UEvaluationSubsystem* GetEvaluationSubsystem();
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="StartFeedbackDone")
 	bool StartFeedbackDone;
 	

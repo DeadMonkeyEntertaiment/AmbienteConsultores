@@ -118,3 +118,8 @@ void UExerciseStepStrategyExec::OnStartFeedbackDone_Implementation()
 {
 	StartFeedbackDone = true;
 }
+
+UEvaluationSubsystem* UExerciseStepStrategyExec::GetEvaluationSubsystem()
+{
+	return GetWorld()->GetGameInstance()->GetSubsystem<UEvaluationSubsystem>();
+}
