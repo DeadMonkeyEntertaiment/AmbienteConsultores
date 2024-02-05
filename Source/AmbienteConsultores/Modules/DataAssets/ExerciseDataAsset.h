@@ -45,18 +45,21 @@ public:
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	bool HaveEPP = false;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
+	bool HaveEPPChecklist = false;
 		
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	TArray<FProtectionGear> ExerciseProtectionGear;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
-	bool HasPointer;
+	bool HavePointer;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
-	bool HasMovement;
+	bool HaveMovement;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
-	bool HasGrab;
+	bool HaveGrab;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Player")
 	bool EnableRightHand = true;
