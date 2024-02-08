@@ -33,12 +33,13 @@ void UInteractableComponent::BeginPlay()
 
 bool UInteractableComponent::IIsEnabled_Implementation()
 {
-	return bEnable;
+	return bEnable;	
 }
 
 void UInteractableComponent::ISetEnabled_Implementation(bool NewState)
 {
 	bEnable = NewState;
+	IInteractableInterface::Execute_ISetEnabled(InteractionStrategy, NewState);	
 }
 
 bool UInteractableComponent::IIsInteracted_Implementation()

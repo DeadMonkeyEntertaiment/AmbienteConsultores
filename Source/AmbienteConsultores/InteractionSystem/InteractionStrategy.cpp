@@ -17,6 +17,11 @@ bool UInteractionStrategy::IIsInteracted_Implementation()
 	return bInteracted;
 }
 
+void UInteractionStrategy::ISetEnabled_Implementation(bool NewState)
+{
+	bIsEnable = NewState;
+}
+
 void UInteractionStrategy::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
 	OnInteractionGoalAchievedInternal.AddUnique(Event);
