@@ -15,6 +15,7 @@ public:
 	virtual void IStartInteraction_Implementation(AActor* interactor) override;
 	virtual void IFinishInteraction_Implementation(AActor* interactor) override;
 	virtual bool IIsInteracted_Implementation() override;
+	virtual void ISetEnabled_Implementation(bool NewState) override;
 	//The other bindings are in the component, this two are here because the interaction strategy is the only who know
 	//that the interaction goal was achieved or the interaction was forced to finish 
 	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
@@ -50,6 +51,9 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	FVector SpawnLocation;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsEnable = true;
 };
 
 
