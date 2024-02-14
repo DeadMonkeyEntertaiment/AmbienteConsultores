@@ -71,7 +71,7 @@ public:
 	TSoftObjectPtr<APlayerStart> PlayerStart;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Instructor")
-	bool FemaleInstructor = true;
+	USkeletalMesh* InstructorSkeletalMesh;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Instructor")
 	FInstructorFeedback StartDialog;

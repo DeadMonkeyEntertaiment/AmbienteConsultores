@@ -25,7 +25,7 @@ public:
 	void IDoInstructorFeedback(FInstructorFeedback InstructorFeedback);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void ISetupInstructorSK(bool Female);
+	void ISetupInstructorSK(USkeletalMesh* InstructorSkeletalMesh);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void IBindToOnInstructorFeedbackDone(const FOnInstructorFeedbackDone &Event);
