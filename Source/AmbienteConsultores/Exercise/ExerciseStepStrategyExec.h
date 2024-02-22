@@ -17,7 +17,7 @@ class UFeedbackDataAsset;
 class UFailStrategy;
 
 USTRUCT(BlueprintType)
-struct FStepsToDisable
+struct FStepsToControl
 {
 	GENERATED_BODY()
 
@@ -29,21 +29,10 @@ struct FStepsToDisable
 	
 };
 
-USTRUCT(BlueprintType)
-struct FStepsToDisable2 
-{
-	GENERATED_BODY()
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	FGameplayTagContainer StepsToDisable;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	bool PropagateToInteractables;
-	
-};
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, const UBaseStepFeedback*, SuccessFeedback, const UBaseStepFeedback*, FailFeedback,  const UBaseStepFeedback*, DelayedFailFeedback);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToDisable, StepsToDisable, bool, Success, const UBaseStepFeedback*, Feedback, const UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStepStarted, FGameplayTag, StepTag, FStepsToControl, StepsToDisable, const UBaseStepFeedback*, SuccessFeedback, const UBaseStepFeedback*, FailFeedback,  const UBaseStepFeedback*, DelayedFailFeedback);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_SixParams(FOnStepFinished, FGameplayTag, StepTag, FStepsToControl, StepsToDisable, FStepsToControl, StepsToEnable, bool, Success, const UBaseStepFeedback*, Feedback, const UBaseStepFeedback*, DelayedFailFeedback);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnStepInternalFeedback, UBaseStepFeedback*, Feedback);
 
 
@@ -103,10 +92,13 @@ public:
 	bool AutoDisableInteractablesAfterFinished;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
-	FStepsToDisable StepsToDisableOnStart;
+	FStepsToControl StepsToDisableOnStart;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
-	FStepsToDisable StepsToDisableOnFinish;
+	FStepsToControl StepsToDisableOnFinish;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
+	FStepsToControl StepsToEnabledOnFinish;
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void SetStepEnable(bool Enable, bool PropagateToInteracts);	

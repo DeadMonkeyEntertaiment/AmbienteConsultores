@@ -64,7 +64,8 @@ void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FO
 
 void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
 {
-	OnInteractionStartedInternal.Remove(Event);	
+	OnInteractionStartedInternal.Remove(Event);
+	OnInteractionStartedInternal.Clear();
 }
 
 
@@ -85,6 +86,7 @@ void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const F
 void UInteractableComponent::IUnbindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
 {
 	OnInteractionFinishedInternal.Remove(Event);
+	OnInteractionStartedInternal.Clear();
 }
 
 
@@ -102,6 +104,7 @@ void UInteractableComponent::IBindToOnInteractionGoalAchieved_Implementation(con
 void UInteractableComponent::IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
 	OnInteractionGoalAchievedInternal.Remove(Event);
+	OnInteractionStartedInternal.Clear();
 }
 
 

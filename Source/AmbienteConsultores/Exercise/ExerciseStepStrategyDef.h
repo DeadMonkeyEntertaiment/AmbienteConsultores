@@ -60,8 +60,11 @@ public:
 	bool AutoDisableInteractablesAfterFinished;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
-	FStepsToDisable StepsToDisableOnStart;
+	FStepsToControl StepsToDisableOnStart;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
-	FStepsToDisable StepsToDisableOnFinish;
+	FStepsToControl StepsToDisableOnFinish;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
+	FStepsToControl StepsToEnableOnFinish;
 };

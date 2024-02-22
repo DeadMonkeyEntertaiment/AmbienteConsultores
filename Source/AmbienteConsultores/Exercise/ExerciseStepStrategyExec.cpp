@@ -30,6 +30,7 @@ void UExerciseStepStrategyExec::SetupStep_Implementation(APawn* playerPawn, UExe
 	SublevelPlayerStart = Def->SublevelPlayerStart;
 	SetStepAsNewReset = Def-> SetStepAsNewReset;
 	UnloadPreviousSublevel = Def->UnloadPreviousSublevel;
+	StepsToEnabledOnFinish = Def->StepsToEnableOnFinish;
 	
 	SetStepEnable(true, true);
 }
@@ -37,15 +38,21 @@ void UExerciseStepStrategyExec::SetupStep_Implementation(APawn* playerPawn, UExe
 
 void UExerciseStepStrategyExec::CallOnStepStart_Implementation()
 {
-	OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, FeedbackDA->StepStartFeedback, FeedbackDA->StepFinishedFailFeedback, FeedbackDA->StepFinishedDelayedFailFeedback);	
+	if (bStepEnable)
+	{
+		OnStepStart.Broadcast(StepTag, StepsToDisableOnStart, FeedbackDA->StepStartFeedback, FeedbackDA->StepFinishedFailFeedback, FeedbackDA->StepFinishedDelayedFailFeedback);	
+	}
 }
 
 void UExerciseStepStrategyExec::CallOnStepFinished_Implementation(bool Success)
 {
-	OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, Success, Success? FeedbackDA->StepFinishedSuccessFeedback : FeedbackDA->StepFinishedFailFeedback, FeedbackDA->StepFinishedDelayedFailFeedback);
-	if (AutoDisableAfterFinished)
+	if (bStepEnable)
 	{
-		SetStepEnable_Implementation(false, AutoDisableInteractablesAfterFinished);
+		OnStepFinish.Broadcast(StepTag, StepsToDisableOnFinish, StepsToEnabledOnFinish, Success, Success? FeedbackDA->StepFinishedSuccessFeedback : FeedbackDA->StepFinishedFailFeedback, FeedbackDA->StepFinishedDelayedFailFeedback);
+		if (AutoDisableAfterFinished)
+		{
+			SetStepEnable_Implementation(false, AutoDisableInteractablesAfterFinished);
+		}
 	}
 }
 
@@ -60,25 +67,26 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 		InteractionStartedActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionStarted);
 		InteractionGoalActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionGoalAchieved);
 		ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionFinished);
-
+		
 		for (TSoftObjectPtr<ABaseInteractable> InteractActor: InteractActors)
 		{
 			if (!IsValid(InteractActor.Get())) return;
-			
+				
 			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
 
 			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, true);
-			
+				
 			IInteractableInterface::Execute_IBindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
 			IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
 			IInteractableInterface::Execute_IBindToOnInteractionFinished(InteractableComponent, ForceFinishInteractionActivationReqHandler);
 		}
-	
+		
 		for (TSoftObjectPtr<AExerciseBoxCollision> BoxCollider : BoxColliders)
 		{
 			BoxComponent = BoxCollider.Get()->FindComponentByClass<UBoxComponent>();
 			BoxComponent->OnComponentBeginOverlap.AddUniqueDynamic(this, &UExerciseStepStrategyExec::OnBoxBeginOverlap);
 		}
+		
 		
 	}
 	else
@@ -88,10 +96,10 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 			if (!IsValid(InteractActor.Get())) return;
 			
 			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
-			
-			InteractionStartedActivationReqHandler.Unbind();
-			InteractionGoalActivationReqHandler.Unbind();
-			ForceFinishInteractionActivationReqHandler.Unbind();
+
+			InteractionStartedActivationReqHandler.Clear();
+			InteractionGoalActivationReqHandler.Clear();
+			ForceFinishInteractionActivationReqHandler.Clear();
 			
 			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, false);
 
