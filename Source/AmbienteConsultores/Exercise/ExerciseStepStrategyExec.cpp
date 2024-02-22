@@ -74,8 +74,8 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 				
 			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
 
-			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, true);
-				
+			if (PropagateToInteracts)IInteractableInterface::Execute_ISetEnabled(InteractableComponent, true);
+			
 			IInteractableInterface::Execute_IBindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
 			IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
 			IInteractableInterface::Execute_IBindToOnInteractionFinished(InteractableComponent, ForceFinishInteractionActivationReqHandler);
@@ -86,8 +86,6 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 			BoxComponent = BoxCollider.Get()->FindComponentByClass<UBoxComponent>();
 			BoxComponent->OnComponentBeginOverlap.AddUniqueDynamic(this, &UExerciseStepStrategyExec::OnBoxBeginOverlap);
 		}
-		
-		
 	}
 	else
 	{
@@ -96,16 +94,18 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 			if (!IsValid(InteractActor.Get())) return;
 			
 			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
-
+			
 			InteractionStartedActivationReqHandler.Clear();
 			InteractionGoalActivationReqHandler.Clear();
-			ForceFinishInteractionActivationReqHandler.Clear();
-			
-			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, false);
+			ForceFinishInteractionActivationReqHandler.Clear();		
 
-			IInteractableInterface::Execute_IUnbindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
-			IInteractableInterface::Execute_IUnbindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
-			IInteractableInterface::Execute_IUnbindToOnInteractionFinished(InteractableComponent, ForceFinishInteractionActivationReqHandler);
+			InteractableComponent->OnInteractionStartedInternal.RemoveDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionStarted);
+			InteractableComponent->OnInteractionGoalAchievedInternal.RemoveDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionGoalAchieved);
+			InteractableComponent->OnInteractionFinishedInternal.RemoveDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionFinished);
+
+
+			if (PropagateToInteracts) IInteractableInterface::Execute_ISetEnabled(InteractableComponent, false);		
+
 		}	
 	
 		for (TSoftObjectPtr<AExerciseBoxCollision> BoxCollider : BoxColliders)

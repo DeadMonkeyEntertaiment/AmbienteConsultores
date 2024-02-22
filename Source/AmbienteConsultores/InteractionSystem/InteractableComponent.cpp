@@ -23,6 +23,7 @@ void UInteractableComponent::BeginPlay()
 	FOnInteractionGoalAchieved InteractionGoalActivationReqHandler;	
 	InteractionGoalActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnInteractionGoalAchieved);
 	IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractionStrategy, InteractionGoalActivationReqHandler);
+	
 
 	FOnForceFinishInteraction ForceFinishInteractionActivationReqHandler;
 	ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UInteractableComponent::IOnForceFinishInteraction);
@@ -65,7 +66,6 @@ void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FO
 void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
 {
 	OnInteractionStartedInternal.Remove(Event);
-	OnInteractionStartedInternal.Clear();
 }
 
 
@@ -85,8 +85,7 @@ void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const F
 
 void UInteractableComponent::IUnbindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
 {
-	OnInteractionFinishedInternal.Remove(Event);
-	OnInteractionStartedInternal.Clear();
+	OnInteractionFinishedInternal.Remove(Event);	
 }
 
 
@@ -103,8 +102,9 @@ void UInteractableComponent::IBindToOnInteractionGoalAchieved_Implementation(con
 
 void UInteractableComponent::IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
 {
+	 TArray<UObject*> x =OnInteractionGoalAchievedInternal.GetAllObjects();
 	OnInteractionGoalAchievedInternal.Remove(Event);
-	OnInteractionStartedInternal.Clear();
+	 x =OnInteractionGoalAchievedInternal.GetAllObjects();
 }
 
 
