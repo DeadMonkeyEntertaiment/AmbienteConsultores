@@ -32,7 +32,7 @@ void UExerciseStepStrategyExec::SetupStep_Implementation(APawn* playerPawn, UExe
 	UnloadPreviousSublevel = Def->UnloadPreviousSublevel;
 	StepsToEnabledOnFinish = Def->StepsToEnableOnFinish;
 	
-	SetStepEnable(true, true);
+	SetStepEnable(Def->InitializeEnable, Def->PropagateToInteractables);
 }
 
 

@@ -63,7 +63,7 @@ protected:
 	UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite)
 	UInteractionStrategy* InteractionStrategy;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bEnable = true;
 
 	UPROPERTY()

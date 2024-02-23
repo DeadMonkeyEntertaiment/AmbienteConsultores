@@ -24,7 +24,13 @@ public:
 	FGameplayTag StepTag;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="FlowControl")
-	bool Autostart;	
+	bool Autostart;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="FlowControl")
+	bool InitializeEnable = true;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="FlowControl")
+	bool PropagateToInteractables = true;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
 	bool ChangeSublevel;

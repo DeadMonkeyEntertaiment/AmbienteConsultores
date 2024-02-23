@@ -22,7 +22,7 @@ struct FStepsToControl
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	FGameplayTagContainer StepsToDisable;
+	FGameplayTagContainer StepsTags;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool PropagateToInteractables;
