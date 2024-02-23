@@ -33,10 +33,16 @@ public:
 	virtual bool IIsInteracted_Implementation() override;
 	
 	virtual void IStartInteraction_Implementation(AActor* Interactor) override;
+	virtual void IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event) override;
+	virtual void IUnbindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event) override;
 	
 	virtual void IFinishInteraction_Implementation(AActor* Interactor) override;	
-
+	virtual void IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event) override;
+	virtual void IUnbindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event) override;
+	
 	virtual void IOnInteractionGoalAchieved_Implementation(AActor* Interactor, AActor* Interactable) override;
+	virtual void IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
+	virtual void IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event) override;
 	
 	virtual void IBindToOnForceFinishInteraction_Implementation(const FOnForceFinishInteraction& Event) override;
 	virtual void IOnForceFinishInteraction_Implementation(AActor* Interactor, AActor* Interactable) override;

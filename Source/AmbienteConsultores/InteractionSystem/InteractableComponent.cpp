@@ -83,3 +83,34 @@ void UInteractableComponent::IBindToOnForceFinishInteraction_Implementation(cons
 	OnForceFinishInteractionInternal.AddUnique(Event);
 }
 
+void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
+{
+	OnInteractionStartedInternal.AddUnique(Event);
+}
+
+void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
+{
+	OnInteractionStartedInternal.Remove(Event);
+}
+
+void UInteractableComponent::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
+{
+	OnInteractionGoalAchievedInternal.AddUnique(Event);
+}
+
+void UInteractableComponent::IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
+{
+	TArray<UObject*> x =OnInteractionGoalAchievedInternal.GetAllObjects();
+	OnInteractionGoalAchievedInternal.Remove(Event);
+	x =OnInteractionGoalAchievedInternal.GetAllObjects();
+}
+
+void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
+{
+	OnInteractionFinishedInternal.AddUnique(Event);
+}
+
+void UInteractableComponent::IUnbindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
+{
+	OnInteractionFinishedInternal.Remove(Event);	
+}
