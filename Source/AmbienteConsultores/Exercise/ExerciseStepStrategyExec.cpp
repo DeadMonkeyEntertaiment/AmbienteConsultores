@@ -63,11 +63,7 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 	UInteractableComponent* InteractableComponent;	
 	
 	if (Enable)
-	{
-		InteractionStartedActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionStarted);
-		InteractionGoalActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionGoalAchieved);
-		ForceFinishInteractionActivationReqHandler.BindDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionFinished);
-		
+	{		
 		for (TSoftObjectPtr<ABaseInteractable> InteractActor: InteractActors)
 		{
 			if (!IsValid(InteractActor.Get())) return;
@@ -75,10 +71,10 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
 
 			if (PropagateToInteracts)IInteractableInterface::Execute_ISetEnabled(InteractableComponent, true);
-			
-			IInteractableInterface::Execute_IBindToOnInteractionStarted(InteractableComponent, InteractionStartedActivationReqHandler);
-			IInteractableInterface::Execute_IBindToOnInteractionGoalAchieved(InteractableComponent, InteractionGoalActivationReqHandler);			
-			IInteractableInterface::Execute_IBindToOnInteractionFinished(InteractableComponent, ForceFinishInteractionActivationReqHandler);
+
+			InteractableComponent->OnInteractionStartedInternal.AddDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionStarted);
+			InteractableComponent->OnInteractionGoalAchievedInternal.AddDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionGoalAchieved);
+			InteractableComponent->OnInteractionFinishedInternal.AddDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionFinished);	
 		}
 		
 		for (TSoftObjectPtr<AExerciseBoxCollision> BoxCollider : BoxColliders)
@@ -93,11 +89,7 @@ void UExerciseStepStrategyExec::SetStepEnable_Implementation(bool Enable, bool P
 		{
 			if (!IsValid(InteractActor.Get())) return;
 			
-			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();
-			
-			InteractionStartedActivationReqHandler.Clear();
-			InteractionGoalActivationReqHandler.Clear();
-			ForceFinishInteractionActivationReqHandler.Clear();		
+			InteractableComponent = InteractActor.Get()->FindComponentByClass<UInteractableComponent>();			
 
 			InteractableComponent->OnInteractionStartedInternal.RemoveDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionStarted);
 			InteractableComponent->OnInteractionGoalAchievedInternal.RemoveDynamic(this, &UExerciseStepStrategyExec::OnInteractableInteractionGoalAchieved);

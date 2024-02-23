@@ -58,17 +58,6 @@ void UInteractableComponent::IStartInteraction_Implementation(AActor *Interactor
 	IInteractableInterface::Execute_IStartInteraction(InteractionStrategy, Interactor);
 }
 
-void UInteractableComponent::IBindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
-{
-	OnInteractionStartedInternal.AddUnique(Event);
-}
-
-void UInteractableComponent::IUnbindToOnInteractionStarted_Implementation(const FOnInteractionStarted& Event)
-{
-	OnInteractionStartedInternal.Remove(Event);
-}
-
-
 void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interactor)
 {
 	if (!IsValid(InteractionStrategy)) return;
@@ -78,35 +67,11 @@ void UInteractableComponent::IFinishInteraction_Implementation(AActor* Interacto
 	IInteractableInterface::Execute_IFinishInteraction(InteractionStrategy, Interactor);
 }
 
-void UInteractableComponent::IBindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
-{
-	OnInteractionFinishedInternal.AddUnique(Event);
-}
-
-void UInteractableComponent::IUnbindToOnInteractionFinished_Implementation(const FOnInteractionFinished& Event)
-{
-	OnInteractionFinishedInternal.Remove(Event);	
-}
-
-
 void UInteractableComponent::IOnInteractionGoalAchieved_Implementation(AActor* Interactor, AActor* Interactable)
 {
 	InteractionGopalAchieved = true;
 	OnInteractionGoalAchievedInternal.Broadcast(Interactor, GetOwner());
 }
-
-void UInteractableComponent::IBindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
-{
-	OnInteractionGoalAchievedInternal.AddUnique(Event);
-}
-
-void UInteractableComponent::IUnbindToOnInteractionGoalAchieved_Implementation(const FOnInteractionGoalAchieved& Event)
-{
-	 TArray<UObject*> x =OnInteractionGoalAchievedInternal.GetAllObjects();
-	OnInteractionGoalAchievedInternal.Remove(Event);
-	 x =OnInteractionGoalAchievedInternal.GetAllObjects();
-}
-
 
 void UInteractableComponent::IOnForceFinishInteraction_Implementation(AActor* Interactor, AActor* Interactable)
 {
