@@ -31,6 +31,12 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="FlowControl")
 	bool PropagateToInteractables = true;
+
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="FlowControl")
+	bool AutoDisableAfterFinished;
+	
+	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="FlowControl")
+	bool AutoDisableInteractablesAfterFinished;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sublevel")
 	bool ChangeSublevel;
@@ -57,20 +63,14 @@ public:
 	TMap<FString, TSoftObjectPtr<AActor>> AdditionalActors;
 
 	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Feedback")
-	UFeedbackDataAsset* FeedbackDA;
+	UFeedbackDataAsset* FeedbackDA;	
 	
-	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Steps To Desable")
-	bool AutoDisableAfterFinished;
-	
-	UPROPERTY(BlueprintReadOnly, EditInstanceOnly, Category="Steps To Desable")
-	bool AutoDisableInteractablesAfterFinished;
-	
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps Control")
 	FStepsToControl StepsToDisableOnStart;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps Control")
 	FStepsToControl StepsToDisableOnFinish;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps To Desable")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Steps Control")
 	FStepsToControl StepsToEnableOnFinish;
 };
