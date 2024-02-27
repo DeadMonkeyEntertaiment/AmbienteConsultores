@@ -44,7 +44,7 @@ public:
 	TArray<FQuestion> Questions;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
-	bool HaveEPP = false;
+	bool HaveStandardEPP = false;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="EPP")
 	bool HaveEPPChecklist = false;
