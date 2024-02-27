@@ -23,8 +23,6 @@ void UProtectionGearComponent::BindToOnPutOn(const FOnPutOnInternal& event)
 
 void UProtectionGearComponent::Equip_Implementation(AActor* player)
 {
-	GetOwner()->SetActorHiddenInGame(true);
-	GetOwner()->SetActorEnableCollision(false);
 	if (!IsValid(ProtectionStrategyObject)) return;;
 	ProtectionStrategyObject->Equip(player);
 }
@@ -32,10 +30,7 @@ void UProtectionGearComponent::Equip_Implementation(AActor* player)
 void UProtectionGearComponent::Remove_Implementation()
 {
 	OnEppRemoved.Broadcast(GetOwner());
-	GetOwner()->SetActorTransform(SpawnedTransform);
-	GetOwner()->SetActorHiddenInGame(false);
-	GetOwner()->SetActorEnableCollision(true);
-	if (!IsValid(ProtectionStrategyObject)) return;	
-	ProtectionStrategyObject->Remove();	
+	if (!IsValid(ProtectionStrategyObject)) return;;
+	ProtectionStrategyObject->Remove();
 }
 
