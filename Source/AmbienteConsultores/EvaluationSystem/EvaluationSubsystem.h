@@ -30,7 +30,7 @@ struct FExerciseEvaluation
 	int32 SuccessAttemps;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool win;
+	bool Win = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 Step;	

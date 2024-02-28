@@ -47,7 +47,7 @@ void UEvaluationSubsystem::StartExerciseEvaluation()
 	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld());
 	CurrentExerciseEvaluation.FailAttemps = 0; 
 	CurrentExerciseEvaluation.SuccessAttemps = 0; 
-	CurrentExerciseEvaluation.win = true;	
+	CurrentExerciseEvaluation.Win = true;	
 }
 
 void UEvaluationSubsystem::AddFailedAttempt()
@@ -55,7 +55,7 @@ void UEvaluationSubsystem::AddFailedAttempt()
 	CurrentExerciseEvaluation.FailAttemps++;
 	if (CurrentExerciseEvaluation.FailAttemps > 3)
 	{
-		CurrentExerciseEvaluation.win = false;
+		CurrentExerciseEvaluation.Win = false;
 	}
 }
 
@@ -75,7 +75,7 @@ void UEvaluationSubsystem::RetryExercise()
 
 void UEvaluationSubsystem::FinishExerciseEvaluation(bool &ActivityFinished)
 {
-	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld()) - CurrentExerciseEvaluation.Time;	
+	CurrentExerciseEvaluation.Time = UGameplayStatics::GetTimeSeconds(GetWorld()) - CurrentExerciseEvaluation.Time;
 	ExercisesEvaluations.Add(CurrentExerciseEvaluation);
 	ActivityFinished = !SelectedExercises.IsValidIndex(CurrentExerciseNumber+1);
 }
