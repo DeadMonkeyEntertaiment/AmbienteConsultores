@@ -26,7 +26,7 @@ struct FQuestion
 	};
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 CorrectAnswer;	
+	TArray<int32> CorrectAnswers;	
 };
 
 USTRUCT(BlueprintType)
