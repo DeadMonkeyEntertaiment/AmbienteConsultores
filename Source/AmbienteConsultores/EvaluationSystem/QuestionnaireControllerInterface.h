@@ -7,6 +7,7 @@
 #include "QuestionnaireControllerInterface.generated.h"
 
 DECLARE_DYNAMIC_DELEGATE(FOnQuestionnaireFinished);
+DECLARE_DYNAMIC_DELEGATE(FOnQuestionAnswered);
 
 
 UINTERFACE()
@@ -24,4 +25,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void IBindToOnQuestionnaireFinished(const FOnQuestionnaireFinished& Event);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IBindToOnQuestionAnswered(const FOnQuestionAnswered& Event);
 };
