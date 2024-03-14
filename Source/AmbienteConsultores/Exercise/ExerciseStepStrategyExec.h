@@ -141,7 +141,7 @@ protected:
 	void AutostartStep();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="StartFeedbackDone")
-	void OnStartFeedbackDone();
+	void OnStartFeedbackDone(UBaseStepFeedback* BaseStepFeedback);
 
 	UFUNCTION(BlueprintCallable,BlueprintPure)
 	UEvaluationSubsystem* GetEvaluationSubsystem();
