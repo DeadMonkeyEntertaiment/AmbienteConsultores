@@ -114,7 +114,7 @@ void UExerciseStepStrategyExec::AutostartStep_Implementation()
 	CallOnStepStart();
 }
 
-void UExerciseStepStrategyExec::OnStartFeedbackDone_Implementation(UBaseStepFeedback* BaseStepFeedback)
+void UExerciseStepStrategyExec::OnStartFeedbackDone_Implementation()
 {
 	StartFeedbackDone = true;
 }
