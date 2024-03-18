@@ -79,6 +79,9 @@ public:
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Instructor")
 	FInstructorFeedback EndDialog;
 
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="Instructor")
+	FInstructorFeedback OKDialog;
+
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Instanced, Category="Steps")
 	TArray<const UExerciseStepStrategyDef*> SuccessExerciseSteps;
 
