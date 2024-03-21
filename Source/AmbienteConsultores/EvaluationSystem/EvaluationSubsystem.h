@@ -33,7 +33,16 @@ struct FExerciseEvaluation
 	bool Win = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 Step;	
+	int32 Step;
+
+	TSharedPtr<FJsonObject> FExerciseEvaluation::ToJsonObject() const
+	{
+		TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject);
+		
+		JsonObject->SetStringField(TEXT("step"), *FString::Printf(TEXT("%s,%f,%d,%d, %d, %s"),
+			*Exercise.ToString(), Time, FailAttemps, SuccessAttemps, Step, Win ? TEXT("true") : TEXT("false")));
+		return JsonObject;
+	}
 };
 
 UCLASS(Blueprintable)
@@ -42,7 +51,7 @@ class AMBIENTECONSULTORES_API UEvaluationSubsystem : public UGameInstanceSubsyst
 	GENERATED_BODY()
 	
 public:
-	//Esto deberia ser pribado, lo pongo publico para testear mas facil
+	//Esto deberia ser privado, lo pongo publico para testear mas facil
 	UPROPERTY(BlueprintReadWrite)
 	TArray<UExerciseDataAsset*> SelectedExercises;
 	
