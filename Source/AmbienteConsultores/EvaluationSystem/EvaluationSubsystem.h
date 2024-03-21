@@ -8,6 +8,7 @@
 
 struct FExerciseSublevel;
 class UModuleDataAsset;
+class FJsonObject;
 struct FQuestion;
 enum class EExercise : uint8;
 enum class EModule : uint8;
@@ -35,7 +36,7 @@ struct FExerciseEvaluation
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 Step;
 
-	TSharedPtr<FJsonObject> FExerciseEvaluation::ToJsonObject() const
+	TSharedPtr<FJsonObject> ToJsonObject() const
 	{
 		TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject);
 		
