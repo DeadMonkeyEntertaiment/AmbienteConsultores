@@ -125,6 +125,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite) //should by private
 	FExerciseEvaluation CurrentExerciseEvaluation;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString AuthToken;
 	
 private:	
 	UPROPERTY()
