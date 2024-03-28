@@ -36,8 +36,8 @@ https://docs.google.com/document/d/1yFtyjZPYg-HUuTQbXfROH-9yFVOldCgnSpj-PyYT5XY/
 
 ### Server Connection
 The POST requests are made with the VA REST plugin. 
- - The login request is made in the BP_MainMenuComponent
- - The request to send the evaluation data is made in the BP_ResultsComponent
+ - The login request is made in the Main Menu Component
+ - The request to send the evaluation data is made in the Results Component
 
 
 ## Contributing
