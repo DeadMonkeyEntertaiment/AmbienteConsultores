@@ -24,10 +24,15 @@ This project uses several plugins for both runtime and development.
 
 You can find BlueprintAssist and Electronic Nodes plugins [here](https://drive.google.com/drive/u/2/folders/15XSU2aNTw-qrnRStJ9wNX06_vv_V60Zx).
 
+## Architecture
+https://app.diagrams.net/#G1hYv3l96d_QLSl4rSuv8P8XaAN7rl2DUq
 
 ## Systems
 
 ### Server Connection
+The POST requests are made with the VA REST plugin. 
+ - The login request is made in the BP_MainMenuComponent
+ - The request to send the evaluation data is made in the BP_ResultsComponent
 
 
 ## Contributing
