@@ -24,8 +24,13 @@ This project uses several plugins for both runtime and development.
 
 You can find BlueprintAssist and Electronic Nodes plugins [here](https://drive.google.com/drive/u/2/folders/15XSU2aNTw-qrnRStJ9wNX06_vv_V60Zx).
 
+## Architecture and Documentation
+
 ## Architecture
 https://app.diagrams.net/#G1hYv3l96d_QLSl4rSuv8P8XaAN7rl2DUq
+
+## Documentation
+https://docs.google.com/document/d/1yFtyjZPYg-HUuTQbXfROH-9yFVOldCgnSpj-PyYT5XY/edit?usp=sharing
 
 ## Systems
 
