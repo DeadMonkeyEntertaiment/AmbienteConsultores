@@ -13,7 +13,7 @@ Welcome to AmbienteConsultores, an immersive and interactive virtual training sy
 This project uses several plugins for both runtime and development.
 
 ### Runtime
-- Meta XR [Oculus](https://developer.oculus.com/downloads/package/unreal-engine-5-integration/57.0)
+- Meta XR [Oculus]([https://developer.oculus.com/downloads/package/unreal-engine-5-integration/57.0](https://developer.oculus.com/downloads/package/unreal-engine-5-integration/63.0))
 - VaRest [Marketplace](https://www.unrealengine.com/marketplace/en-US/product/varest-plugin)
 
 
