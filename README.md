@@ -12,6 +12,9 @@ Welcome to AmbienteConsultores, an immersive and interactive virtual training sy
 
 This project uses several plugins for both runtime and development.
 
+### Compile for Meta Quest 2
+Follow [Unreal Engine's documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/how-to-set-up-android-sdk-and-ndk-for-your-unreal-engine-development-environment?application_version=5.3)
+
 ### Runtime
 - Meta XR [Oculus](https://developer.oculus.com/downloads/package/unreal-engine-5-integration/)
 - VaRest [Marketplace](https://www.unrealengine.com/marketplace/en-US/product/varest-plugin)
@@ -30,7 +33,7 @@ You can find BlueprintAssist and Electronic Nodes plugins [here](https://drive.g
 https://app.diagrams.net/#G1hYv3l96d_QLSl4rSuv8P8XaAN7rl2DUq
 
 ## Documentation
-https://docs.google.com/document/d/1yFtyjZPYg-HUuTQbXfROH-9yFVOldCgnSpj-PyYT5XY/edit?usp=sharing
+https://docs.google.com/document/d/1r18jadcSd_eKPQbFIdDXhavTfPlX81MlOJfikDU0SF8/edit
 
 ## Systems
 
