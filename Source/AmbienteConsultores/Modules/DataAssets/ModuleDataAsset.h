@@ -85,5 +85,11 @@ public:
 	UExerciseDataAsset* EPPExercise;	
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
-	TArray<UExerciseDataAsset*> Exercises;	
+	TArray<UExerciseDataAsset*> Exercises;
+	
+	/**
+	 * If false, this modoule is not available to the user
+	 */
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
+	bool IsAvailable = true;
 };
